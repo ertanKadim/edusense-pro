@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSense Pro — Öğretmen Paneli</title>
+<script src="/chart.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --accent:#6366f1;--accent2:#8b5cf6;--accent-lt:#eef2ff;
+  --success:#10b981;--success-lt:#ecfdf5;
+  --warning:#f59e0b;--warning-lt:#fffbeb;
+  --danger:#ef4444;--danger-lt:#fef2f2;
+  --text:#0f172a;--dim:#475569;--muted:#94a3b8;
+  --border:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
+}
+html,body{height:100%;overflow:hidden;}
+body{font-family:system-ui,Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);display:flex;}
+
+.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.2rem 1rem;flex-shrink:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{display:flex;align-items:center;gap:9px;margin-bottom:1.75rem;padding:0 .3rem;}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-icon svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-name{font-size:.95rem;font-weight:800;}
+.logo-name span{color:var(--accent);}
+.nav-section{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:.3rem .4rem;margin-bottom:.3rem;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:.55rem;font-size:.85rem;font-weight:500;color:var(--dim);cursor:pointer;transition:.15s;text-decoration:none;border:none;background:transparent;width:100%;font-family:inherit;text-align:left;}
+.nav-item:hover{background:var(--bg);color:var(--text);}
+.nav-item.active{background:var(--accent-lt);color:var(--accent);font-weight:600;}
+.nav-item .ni{font-size:.9rem;width:18px;text-align:center;flex-shrink:0;}
+.nav-divider{height:1px;background:var(--border);margin:.5rem 0;}
+.nav-spacer{flex:1;}
+.sidebar-user{padding:.75rem;background:var(--bg);border-radius:.65rem;display:flex;align-items:center;gap:.65rem;border:1px solid var(--border);}
+.user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.user-name{font-size:.82rem;font-weight:600;}
+.user-role{font-size:.7rem;color:var(--muted);}
+
+.main{flex:1;overflow-y:auto;height:100vh;padding:1.75rem 2rem;}
+.page-header{margin-bottom:1.75rem;}
+.page-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem;}
+.page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.3px;}
+.page-sub{font-size:.85rem;color:var(--muted);}
+.header-actions{display:flex;gap:.75rem;align-items:center;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:.2s;position:relative;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06);}
+.stat-card .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;}
+.stat-card .sc-icon-wrap{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.stat-card .sc-trend{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:100px;}
+.stat-card .sc-val{font-family:'Syne',sans-serif;font-size:1.85rem;font-weight:800;margin-bottom:2px;}
+.stat-card .sc-lbl{font-size:.73rem;color:var(--muted);}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;}
+.grid-3{display:grid;grid-template-columns:2fr 1fr;gap:1.25rem;margin-bottom:1.5rem;}
+@media(max-width:1200px){.stats-row{grid-template-columns:repeat(2,1fr);}.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.card-header{padding:1.1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-size:.87rem;font-weight:700;}
+.card-body{padding:1.25rem;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:700;}
+.badge-blue{background:var(--accent-lt);color:var(--accent);}
+.badge-green{background:var(--success-lt);color:var(--success);}
+.badge-red{background:var(--danger-lt);color:var(--danger);}
+.badge-yellow{background:var(--warning-lt);color:var(--warning);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6)}}
+
+/* AI ASSISTANT */
+.ai-panel{background:linear-gradient(135deg,#eef2ff,#f5f3ff);border:1.5px solid rgba(99,102,241,.25);border-radius:14px;padding:1.25rem;margin-bottom:1.5rem;}
+.ai-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;}
+.ai-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:4px 12px;border-radius:100px;font-size:.7rem;font-weight:700;font-family:'Syne',sans-serif;}
+.ai-suggestions{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
+@media(max-width:1000px){.ai-suggestions{grid-template-columns:1fr;}}
+.ai-suggestion{background:var(--surface);border-radius:10px;padding:1rem;border:1px solid var(--border);transition:.2s;}
+.ai-suggestion:hover{border-color:var(--accent);transform:translateY(-1px);}
+.ai-sug-icon{font-size:1.3rem;margin-bottom:.5rem;}
+.ai-sug-level{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;}
+.ai-sug-text{font-size:.81rem;color:var(--dim);line-height:1.55;}
+.ai-sug-action{margin-top:.65rem;font-size:.75rem;font-weight:700;color:var(--accent);}
+
+/* STUDENT GRID */
+.student-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;}
+.student-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1rem;text-align:center;transition:.2s;cursor:pointer;}
+.student-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.student-card.good{border-color:var(--success);}
+.student-card.warn{border-color:var(--warning);}
+.student-card.crit{border-color:var(--danger);background:var(--danger-lt);}
+.s-emoji{font-size:1.8rem;margin-bottom:.4rem;line-height:1;}
+.s-name{font-size:.72rem;font-weight:600;color:var(--dim);margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.s-score{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;}
+.s-bar-wrap{height:3px;background:var(--border);border-radius:100px;margin-top:.4rem;overflow:hidden;}
+.s-bar{height:100%;border-radius:100px;transition:width .5s;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{padding:9px 14px;text-align:left;font-size:.68rem;color:var(--muted);background:var(--bg);font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);}
+.tbl td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:.84rem;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--bg);}
+
+/* FOCUS GAUGE */
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.5rem 0;}
+.gauge-num{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;line-height:1;}
+.gauge-label{font-size:.78rem;color:var(--muted);}
+.gauge-bar{width:100%;height:8px;background:var(--border);border-radius:100px;overflow:hidden;margin-top:.3rem;}
+.gauge-fill{height:100%;border-radius:100px;transition:width .5s;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:9px;font-family:inherit;font-weight:700;font-size:.83rem;cursor:pointer;transition:.15s;border:none;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{background:#dc2626;}
+.btn-ghost{background:var(--bg);color:var(--dim);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-sm{padding:6px 13px;font-size:.76rem;}
+
+/* TIMELINE */
+.tl-list{display:flex;flex-direction:column;gap:.4rem;max-height:240px;overflow-y:auto;}
+.tl-item{display:flex;align-items:flex-start;gap:.6rem;padding:7px 9px;border-radius:.45rem;font-size:.76rem;border-left:3px solid transparent;}
+.tl-item.danger{border-left-color:var(--danger);background:var(--danger-lt);}
+.tl-item.warning{border-left-color:var(--warning);background:var(--warning-lt);}
+.tl-item.info{border-left-color:var(--accent);background:var(--accent-lt);}
+.tl-time{color:var(--accent);font-weight:700;white-space:nowrap;font-size:.7rem;}
+.tl-msg{color:var(--dim);line-height:1.4;}
+
+/* CODE BOX */
+.code-box{background:var(--accent-lt);border:2px dashed rgba(99,102,241,.4);border-radius:12px;padding:1rem 1.5rem;text-align:center;}
+.code-box small{display:block;font-size:.65rem;color:var(--accent);text-transform:uppercase;font-weight:700;letter-spacing:.08em;margin-bottom:.3rem;}
+.code-box .code{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:5px;color:var(--accent);}
+
+/* NEW LESSON MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.4);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;}
+.modal-box{background:var(--surface);border-radius:16px;padding:1.75rem;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.15);}
+.modal-title{font-size:1.1rem;font-weight:800;margin-bottom:1.4rem;}
+.field{margin-bottom:.9rem;}
+.field label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--dim);margin-bottom:.35rem;}
+.field input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:9px;font-family:inherit;font-size:.9rem;outline:none;transition:.2s;}
+.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,102,241,.1);}
+.modal-actions{display:flex;gap:.75rem;margin-top:1.4rem;}
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><polyline points="2 8 12 3 22 8"/><polyline points="2 13 12 8 22 13"/><polyline points="2 18 12 13 22 18"/></svg></div>
+    <div class="logo-name">EduSense <span>Pro</span></div>
+  </div>
+
+  <div class="nav-section">Ders Yönetimi</div>
+  <button class="nav-item active" onclick="showView('dashboard')"><span class="ni">📊</span> Genel Bakış</button>
+  <button class="nav-item" onclick="showView('live')"><span class="ni">🔴</span> Canlı Ders</button>
+  <button class="nav-item" onclick="showView('archive')"><span class="ni">📂</span> Ders Arşivi</button>
+  <button class="nav-item" onclick="showView('reports')"><span class="ni">📈</span> Raporlar</button>
+
+  <div class="nav-divider"></div>
+  <div class="nav-section">Diğer</div>
+  <a class="nav-item" href="/index.html"><span class="ni">🏡</span> Ana Sayfa</a>
+  <a class="nav-item" href="/login.html" style="color:var(--accent);font-weight:600;"><span class="ni">🔐</span> Sisteme Giriş Yap</a>
+
+  <div class="nav-spacer"></div>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">M</div>
+    <div>
+      <div class="user-name">Dr. Mehmet Yıldız</div>
+      <div class="user-role">Öğretmen · BÖTE</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ── DASHBOARD ── -->
+  <div id="view-dashboard">
+    <div class="page-header">
+      <div class="page-header-top">
+        <div>
+          <div class="page-title">Öğretmen Paneli 📊</div>
+          <div class="page-sub">Sınıfın durumunu anlık takip et, AI önerileriyle derse yön ver.</div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-sm" onclick="showView('archive')">📂 Arşiv</button>
+          <button class="btn btn-primary" onclick="document.getElementById('new-lesson-modal').classList.remove('hidden')">
+            ✨ Yeni Ders Başlat
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="sc-top">
+          <div class="sc-icon-wrap" style="background:#ede9fe;">👥</div>
+          <span class="sc-trend" style="background:var(--success-lt);color:var(--success);">+3 yeni</span>
+        </div>
+        <div class="sc-val" style="color:var(--accent);">18</div>
+        <div class="sc-lbl">Aktif Öğrenci</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-top">
+          <div class="sc-icon-wrap" style="background:#ecfdf5;">📹</div>
+          <span class="sc-trend" style="background:var(--success-lt);color:var(--success);">%83</span>
+        </div>
+        <div class="sc-val" style="color:var(--success);">%83</div>
+        <div class="sc-lbl">Kamera Açık Oranı</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-top">
+          <div class="sc-icon-wrap" style="background:var(--accent-lt);">🎯</div>
+          <span class="sc-trend" style="background:var(--warning-lt);color:var(--warning);">Orta</span>
+        </div>
+        <div class="sc-val" style="color:var(--warning);">%67</div>
+        <div class="sc-lbl">Ortalama Dikkat</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-top">
+          <div class="sc-icon-wrap" style="background:#fef2f2;">⚠️</div>
+          <span class="sc-trend" style="background:var(--danger-lt);color:var(--danger);">3 kritik</span>
+        </div>
+        <div class="sc-val" style="color:var(--danger);">3</div>
+        <div class="sc-lbl">Kritik An</div>
+      </div>
+    </div>
+
+    <!-- AI Panel -->
+    <div class="ai-panel">
+      <div class="ai-header">
+        <div style="font-size:1.3rem;">🤖</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;">EduSense AI Asistanı</div>
+          <div style="font-size:.75rem;color:var(--dim);">Sınıf durumuna göre pedagojik öneriler</div>
+        </div>
+        <div style="margin-left:auto;"><span class="ai-badge"><span class="live-dot" style="margin-right:4px;display:inline-block;"></span> Canlı Analiz</span></div>
+      </div>
+      <div class="ai-suggestions">
+        <div class="ai-suggestion">
+          <div class="ai-sug-icon">⚠️</div>
+          <div class="ai-sug-level" style="color:var(--danger);">Acil Öneri</div>
+          <div class="ai-sug-text">Sınıfın dikkat seviyesi son 5 dakikada %67'ye düştü. Hızlı bir interaktif soru sorun.</div>
+          <div class="ai-sug-action">→ Soru Sor</div>
+        </div>
+        <div class="ai-suggestion">
+          <div class="ai-sug-icon">😲</div>
+          <div class="ai-sug-level" style="color:var(--warning);">Dikkat</div>
+          <div class="ai-sug-text">5 öğrenci şaşkın görünüyor. Son anlattığın kavramı kısa bir örnekle tekrar açıklayabilirsin.</div>
+          <div class="ai-sug-action">→ Özet Yap</div>
+        </div>
+        <div class="ai-suggestion">
+          <div class="ai-sug-icon">✅</div>
+          <div class="ai-sug-level" style="color:var(--success);">Pozitif</div>
+          <div class="ai-sug-text">Katılım oranın iyi! 15/18 öğrenci kamera açık. Bu enerjiyi korumak için ders temposunu sürdür.</div>
+          <div class="ai-sug-action">→ Devam Et</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student grid + chart -->
+    <div class="grid-3">
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Öğrenci Odak Durumu</div>
+            <span class="badge badge-blue">18 öğrenci</span>
+          </div>
+          <div class="card-body">
+            <div class="student-grid" id="student-grid"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Sınıf Odak Grafiği</div></div>
+          <div class="card-body"><canvas id="liveChart" height="130"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Katılım Kodu</div>
+            <span class="badge badge-red"><span class="live-dot"></span> Canlı</span>
+          </div>
+          <div class="card-body">
+            <div class="code-box">
+              <small>Odaya Katılmak İçin</small>
+              <div class="code">X7K2MQ</div>
+            </div>
+            <div style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:.75rem;">Bu kodu öğrencilerle paylaş</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Kritik Anlar</div><span class="badge badge-red">3 olay</span></div>
+          <div class="card-body" style="padding:.75rem 1rem;">
+            <div class="tl-list">
+              <div class="tl-item danger">
+                <span class="tl-time">08:15</span>
+                <span class="tl-msg">Dikkat kritik: %89'i odak kaybetti. Sınıfı canlandırın!</span>
+              </div>
+              <div class="tl-item warning">
+                <span class="tl-time">07:42</span>
+                <span class="tl-msg">Kafa karışıklığı: %33'ü şaşkın. Konuyu özetleyin.</span>
+              </div>
+              <div class="tl-item info">
+                <span class="tl-time">05:10</span>
+                <span class="tl-msg">Ders başlangıcı: 18 öğrenci bağlandı.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CANLI DERS ── -->
+  <div id="view-live" class="hidden">
+    <div class="page-header">
+      <div class="page-header-top">
+        <div>
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem;">
+            <span class="badge badge-red"><span class="live-dot"></span> Canlı Ders</span>
+            <span style="font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:var(--danger);">00:08:34</span>
+          </div>
+          <div class="page-title">Algoritma ve Veri Yapıları</div>
+          <div class="page-sub">4/BÖTE · 18 öğrenci bağlı</div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-sm">🖥️ Ekran Paylaş</button>
+          <button class="btn btn-ghost btn-sm">🎤 Mikrofon</button>
+          <a class="btn btn-danger btn-sm" href="/report-demo.html">⏹ Dersi Bitir</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-panel" style="margin-bottom:1.5rem;">
+      <div class="ai-header" style="margin-bottom:0;">
+        <div style="font-size:1.2rem;">🤖</div>
+        <div style="flex:1;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--accent);">EduSense AI Asistanı</div>
+          <div id="ai-live-msg" style="font-size:.85rem;color:var(--dim);">Sınıfın dikkati düşüyor. Öğrencilere kısa bir soru sorabilirsiniz — bu dikkatlerini toparlayacaktır.</div>
+        </div>
+        <span class="ai-badge"><span class="live-dot" style="margin-right:4px;display:inline-block;"></span> Aktif</span>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Öğrenciler</div>
+          <span class="badge badge-blue">18 / 20</span>
+        </div>
+        <div class="card-body">
+          <div class="student-grid" id="student-grid-live"></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Anlık Odak Trendi</div></div>
+          <div class="card-body"><canvas id="liveChart2" height="150"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Sınıf Özeti</div></div>
+          <div class="card-body">
+            <div class="gauge-wrap">
+              <div class="gauge-num" style="color:var(--warning);">%67</div>
+              <div class="gauge-label">Ortalama Dikkat</div>
+              <div class="gauge-bar"><div class="gauge-fill" style="width:67%;background:var(--warning);"></div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;font-size:.78rem;">
+              <div style="text-align:center;padding:.6rem;background:var(--success-lt);border-radius:8px;">
+                <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--success);font-size:1.1rem;">12</div>
+                <div style="color:var(--dim);">Odaklanmış</div>
+              </div>
+              <div style="text-align:center;padding:.6rem;background:var(--danger-lt);border-radius:8px;">
+                <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--danger);font-size:1.1rem;">4</div>
+                <div style="color:var(--dim);">Dikkat Dağık</div>
+              </div>
+              <div style="text-align:center;padding:.6rem;background:var(--warning-lt);border-radius:8px;">
+                <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--warning);font-size:1.1rem;">2</div>
+                <div style="color:var(--dim);">Şaşkın</div>
+              </div>
+              <div style="text-align:center;padding:.6rem;background:var(--accent-lt);border-radius:8px;">
+                <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--accent);font-size:1.1rem;">15</div>
+                <div style="color:var(--dim);">Kamera Açık</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ARŞİV ── -->
+  <div id="view-archive" class="hidden">
+    <div class="page-header">
+      <div class="page-header-top">
+        <div>
+          <div class="page-title">Ders Arşivi 📂</div>
+          <div class="page-sub">Geçmiş dersler ve analiz raporları.</div>
+        </div>
+        <button class="btn btn-primary" onclick="showView('live')">🔴 Canlı Derse Git</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Geçmiş Dersler</div><span class="badge badge-blue" id="archive-count">6 ders</span></div>
+      <table class="tbl">
+        <thead><tr><th>Tarih</th><th>Ders Adı</th><th>Sınıf</th><th>Ort. Odak</th><th>Süre</th><th>Kayıt</th><th>Rapor</th><th></th></tr></thead>
+        <tbody id="archive-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── RAPORLAR ── -->
+  <div id="view-reports" class="hidden">
+    <div class="page-header">
+      <div class="page-title">Raporlar 📈</div>
+      <div class="page-sub">Dönemsel performans ve sınıf analitikleri.</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Dönemsel Ortalama Odak</div></div>
+        <div class="card-body"><canvas id="semesterChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Ders Başına Duygu Dağılımı</div></div>
+        <div class="card-body"><canvas id="moodChart"></canvas></div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="sc-top"><div class="sc-icon-wrap" style="background:var(--accent-lt);">📚</div></div><div class="sc-val" style="color:var(--accent);">11</div><div class="sc-lbl">Toplam Ders</div></div>
+      <div class="stat-card"><div class="sc-top"><div class="sc-icon-wrap" style="background:var(--success-lt);">🎯</div></div><div class="sc-val" style="color:var(--success);">%58</div><div class="sc-lbl">Dönem Ort. Odak</div></div>
+      <div class="stat-card"><div class="sc-top"><div class="sc-icon-wrap" style="background:var(--warning-lt);">⚠️</div></div><div class="sc-val" style="color:var(--warning);">24</div><div class="sc-lbl">Toplam Kritik An</div></div>
+      <div class="stat-card"><div class="sc-top"><div class="sc-icon-wrap" style="background:var(--accent-lt);">📹</div></div><div class="sc-val" style="color:var(--accent2);">5</div><div class="sc-lbl">Tekrara Açık Ders</div></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- NEW LESSON MODAL -->
+<div id="new-lesson-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-title">✨ Yeni Ders Başlat</div>
+    <div class="field"><label>Ders Başlığı</label><input type="text" placeholder="Örn: Algoritma ve Programlama" value="Algoritma ve Veri Yapıları"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
+      <div class="field"><label>Sınıf</label><input type="text" placeholder="Örn: 4-A" value="4"></div>
+      <div class="field"><label>Bölüm</label><input type="text" placeholder="Örn: BÖTE" value="BÖTE"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" style="flex:1;" onclick="document.getElementById('new-lesson-modal').classList.add('hidden')">İptal</button>
+      <a class="btn btn-primary" style="flex:2;justify-content:center;text-decoration:none;" href="/classroom-demo.html">Odayı Aç ve Başlat →</a>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div id="delete-lesson-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-title">🗑️ Dersi Sil</div>
+    <p style="font-size:.88rem;color:var(--dim);margin-bottom:.6rem;">"<strong><span id="delete-lesson-name"></span></strong>" dersini silmek istediğinize emin misiniz?</p>
+    <p style="font-size:.8rem;color:var(--danger);margin-bottom:1.2rem;">Bu işlem geri alınamaz ve ders öğrenci panelinden de anında kaldırılır.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" style="flex:1;" onclick="closeDeleteModal()">İptal</button>
+      <button class="btn btn-danger" style="flex:1;" onclick="confirmDelete()">Evet, Sil</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Redirect to real app if logged in as teacher
+const storedUser = localStorage.getItem('edusense_user');
+if (storedUser) {
+  const u = JSON.parse(storedUser);
+  if (u.role === 'teacher') window.location.href = '/app';
+}
+
+// ── SHARED STATE ──────────────────────────────────────────────
+const LS_KEY = 'edusense_lessons';
+const BC = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('edusense') : null;
+
+const DEFAULT_LESSONS = [
+  { id:1, title:'grafik tasarım', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'0:58', classInfo:'4/BÖTE', focus:15, replayAvailable:true, watched:35, hasVideo:true,
+    preview:['Adobe Photoshop','Layer: Background','Filter: Blur > 5px','Export: PNG 1920x1080'] },
+  { id:2, title:'İngilizce', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'1:06', classInfo:'4/BÖTE', focus:100, replayAvailable:true, watched:65, hasVideo:false,
+    preview:['Present Perfect Tense','I have studied today.','She has gone to school.','They have finished work.'] },
+  { id:3, title:'deneme dersi 1', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'1:13', classInfo:'4/BÖTE', focus:95, replayAvailable:true, watched:100, hasVideo:false,
+    preview:['def bubble_sort(arr):','  n = len(arr)','  for i in range(n):','    for j in range(0,n-i-1):'] },
+  { id:4, title:'Proje Geliştirme', teacher:'Dr. Mehmet Yıldız', date:'19.04.2026', duration:'—', classInfo:'4/BÖTE', focus:100, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Project Management','Sprint Planning','Daily Standup','Retrospective'] },
+  { id:5, title:'Mobil Programlama', teacher:'Dr. Mehmet Yıldız', date:'16.04.2026', duration:'—', classInfo:'4/BÖTE', focus:70, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Flutter SDK','Widget Tree','StatefulWidget','setState()'] },
+  { id:6, title:'Algoritma ve Programlama', teacher:'Dr. Mehmet Yıldız', date:'12.04.2026', duration:'—', classInfo:'4/BÖTE', focus:0, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Binary Search','function binarySearch(arr,t){','  let l=0,r=arr.length-1;','  while(l<=r){'] },
+];
+
+function getLessons() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || DEFAULT_LESSONS; }
+  catch(e) { return DEFAULT_LESSONS; }
+}
+function saveLessons(arr) { localStorage.setItem(LS_KEY, JSON.stringify(arr)); }
+function broadcast(msg) { if (BC) BC.postMessage(msg); }
+
+if (!localStorage.getItem(LS_KEY)) saveLessons(DEFAULT_LESSONS);
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg, danger) {
+  let t = document.getElementById('edusense-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'edusense-toast';
+    Object.assign(t.style, {position:'fixed',bottom:'1.5rem',right:'1.5rem',padding:'10px 18px',borderRadius:'10px',fontSize:'.82rem',fontWeight:'600',zIndex:'9999',transition:'opacity .3s',boxShadow:'0 8px 24px rgba(0,0,0,.2)',fontFamily:'inherit',color:'#fff'});
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.background = danger ? '#ef4444' : '#0f172a';
+  t.style.opacity = '1';
+  clearTimeout(t._to);
+  t._to = setTimeout(() => { t.style.opacity = '0'; }, 2800);
+}
+
+// ── ARCHIVE RENDER ────────────────────────────────────────────
+function renderArchive() {
+  const lessons = getLessons();
+  const tbody = document.getElementById('archive-tbody');
+  if (!tbody) return;
+  const fc = v => v >= 70 ? 'var(--success)' : v >= 40 ? 'var(--warning)' : 'var(--danger)';
+  tbody.innerHTML = lessons.map(l => {
+    const esc = s => s.replace(/'/g, "\\'");
+    const replayBtn = l.replayAvailable
+      ? `<button class="btn btn-ghost btn-sm" onclick="toggleReplay(${l.id})" style="color:var(--success);border-color:var(--success);">📤 Kapat</button>`
+      : `<button class="btn btn-ghost btn-sm" onclick="toggleReplay(${l.id})">📥 Aç</button>`;
+    return `<tr id="lesson-row-${l.id}" style="transition:opacity .25s;">
+      <td style="color:var(--muted);font-size:.8rem;">${l.date}</td>
+      <td><strong>${l.title}</strong></td>
+      <td>${l.classInfo}</td>
+      <td style="color:${fc(l.focus)};font-weight:700;">%${l.focus}</td>
+      <td>${l.duration}</td>
+      <td>${replayBtn}</td>
+      <td><a class="btn btn-ghost btn-sm" href="/report-demo.html">Rapor</a></td>
+      <td><button class="btn btn-danger btn-sm" onclick="openDeleteModal(${l.id},'${esc(l.title)}')">🗑️</button></td>
+    </tr>`;
+  }).join('');
+  const badge = document.getElementById('archive-count');
+  if (badge) badge.textContent = lessons.length + ' ders';
+}
+
+async function loadArchive() {
+  const token = localStorage.getItem('edusense_token');
+  if (token) {
+    try {
+      const res = await fetch('/api/lessons/admin', { headers: { 'x-auth-token': token } });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.length) {
+          const tbody = document.getElementById('archive-tbody');
+          if (!tbody) return;
+          const fc = v => v >= 70 ? 'var(--success)' : v >= 40 ? 'var(--warning)' : 'var(--danger)';
+          function fmtTime(s) { if (!s) return '—'; const h = Math.floor(s/3600).toString().padStart(2,'0'); const m = Math.floor((s%3600)/60).toString().padStart(2,'0'); const ss = (s%60).toString().padStart(2,'0'); return h+':'+m+':'+ss; }
+          tbody.innerHTML = data.reverse().map(l => `
+            <tr>
+              <td style="color:var(--muted);font-size:.8rem;">${l.date||'—'}</td>
+              <td><strong>${l.lessonName||'—'}</strong></td>
+              <td>${l.classInfo||'—'}</td>
+              <td style="color:${fc(l.avgFocus)};font-weight:700;">%${l.avgFocus||0}</td>
+              <td>${fmtTime(l.duration)}</td>
+              <td><span class="badge ${l.replayAvailable?'badge-green':''}">${l.replayAvailable?'Açık':'Kapalı'}</span></td>
+              <td><a class="btn btn-ghost btn-sm" href="/report-demo.html">Rapor</a></td>
+              <td></td>
+            </tr>`).join('');
+          return;
+        }
+      }
+    } catch(e) {}
+  }
+  renderArchive();
+}
+
+// ── DELETE MODAL ──────────────────────────────────────────────
+let pendingDeleteId = null;
+
+function openDeleteModal(id, title) {
+  pendingDeleteId = id;
+  document.getElementById('delete-lesson-name').textContent = title;
+  document.getElementById('delete-lesson-modal').classList.remove('hidden');
+}
+
+function closeDeleteModal() {
+  pendingDeleteId = null;
+  document.getElementById('delete-lesson-modal').classList.add('hidden');
+}
+
+function confirmDelete() {
+  if (pendingDeleteId == null) return;
+  const id = pendingDeleteId;
+  closeDeleteModal();
+  const row = document.getElementById('lesson-row-' + id);
+  if (row) row.style.opacity = '0';
+  setTimeout(() => {
+    saveLessons(getLessons().filter(l => l.id !== id));
+    broadcast({ type: 'LESSON_DELETED', lessonId: id });
+    renderArchive();
+    showToast('Ders silindi ve öğrenci panelinden kaldırıldı.', true);
+  }, 260);
+}
+
+// ── TOGGLE REPLAY ─────────────────────────────────────────────
+function toggleReplay(id) {
+  const lessons = getLessons();
+  const lesson = lessons.find(l => l.id === id);
+  if (!lesson) return;
+  lesson.replayAvailable = !lesson.replayAvailable;
+  saveLessons(lessons);
+  broadcast({ type: 'REPLAY_TOGGLED', lessonId: id, available: lesson.replayAvailable });
+  renderArchive();
+  showToast(lesson.replayAvailable ? '✅ Kayıt öğrencilere açıldı.' : '🔒 Kayıt öğrencilerden gizlendi.');
+}
+
+// ── VIEW SWITCHING ─────────────────────────────────────────────
+function showView(id) {
+  document.querySelectorAll('[id^="view-"]').forEach(el => el.classList.add('hidden'));
+  document.getElementById('view-' + id).classList.remove('hidden');
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  const map = { dashboard:0, live:1, archive:2, reports:3 };
+  document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
+  if (id === 'live') initLiveGrid();
+  if (id === 'reports') initReportCharts();
+  if (id === 'archive') loadArchive();
+}
+document.querySelectorAll('[id^="view-"]').forEach(el => { if (el.id !== 'view-dashboard') el.classList.add('hidden'); });
+
+// ── STUDENTS MOCK ─────────────────────────────────────────────
+const students = [
+  {name:'Ahmet Y.',score:85,mood:'😊'},{name:'Ayşe K.',score:72,mood:'😐'},
+  {name:'Mehmet D.',score:15,mood:'😴'},{name:'Fatma Ö.',score:90,mood:'😊'},
+  {name:'Ali C.',score:45,mood:'😲'},{name:'Zeynep T.',score:78,mood:'😊'},
+  {name:'Burak S.',score:20,mood:'😴'},{name:'Elif M.',score:82,mood:'😊'},
+  {name:'Can B.',score:60,mood:'😐'},{name:'Selin A.',score:35,mood:'😲'},
+  {name:'Emre K.',score:95,mood:'😊'},{name:'Yıldız N.',score:10,mood:'😴'},
+];
+
+function renderStudents(gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = students.map(s => {
+    const color = s.score >= 60 ? 'var(--success)' : s.score >= 30 ? 'var(--warning)' : 'var(--danger)';
+    const cls = s.score >= 60 ? 'good' : s.score >= 30 ? 'warn' : 'crit';
+    return `<div class="student-card ${cls}">
+      <div class="s-emoji">${s.mood}</div>
+      <div class="s-name">${s.name}</div>
+      <div class="s-score" style="color:${color};">%${s.score}</div>
+      <div class="s-bar-wrap"><div class="s-bar" style="width:${s.score}%;background:${color};"></div></div>
+    </div>`;
+  }).join('');
+}
+renderStudents('student-grid');
+
+function initLiveGrid() { renderStudents('student-grid-live'); }
+
+// ── CHARTS ─────────────────────────────────────────────────────
+const liveData = [72,68,70,65,67,62,67,70,68,65,67];
+const ctx1 = document.getElementById('liveChart').getContext('2d');
+new Chart(ctx1, {
+  type:'line',
+  data:{labels:liveData.map((_,i)=>i+'dk'),datasets:[{data:liveData,borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,.08)',tension:.4,fill:true,pointRadius:0,borderWidth:2}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:'#94a3b8',font:{size:9}},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{color:'#94a3b8',font:{size:9}},grid:{display:false}}}}
+});
+
+let rptInited = false;
+function initReportCharts() {
+  if (rptInited) return; rptInited = true;
+  new Chart(document.getElementById('semesterChart').getContext('2d'), {
+    type:'bar',
+    data:{labels:['Prj Yön.','Algoritma','Mobil','İngilizce','Grafik','Yeni'],datasets:[{data:[71,45,70,100,15,95],backgroundColor:['#6366f1','#ef4444','#f59e0b','#10b981','#ef4444','#10b981'],borderRadius:6}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:'#94a3b8',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('moodChart').getContext('2d'), {
+    type:'doughnut',
+    data:{labels:['Mutlu','Nötr','Şaşkın','Dağınık','Üzgün'],datasets:[{data:[35,25,20,15,5],backgroundColor:['#10b981','#6366f1','#f59e0b','#94a3b8','#ef4444'],borderWidth:0}]},
+    options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}}}
+  });
+}
+
+// ── AI MESSAGES ───────────────────────────────────────────────
+const msgs = [
+  "Sınıfın dikkati düşüyor. Öğrencilere kısa bir soru sorabilirsiniz.",
+  "Katılım iyi seviyede! 15/18 kamera açık, enerjiyi koruyun.",
+  "5 öğrenci şaşkın görünüyor. Son konuyu kısa örnekle tekrarlayın.",
+  "Dikkat artıyor! Sınıf toplandı. Anlatımı sürdürebilirsiniz.",
+];
+let msgIdx = 0;
+setInterval(() => {
+  const el = document.getElementById('ai-live-msg');
+  if (el) { msgIdx = (msgIdx+1) % msgs.length; el.style.opacity = 0; setTimeout(() => { el.textContent = msgs[msgIdx]; el.style.opacity = 1; }, 300); }
+}, 8000);
+</script>
+</body>
+</html>

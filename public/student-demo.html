@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSense Pro — Öğrenci Paneli</title>
+<script src="/chart.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --accent:#6366f1;--accent2:#8b5cf6;--accent-lt:#eef2ff;
+  --success:#10b981;--success-lt:#ecfdf5;
+  --warning:#f59e0b;--warning-lt:#fffbeb;
+  --danger:#ef4444;--danger-lt:#fef2f2;
+  --text:#0f172a;--dim:#475569;--muted:#94a3b8;
+  --border:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
+}
+html,body{height:100%;overflow:hidden;}
+body{font-family:system-ui,Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);display:flex;}
+
+/* SIDEBAR */
+.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:1.2rem 1rem;flex-shrink:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{display:flex;align-items:center;gap:9px;margin-bottom:1.75rem;padding:0 .3rem;}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-icon svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-name{font-size:1rem;font-weight:800;color:var(--text);}
+.logo-name span{color:var(--accent);}
+.nav-section{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:.3rem .4rem;margin-bottom:.3rem;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:.55rem;font-size:.85rem;font-weight:500;color:var(--dim);cursor:pointer;transition:.15s;text-decoration:none;border:none;background:transparent;width:100%;text-align:left;}
+.nav-item:hover{background:var(--bg);color:var(--text);}
+.nav-item.active{background:var(--accent-lt);color:var(--accent);font-weight:600;}
+.nav-item .ni{font-size:.9rem;width:18px;text-align:center;flex-shrink:0;}
+.nav-divider{height:1px;background:var(--border);margin:.5rem 0;}
+.nav-spacer{flex:1;}
+.sidebar-user{padding:.75rem;background:var(--bg);border-radius:.65rem;display:flex;align-items:center;gap:.65rem;border:1px solid var(--border);}
+.user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.user-name{font-size:.82rem;font-weight:600;}
+.user-role{font-size:.7rem;color:var(--muted);}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;height:100vh;padding:1.75rem 2rem;}
+.page-header{margin-bottom:1.75rem;}
+.page-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem;}
+.page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.3px;}
+.page-sub{font-size:.85rem;color:var(--muted);}
+.page-date{font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:6px 14px;border-radius:100px;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;position:relative;transition:.2s;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06);}
+.stat-card .sc-icon{font-size:1.3rem;margin-bottom:.6rem;}
+.stat-card .sc-val{font-size:1.75rem;font-weight:800;margin-bottom:2px;}
+.stat-card .sc-lbl{font-size:.73rem;color:var(--muted);}
+.stat-card .sc-badge{position:absolute;top:.9rem;right:.9rem;font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:100px;}
+@media(max-width:1100px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.card-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-size:.87rem;font-weight:700;}
+.card-body{padding:1.2rem;}
+.card-badge{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:100px;}
+.badge-blue{background:var(--accent-lt);color:var(--accent);}
+.badge-green{background:var(--success-lt);color:var(--success);}
+.badge-yellow{background:var(--warning-lt);color:var(--warning);}
+.badge-red{background:var(--danger-lt);color:var(--danger);}
+
+/* QUICK ACTIONS */
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.qa-card{border-radius:14px;padding:1.4rem;color:#fff;cursor:pointer;transition:.25s;text-decoration:none;display:block;position:relative;overflow:hidden;}
+.qa-card.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));}
+.qa-card.secondary{background:linear-gradient(135deg,var(--success),#059669);}
+.qa-card::after{content:'';position:absolute;top:-20%;right:-10%;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.1);}
+.qa-card-icon{font-size:1.6rem;margin-bottom:.55rem;}
+.qa-card-title{font-size:1rem;font-weight:700;margin-bottom:.25rem;}
+.qa-card-sub{font-size:.8rem;opacity:.85;}
+.qa-arrow{position:absolute;bottom:1.1rem;right:1.1rem;font-size:.9rem;opacity:.7;}
+
+/* LESSON LIST */
+.lesson-list{display:flex;flex-direction:column;gap:.65rem;}
+.lesson-item{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);transition:.2s;}
+.lesson-item:hover{border-color:var(--accent);background:var(--accent-lt);}
+.lesson-icon{width:38px;height:38px;border-radius:9px;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.lesson-info{flex:1;min-width:0;}
+.lesson-name{font-size:.86rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lesson-meta{font-size:.73rem;color:var(--muted);margin-top:1px;}
+.lesson-time{font-size:.74rem;font-weight:600;color:var(--accent);white-space:nowrap;background:var(--accent-lt);padding:3px 9px;border-radius:100px;}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;}
+@media(max-width:1100px){.grid-2{grid-template-columns:1fr;}}
+
+/* PRIVACY NOTICE */
+.privacy-notice{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:.9rem 1.1rem;display:flex;align-items:flex-start;gap:.7rem;margin-bottom:1.5rem;}
+.privacy-notice-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.privacy-notice-text{font-size:.8rem;color:#166534;line-height:1.6;}
+
+/* JOIN INPUT */
+.join-input{width:100%;padding:11px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:1.1rem;text-align:center;letter-spacing:5px;text-transform:uppercase;font-weight:700;outline:none;transition:.2s;font-family:inherit;}
+.join-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.join-btn{width:100%;margin-top:.75rem;padding:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;transition:.2s;font-family:inherit;}
+.join-btn:hover{opacity:.9;}
+
+/* RECORDING GRID */
+.recording-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.rec-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.2s;cursor:pointer;}
+.rec-card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(99,102,241,.1);transform:translateY(-2px);}
+
+/* Screen preview */
+.rec-preview{position:relative;background:#0f172a;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.rec-preview-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1e2235 0%,#0d1117 100%);display:flex;align-items:center;justify-content:center;}
+.rec-preview-screen{width:75%;background:#1e2235;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.rec-preview-titlebar{background:#2d3250;padding:.3rem .6rem;display:flex;gap:.3rem;align-items:center;}
+.rec-dot{width:7px;height:7px;border-radius:50%;}
+.rec-preview-code{padding:.5rem .7rem;font-family:monospace;font-size:.55rem;color:#94a3b8;line-height:1.5;}
+.rec-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:.2s;}
+.rec-card:hover .rec-play-overlay{background:rgba(0,0,0,.15);}
+.rec-play-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.rec-play-btn:hover{transform:scale(1.1);background:#fff;}
+.rec-play-btn svg{width:18px;height:18px;fill:var(--accent);margin-left:2px;}
+.rec-duration-pill{position:absolute;bottom:8px;right:10px;background:rgba(0,0,0,.7);color:#fff;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px;}
+.rec-quality-pill{position:absolute;top:8px;left:10px;background:rgba(99,102,241,.8);color:#fff;font-size:.62rem;font-weight:700;padding:2px 6px;border-radius:4px;}
+
+/* Recording info */
+.rec-info{padding:.9rem 1rem;}
+.rec-title{font-size:.9rem;font-weight:700;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rec-teacher{font-size:.75rem;color:var(--dim);margin-bottom:.2rem;}
+.rec-meta-row{display:flex;align-items:center;gap:.6rem;font-size:.72rem;color:var(--muted);margin-bottom:.75rem;}
+.rec-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--border);}
+
+/* Progress */
+.rec-progress-section{display:flex;align-items:center;gap:.6rem;}
+.rec-progress-wrap{flex:1;height:4px;background:var(--border);border-radius:100px;overflow:hidden;}
+.rec-progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.rec-progress-pct{font-size:.72rem;font-weight:700;color:var(--dim);white-space:nowrap;}
+.rec-watch-btn{display:block;width:100%;margin-top:.75rem;padding:8px;background:var(--accent-lt);color:var(--accent);border:1px solid rgba(99,102,241,.2);border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s;text-align:center;text-decoration:none;font-family:inherit;}
+.rec-watch-btn:hover{background:var(--accent);color:#fff;}
+
+/* Focus badge on recording card */
+.rec-focus-badge{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:100px;margin-bottom:.6rem;}
+
+/* STREAK */
+.streak-row{display:flex;gap:.4rem;margin-top:.5rem;}
+.streak-day{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;}
+.streak-day.done{background:var(--success);color:#fff;}
+.streak-day.today{background:var(--accent);color:#fff;}
+.streak-day.miss{background:var(--border);color:var(--muted);}
+
+/* MOTIVATIONAL BANNER */
+.motive-banner{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:14px;padding:1.35rem;color:#fff;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.motive-banner-icon{font-size:2.2rem;flex-shrink:0;}
+.motive-banner-title{font-size:.95rem;font-weight:700;margin-bottom:.2rem;}
+.motive-banner-sub{font-size:.8rem;opacity:.85;}
+
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><polyline points="2 8 12 3 22 8"/><polyline points="2 13 12 8 22 13"/><polyline points="2 18 12 13 22 18"/></svg>
+    </div>
+    <div class="logo-name">EduSense <span>Pro</span></div>
+  </div>
+
+  <div class="nav-section">Menü</div>
+  <button class="nav-item active" onclick="showView('dashboard')"><span class="ni">🏠</span> Panom</button>
+  <button class="nav-item" onclick="showView('join')"><span class="ni">📡</span> Derse Katıl</button>
+  <button class="nav-item" onclick="showView('replays')"><span class="ni">▶️</span> Ders Kayıtları</button>
+  <button class="nav-item" onclick="showView('stats')"><span class="ni">📊</span> İstatistiklerim</button>
+
+  <div class="nav-divider"></div>
+  <div class="nav-section">Diğer</div>
+  <a class="nav-item" href="/index.html"><span class="ni">🏡</span> Ana Sayfa</a>
+  <a class="nav-item" href="/login.html" style="color:var(--accent);font-weight:600;"><span class="ni">🔐</span> Sisteme Giriş Yap</a>
+
+  <div class="nav-spacer"></div>
+
+  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:.7rem;margin-bottom:.75rem;">
+    <div style="font-size:.7rem;font-weight:700;color:#166534;margin-bottom:.2rem;">🔒 Gizlilik Korumalı</div>
+    <div style="font-size:.68rem;color:#166534;opacity:.8;line-height:1.5;">Görüntün kaydedilmez. Analiz cihazında gerçekleşir.</div>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">A</div>
+    <div>
+      <div class="user-name">Ahmet Yılmaz</div>
+      <div class="user-role">Öğrenci · 4/BÖTE</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="main-content">
+
+  <!-- ── DASHBOARD ── -->
+  <div id="view-dashboard">
+    <div class="page-header">
+      <div class="page-header-top">
+        <div>
+          <div class="page-title">Merhaba, Ahmet 👋</div>
+          <div class="page-sub">Bugün harika bir gün, öğrenmeye hazır mısın?</div>
+        </div>
+        <div class="page-date" id="today-date">—</div>
+      </div>
+    </div>
+
+    <div class="motive-banner">
+      <div class="motive-banner-icon">🔥</div>
+      <div>
+        <div class="motive-banner-title">5 günlük serin devam ediyor!</div>
+        <div class="motive-banner-sub">Bu hafta her derse katıldın. Böyle devam et!</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card" style="border-left:3px solid var(--accent);">
+        <div class="sc-icon">📚</div>
+        <div class="sc-val" style="color:var(--accent);">24</div>
+        <div class="sc-lbl">Katıldığım Ders</div>
+        <span class="sc-badge badge-blue">Bu dönem</span>
+      </div>
+      <div class="stat-card" style="border-left:3px solid var(--success);">
+        <div class="sc-icon">🎯</div>
+        <div class="sc-val" style="color:var(--success);">%78</div>
+        <div class="sc-lbl">Ortalama Odak</div>
+        <span class="sc-badge badge-green">+5% bu hafta</span>
+      </div>
+      <div class="stat-card" style="border-left:3px solid var(--accent2);">
+        <div class="sc-icon">📹</div>
+        <div class="sc-val" style="color:var(--accent2);" id="stat-replay-count">8</div>
+        <div class="sc-lbl">Ders Kaydı</div>
+        <span class="sc-badge badge-blue">İzlenebilir</span>
+      </div>
+      <div class="stat-card" style="border-left:3px solid var(--warning);">
+        <div class="sc-icon">🔥</div>
+        <div class="sc-val" style="color:var(--warning);">5</div>
+        <div class="sc-lbl">Günlük Seri</div>
+        <span class="sc-badge badge-yellow">Devam ediyor</span>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <a class="qa-card primary" href="/classroom-demo.html">
+        <div class="qa-card-icon">📡</div>
+        <div class="qa-card-title">Canlı Derse Katıl</div>
+        <div class="qa-card-sub">Kodu girerek anında bağlan</div>
+        <div class="qa-arrow">→</div>
+      </a>
+      <a class="qa-card secondary" onclick="showView('replays');return false;">
+        <div class="qa-card-icon">▶️</div>
+        <div class="qa-card-title">Ders Kayıtlarını İzle</div>
+        <div class="qa-card-sub" id="qa-replay-sub">4 kayıt seni bekliyor</div>
+        <div class="qa-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="privacy-notice">
+      <div class="privacy-notice-icon">🛡️</div>
+      <div class="privacy-notice-text">
+        <strong>Gizliliğin tamamen korunuyor.</strong> Kamera görüntün sunucuya gönderilmez. Tüm yüz analizi cihazında gerçekleşir.
+        Öğretmenle yalnızca dikkat skorun ve duygu durumun paylaşılır.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📅 Yaklaşan Dersler</div>
+          <span class="card-badge badge-blue">3 ders</span>
+        </div>
+        <div class="card-body">
+          <div class="lesson-list">
+            <div class="lesson-item">
+              <div class="lesson-icon">🧮</div>
+              <div class="lesson-info">
+                <div class="lesson-name">Algoritma ve Veri Yapıları</div>
+                <div class="lesson-meta">Öğr. Dr. Mehmet Yıldız · 4/BÖTE</div>
+              </div>
+              <div class="lesson-time">Bugün 10:00</div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-icon">📱</div>
+              <div class="lesson-info">
+                <div class="lesson-name">Mobil Uygulama Geliştirme</div>
+                <div class="lesson-meta">Öğr. Dr. Ayşe Kaya · 4/BÖTE</div>
+              </div>
+              <div class="lesson-time">Bugün 13:00</div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-icon">🎨</div>
+              <div class="lesson-info">
+                <div class="lesson-name">Grafik Tasarım Temelleri</div>
+                <div class="lesson-meta">Öğr. Fatma Demir · 4/BÖTE</div>
+              </div>
+              <div class="lesson-time">Yarın 09:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📈 Haftalık Odak</div>
+          <span class="card-badge badge-green">+5% geçen haftaya göre</span>
+        </div>
+        <div class="card-body">
+          <canvas id="focusChart" height="160"></canvas>
+          <div class="streak-row" style="margin-top:.9rem;">
+            <div class="streak-day done">P</div>
+            <div class="streak-day done">S</div>
+            <div class="streak-day done">Ç</div>
+            <div class="streak-day done">P</div>
+            <div class="streak-day today">C</div>
+            <div class="streak-day miss">C</div>
+            <div class="streak-day miss">P</div>
+          </div>
+          <div style="font-size:.7rem;color:var(--muted);margin-top:.35rem;">Bu haftaki katılım serisi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DERSE KATIL ── -->
+  <div id="view-join" class="hidden">
+    <div class="page-header">
+      <div class="page-title">Derse Katıl 📡</div>
+      <div class="page-sub">Öğretmenin verdiği 6 haneli kodu gir, anında bağlan.</div>
+    </div>
+    <div style="max-width:440px;">
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div class="card-header"><div class="card-title">Ders Kodu</div></div>
+        <div class="card-body">
+          <input class="join-input" type="text" placeholder="ABC123" maxlength="6" id="demo-code">
+          <a class="join-btn" href="/classroom-demo.html" style="display:block;text-align:center;text-decoration:none;">Derse Giriş Yap →</a>
+          <div style="font-size:.74rem;color:var(--muted);margin-top:.6rem;text-align:center;">Büyük/küçük harf fark etmez.</div>
+        </div>
+      </div>
+      <div class="privacy-notice">
+        <div class="privacy-notice-icon">🛡️</div>
+        <div class="privacy-notice-text">
+          <strong>Katılmadan önce:</strong> Kameran açıldığında görüntün yalnızca cihazında analiz edilir. Sunucuya gönderilmez. Öğretmenle sadece dikkat skoru ve duygu emojin paylaşılır.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">🔴 Aktif Dersler</div><span class="card-badge badge-red">1 canlı</span></div>
+        <div class="card-body">
+          <div class="lesson-item" style="cursor:pointer;" onclick="window.location='/classroom-demo.html'">
+            <div class="lesson-icon" style="background:#fef2f2;">🔴</div>
+            <div class="lesson-info">
+              <div class="lesson-name">Algoritma ve Veri Yapıları — CANLI</div>
+              <div class="lesson-meta">Öğr. Dr. Mehmet Yıldız · 12 dk önce başladı</div>
+            </div>
+            <button style="background:var(--danger-lt);color:var(--danger);border:none;border-radius:7px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Katıl</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DERS KAYITLARI ── -->
+  <div id="view-replays" class="hidden">
+    <div class="page-header">
+      <div class="page-title">Ders Kayıtları ▶️</div>
+      <div class="page-sub">Öğretmenin paylaştığı ekran kayıtları. İstediğin zaman izle, kaçırdıklarını tekrar gör.</div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem;">
+      <div class="card-body" style="padding:.75rem 1.1rem;">
+        <div style="display:flex;align-items:center;gap:.7rem;">
+          <span style="font-size:1rem;">🔍</span>
+          <input type="text" placeholder="Ders ara..." style="flex:1;border:none;outline:none;font-size:.87rem;font-family:inherit;color:var(--text);background:transparent;" oninput="filterRecs(this.value)">
+          <span style="font-size:.75rem;color:var(--muted);" id="rec-count">4 kayıt</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="recording-grid" id="recording-grid"></div>
+  </div>
+
+  <!-- ── İSTATİSTİKLER ── -->
+  <div id="view-stats" class="hidden">
+    <div class="page-header">
+      <div class="page-title">İstatistiklerim 📊</div>
+      <div class="page-sub">Ders katılımın ve dikkat performansın.</div>
+    </div>
+    <div class="stats-row" style="margin-bottom:1.5rem;">
+      <div class="stat-card"><div class="sc-icon">🎯</div><div class="sc-val" style="color:var(--accent);">%78</div><div class="sc-lbl">Genel Odak Ort.</div></div>
+      <div class="stat-card"><div class="sc-icon">📚</div><div class="sc-val" style="color:var(--success);">24</div><div class="sc-lbl">Toplam Ders</div></div>
+      <div class="stat-card"><div class="sc-icon">⏱️</div><div class="sc-val" style="color:var(--accent2);">36sa</div><div class="sc-lbl">Toplam Süre</div></div>
+      <div class="stat-card"><div class="sc-icon">😊</div><div class="sc-val" style="color:var(--warning);font-size:1.1rem;">Mutlu</div><div class="sc-lbl">Baskın Duygu</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">📈 Aylık Odak Trendi</div></div>
+        <div class="card-body"><canvas id="statsChart" height="180"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">😊 Duygu Dağılımı</div></div>
+        <div class="card-body" style="display:flex;align-items:center;gap:1.5rem;">
+          <canvas id="moodChart" style="max-width:130px;max-height:130px;"></canvas>
+          <div style="display:flex;flex-direction:column;gap:.45rem;font-size:.8rem;">
+            <div style="display:flex;align-items:center;gap:.5rem;"><span>😊</span><span style="font-weight:700;">42%</span><span style="color:var(--muted);">Mutlu</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;"><span>😐</span><span style="font-weight:700;">28%</span><span style="color:var(--muted);">Nötr</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;"><span>😲</span><span style="font-weight:700;">15%</span><span style="color:var(--muted);">Şaşkın</span></div>
+            <div style="display:flex;align-items:center;gap:.5rem;"><span>😴</span><span style="font-weight:700;">15%</span><span style="color:var(--muted);">Dağınık</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Redirect to real app if logged in
+const storedUser = localStorage.getItem('edusense_user');
+if (storedUser) {
+  const u = JSON.parse(storedUser);
+  if (u.role === 'student') window.location.href = '/app';
+}
+
+// Date
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('tr-TR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+// ── SHARED STATE ──────────────────────────────────────────────
+const LS_KEY = 'edusense_lessons';
+const BC = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('edusense') : null;
+
+const DEFAULT_LESSONS = [
+  { id:1, title:'grafik tasarım', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'0:58', classInfo:'4/BÖTE', focus:15, replayAvailable:true, watched:35, hasVideo:true,
+    preview:['Adobe Photoshop','Layer: Background','Filter: Blur > 5px','Export: PNG 1920x1080'] },
+  { id:2, title:'İngilizce', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'1:06', classInfo:'4/BÖTE', focus:100, replayAvailable:true, watched:65, hasVideo:false,
+    preview:['Present Perfect Tense','I have studied today.','She has gone to school.','They have finished work.'] },
+  { id:3, title:'deneme dersi 1', teacher:'Dr. Mehmet Yıldız', date:'21.05.2026', duration:'1:13', classInfo:'4/BÖTE', focus:95, replayAvailable:true, watched:100, hasVideo:false,
+    preview:['def bubble_sort(arr):','  n = len(arr)','  for i in range(n):','    for j in range(0,n-i-1):'] },
+  { id:4, title:'Proje Geliştirme', teacher:'Dr. Mehmet Yıldız', date:'19.04.2026', duration:'—', classInfo:'4/BÖTE', focus:100, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Project Management','Sprint Planning','Daily Standup','Retrospective'] },
+  { id:5, title:'Mobil Programlama', teacher:'Dr. Mehmet Yıldız', date:'16.04.2026', duration:'—', classInfo:'4/BÖTE', focus:70, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Flutter SDK','Widget Tree','StatefulWidget','setState()'] },
+  { id:6, title:'Algoritma ve Programlama', teacher:'Dr. Mehmet Yıldız', date:'12.04.2026', duration:'—', classInfo:'4/BÖTE', focus:0, replayAvailable:false, watched:0, hasVideo:false,
+    preview:['Binary Search','function binarySearch(arr,t){','  let l=0,r=arr.length-1;','  while(l<=r){'] },
+];
+
+function getLessons() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || DEFAULT_LESSONS; }
+  catch(e) { return DEFAULT_LESSONS; }
+}
+function getRecordings() { return getLessons().filter(l => l.replayAvailable); }
+
+function updateDashboardCounts() {
+  const count = getRecordings().length;
+  const statVal = document.getElementById('stat-replay-count');
+  if (statVal) statVal.textContent = count;
+  const qaSub = document.getElementById('qa-replay-sub');
+  if (qaSub) qaSub.textContent = count + ' kayıt seni bekliyor';
+}
+
+// ── BROADCAST LISTENER ────────────────────────────────────────
+function handleStateChange(type, lessonId) {
+  if (type === 'LESSON_DELETED') {
+    const card = document.querySelector('[data-lesson-id="' + lessonId + '"]');
+    if (card) {
+      card.style.transition = 'opacity .3s, transform .3s';
+      card.style.opacity = '0';
+      card.style.transform = 'scale(.95)';
+      setTimeout(() => {
+        card.remove();
+        const remaining = document.querySelectorAll('#recording-grid .rec-card').length;
+        document.getElementById('rec-count').textContent = remaining + ' kayıt';
+      }, 320);
+    }
+    updateDashboardCounts();
+  }
+  if (type === 'REPLAY_TOGGLED') {
+    if (!document.getElementById('view-replays').classList.contains('hidden')) {
+      renderRecordings(getRecordings());
+    }
+    updateDashboardCounts();
+  }
+}
+
+if (BC) {
+  BC.onmessage = (e) => { handleStateChange(e.data.type, e.data.lessonId); };
+}
+window.addEventListener('storage', (e) => {
+  if (e.key === LS_KEY) {
+    if (!document.getElementById('view-replays').classList.contains('hidden')) {
+      renderRecordings(getRecordings());
+    }
+    updateDashboardCounts();
+  }
+});
+
+// ── VIEW SWITCHING ─────────────────────────────────────────────
+function showView(id) {
+  document.querySelectorAll('[id^="view-"]').forEach(el => el.classList.add('hidden'));
+  document.getElementById('view-' + id).classList.remove('hidden');
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  const map = { dashboard:0, join:1, replays:2, stats:3 };
+  document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
+  if (id === 'replays') renderRecordings(getRecordings());
+  if (id === 'stats') initStatsCharts();
+}
+document.querySelectorAll('[id^="view-"]').forEach(el => { if (el.id !== 'view-dashboard') el.classList.add('hidden'); });
+
+// ── RECORDINGS ────────────────────────────────────────────────
+function focusColor(v) { return v >= 70 ? 'var(--success)' : v >= 40 ? 'var(--warning)' : 'var(--danger)'; }
+
+function recCardHTML(r) {
+  const focusBadgeCls = r.focus >= 70 ? 'badge-green' : r.focus >= 40 ? 'badge-yellow' : 'badge-red';
+  return `
+  <div class="rec-card" data-lesson-id="${r.id}" onclick="window.location='/report-demo.html'">
+    <div class="rec-preview">
+      <div class="rec-preview-bg">
+        <div class="rec-preview-screen">
+          <div class="rec-preview-titlebar">
+            <div class="rec-dot" style="background:#ef4444;"></div>
+            <div class="rec-dot" style="background:#f59e0b;"></div>
+            <div class="rec-dot" style="background:#10b981;"></div>
+          </div>
+          <div class="rec-preview-code">
+            ${r.preview.map(l => '<div>' + l.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>').join('')}
+          </div>
+        </div>
+      </div>
+      <div class="rec-play-overlay">
+        <button class="rec-play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+      </div>
+      <div class="rec-duration-pill">${r.duration}</div>
+      ${r.hasVideo ? '<div class="rec-quality-pill">📹 Video</div>' : ''}
+    </div>
+    <div class="rec-info">
+      <div class="rec-title">${r.title}</div>
+      <div class="rec-teacher">${r.teacher}</div>
+      <div class="rec-meta-row">
+        <span>${r.date}</span>
+        <span class="rec-meta-dot"></span>
+        <span>${r.classInfo}</span>
+        <span class="rec-meta-dot"></span>
+        <span>${r.duration}</span>
+      </div>
+      <span class="rec-focus-badge ${focusBadgeCls}">🎯 Odak: %${r.focus}</span>
+      <div class="rec-progress-section">
+        <div class="rec-progress-wrap">
+          <div class="rec-progress-fill" style="width:${r.watched}%;"></div>
+        </div>
+        <div class="rec-progress-pct">%${r.watched} izlendi</div>
+      </div>
+      <a class="rec-watch-btn">${r.watched > 0 ? 'Kaldığın Yerden Devam Et' : 'Kaydı İzle'}</a>
+    </div>
+  </div>`;
+}
+
+function renderRecordings(data) {
+  const grid = document.getElementById('recording-grid');
+  if (!grid) return;
+  grid.innerHTML = data.length
+    ? data.map(recCardHTML).join('')
+    : '<div style="text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.9rem;">Öğretmen henüz bir ders kaydı paylaşmadı.</div>';
+  document.getElementById('rec-count').textContent = data.length + ' kayıt';
+}
+
+function filterRecs(q) {
+  const filtered = getRecordings().filter(r =>
+    r.title.toLowerCase().includes(q.toLowerCase()) ||
+    r.teacher.toLowerCase().includes(q.toLowerCase())
+  );
+  renderRecordings(filtered);
+}
+
+// ── CHARTS ─────────────────────────────────────────────────────
+const ctx1 = document.getElementById('focusChart').getContext('2d');
+new Chart(ctx1, {
+  type:'line',
+  data:{labels:['Pzt','Sal','Çar','Per','Cum'],datasets:[{label:'Odak %',data:[72,68,80,75,85],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,.08)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#6366f1'}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:'#94a3b8',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}}}}
+});
+
+let statsInited = false;
+function initStatsCharts() {
+  if (statsInited) return; statsInited = true;
+  new Chart(document.getElementById('statsChart').getContext('2d'), {
+    type:'bar',
+    data:{labels:['Oca','Şub','Mar','Nis','May'],datasets:[{label:'Ort. Odak',data:[65,70,68,75,78],backgroundColor:'rgba(99,102,241,.7)',borderRadius:6}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:'#94a3b8',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('moodChart').getContext('2d'), {
+    type:'doughnut',
+    data:{labels:['Mutlu','Nötr','Şaşkın','Dağınık'],datasets:[{data:[42,28,15,15],backgroundColor:['#10b981','#6366f1','#f59e0b','#94a3b8'],borderWidth:0}]},
+    options:{responsive:true,cutout:'65%',plugins:{legend:{display:false}}}
+  });
+}
+
+// Initial count sync
+updateDashboardCounts();
+</script>
+</body>
+</html>

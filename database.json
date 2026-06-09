@@ -1,0 +1,5267 @@
+{
+  "users": [
+    {
+      "username": "ercan.akpinar",
+      "password": "123456",
+      "role": "teacher",
+      "name": "Dr. Ercan Akpınar",
+      "title": "Öğr. Gör.",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "admin",
+      "password": "123",
+      "role": "teacher",
+      "name": "Dr. Ercan Akpınar",
+      "title": "Öğr. Gör.",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "ertan.kadim",
+      "password": "123456",
+      "role": "student",
+      "name": "Ertan Kadim",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "ogrenci1",
+      "password": "123",
+      "role": "student",
+      "name": "Ertan Kadim",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "umid.yuldashbayev",
+      "password": "123456",
+      "role": "student",
+      "name": "Umid Yuldashbayev",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "ayse.demir",
+      "password": "123456",
+      "role": "student",
+      "name": "Ayşe Demir",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "mehmet.kaya",
+      "password": "123456",
+      "role": "student",
+      "name": "Mehmet Kaya",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "zeynep.arslan",
+      "password": "123456",
+      "role": "student",
+      "name": "Zeynep Arslan",
+      "dept": "BÖTE"
+    },
+    {
+      "username": "can.yilmaz",
+      "password": "123456",
+      "role": "student",
+      "name": "Can Yılmaz",
+      "dept": "BÖTE"
+    }
+  ],
+  "lessons": [
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Gelixtirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 71,
+      "date": "12.04.2026 17:43:21",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Gelixtirme ve Yönetimi",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 100,
+      "timeline": [],
+      "id": 1776602825809,
+      "date": "19.04.2026 15:47:05"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Algoritma",
+      "classInfo": "2 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:28",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "id": 1776603696930,
+      "date": "19.04.2026 16:01:36",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Algoritma",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [],
+      "id": 1779372103549,
+      "date": "21.05.2026 17:01:43",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "proje",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 100,
+      "timeline": [],
+      "id": 1779372657501,
+      "date": "21.05.2026 17:10:57",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "deneme dersi 1",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 95,
+      "timeline": [],
+      "focusHistory": [
+        {
+          "t": 23,
+          "avg": 100
+        },
+        {
+          "t": 28,
+          "avg": 94
+        },
+        {
+          "t": 33,
+          "avg": 75
+        },
+        {
+          "t": 40,
+          "avg": 60
+        },
+        {
+          "t": 45,
+          "avg": 65
+        },
+        {
+          "t": 50,
+          "avg": 100
+        },
+        {
+          "t": 55,
+          "avg": 95
+        },
+        {
+          "t": 63,
+          "avg": 90
+        },
+        {
+          "t": 68,
+          "avg": 95
+        }
+      ],
+      "duration": 73,
+      "id": 1779374327340,
+      "date": "21.05.2026 17:38:47",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "İngilizce",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 100,
+      "timeline": [
+        {
+          "time": "00:00:35",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 35,
+          "avg": 0
+        },
+        {
+          "t": 40,
+          "avg": 20
+        },
+        {
+          "t": 47,
+          "avg": 45
+        },
+        {
+          "t": 52,
+          "avg": 70
+        },
+        {
+          "t": 57,
+          "avg": 85
+        },
+        {
+          "t": 62,
+          "avg": 95
+        }
+      ],
+      "duration": 66,
+      "id": 1779375807445,
+      "date": "21.05.2026 18:03:27",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "grafik tasarım",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 15,
+      "timeline": [
+        {
+          "time": "00:00:23",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 23,
+          "avg": 0
+        },
+        {
+          "t": 28,
+          "avg": 77
+        },
+        {
+          "t": 33,
+          "avg": 90
+        },
+        {
+          "t": 38,
+          "avg": 35
+        },
+        {
+          "t": 44,
+          "avg": 15
+        },
+        {
+          "t": 49,
+          "avg": 15
+        },
+        {
+          "t": 54,
+          "avg": 20
+        }
+      ],
+      "duration": 58,
+      "id": 1779376663755,
+      "date": "21.05.2026 18:17:43",
+      "replayAvailable": true,
+      "recording": "lesson_1779376663755.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Kodlama",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 40,
+      "timeline": [
+        {
+          "time": "00:00:39",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 14,
+          "avg": 100
+        },
+        {
+          "t": 19,
+          "avg": 100
+        },
+        {
+          "t": 24,
+          "avg": 100
+        },
+        {
+          "t": 29,
+          "avg": 75
+        },
+        {
+          "t": 34,
+          "avg": 50
+        },
+        {
+          "t": 39,
+          "avg": 25
+        },
+        {
+          "t": 44,
+          "avg": 0
+        },
+        {
+          "t": 49,
+          "avg": 0
+        },
+        {
+          "t": 55,
+          "avg": 5
+        },
+        {
+          "t": 60,
+          "avg": 10
+        },
+        {
+          "t": 66,
+          "avg": 15
+        },
+        {
+          "t": 72,
+          "avg": 20
+        },
+        {
+          "t": 77,
+          "avg": 30
+        },
+        {
+          "t": 82,
+          "avg": 45
+        },
+        {
+          "t": 87,
+          "avg": 40
+        }
+      ],
+      "duration": 89,
+      "id": 1779646386757,
+      "date": "24.05.2026 21:13:06",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Algroitma",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 40,
+      "timeline": [
+        {
+          "time": "00:00:18",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:47",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 18,
+          "avg": 0
+        },
+        {
+          "t": 23,
+          "avg": 80
+        },
+        {
+          "t": 30,
+          "avg": 88
+        },
+        {
+          "t": 35,
+          "avg": 90
+        },
+        {
+          "t": 41,
+          "avg": 70
+        },
+        {
+          "t": 47,
+          "avg": 65
+        },
+        {
+          "t": 52,
+          "avg": 70
+        },
+        {
+          "t": 58,
+          "avg": 70
+        },
+        {
+          "t": 63,
+          "avg": 65
+        },
+        {
+          "t": 68,
+          "avg": 80
+        },
+        {
+          "t": 73,
+          "avg": 85
+        },
+        {
+          "t": 78,
+          "avg": 70
+        },
+        {
+          "t": 83,
+          "avg": 65
+        },
+        {
+          "t": 88,
+          "avg": 85
+        },
+        {
+          "t": 93,
+          "avg": 75
+        },
+        {
+          "t": 98,
+          "avg": 60
+        },
+        {
+          "t": 103,
+          "avg": 40
+        },
+        {
+          "t": 109,
+          "avg": 25
+        },
+        {
+          "t": 114,
+          "avg": 20
+        },
+        {
+          "t": 119,
+          "avg": 30
+        },
+        {
+          "t": 124,
+          "avg": 40
+        }
+      ],
+      "duration": 126,
+      "id": 1779648029989,
+      "date": "24.05.2026 21:40:29",
+      "replayAvailable": true,
+      "recording": "lesson_1779648029989.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Web Programlama",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 13,
+      "id": 1780395449867,
+      "date": "02.06.2026 13:17:29",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Web Programlama",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:01:07",
+          "msg": "Kafa karışıklığı: %100'i (1/1) şaşkın. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:01:27",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 34,
+          "avg": 100
+        },
+        {
+          "t": 39,
+          "avg": 80
+        },
+        {
+          "t": 44,
+          "avg": 85
+        },
+        {
+          "t": 49,
+          "avg": 95
+        },
+        {
+          "t": 54,
+          "avg": 100
+        },
+        {
+          "t": 59,
+          "avg": 95
+        },
+        {
+          "t": 64,
+          "avg": 50
+        },
+        {
+          "t": 69,
+          "avg": 40
+        },
+        {
+          "t": 74,
+          "avg": 75
+        },
+        {
+          "t": 79,
+          "avg": 100
+        },
+        {
+          "t": 84,
+          "avg": 70
+        },
+        {
+          "t": 89,
+          "avg": 10
+        }
+      ],
+      "duration": 95,
+      "id": 1780395563678,
+      "date": "02.06.2026 13:19:23",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Geliştirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 5,
+      "timeline": [
+        {
+          "time": "00:00:27",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:25",
+          "msg": "Kafa karışıklığı: %100'i (1/1) şaşkın. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:06:31",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 27,
+          "avg": 0
+        },
+        {
+          "t": 32,
+          "avg": 73
+        },
+        {
+          "t": 40,
+          "avg": 100
+        },
+        {
+          "t": 45,
+          "avg": 85
+        },
+        {
+          "t": 52,
+          "avg": 75
+        },
+        {
+          "t": 57,
+          "avg": 65
+        },
+        {
+          "t": 62,
+          "avg": 75
+        },
+        {
+          "t": 67,
+          "avg": 80
+        },
+        {
+          "t": 72,
+          "avg": 45
+        },
+        {
+          "t": 77,
+          "avg": 30
+        },
+        {
+          "t": 82,
+          "avg": 20
+        },
+        {
+          "t": 87,
+          "avg": 40
+        },
+        {
+          "t": 92,
+          "avg": 65
+        },
+        {
+          "t": 97,
+          "avg": 85
+        },
+        {
+          "t": 102,
+          "avg": 100
+        },
+        {
+          "t": 107,
+          "avg": 85
+        },
+        {
+          "t": 112,
+          "avg": 75
+        },
+        {
+          "t": 117,
+          "avg": 60
+        },
+        {
+          "t": 122,
+          "avg": 45
+        },
+        {
+          "t": 127,
+          "avg": 55
+        },
+        {
+          "t": 132,
+          "avg": 65
+        },
+        {
+          "t": 137,
+          "avg": 65
+        },
+        {
+          "t": 142,
+          "avg": 75
+        },
+        {
+          "t": 147,
+          "avg": 75
+        },
+        {
+          "t": 152,
+          "avg": 70
+        },
+        {
+          "t": 157,
+          "avg": 70
+        },
+        {
+          "t": 162,
+          "avg": 55
+        },
+        {
+          "t": 167,
+          "avg": 50
+        },
+        {
+          "t": 172,
+          "avg": 45
+        },
+        {
+          "t": 177,
+          "avg": 45
+        },
+        {
+          "t": 182,
+          "avg": 60
+        },
+        {
+          "t": 187,
+          "avg": 50
+        },
+        {
+          "t": 192,
+          "avg": 65
+        },
+        {
+          "t": 197,
+          "avg": 60
+        },
+        {
+          "t": 202,
+          "avg": 65
+        },
+        {
+          "t": 207,
+          "avg": 80
+        },
+        {
+          "t": 212,
+          "avg": 70
+        },
+        {
+          "t": 217,
+          "avg": 90
+        },
+        {
+          "t": 222,
+          "avg": 90
+        },
+        {
+          "t": 227,
+          "avg": 85
+        },
+        {
+          "t": 232,
+          "avg": 90
+        },
+        {
+          "t": 237,
+          "avg": 85
+        },
+        {
+          "t": 242,
+          "avg": 85
+        },
+        {
+          "t": 247,
+          "avg": 85
+        },
+        {
+          "t": 252,
+          "avg": 80
+        },
+        {
+          "t": 257,
+          "avg": 80
+        },
+        {
+          "t": 262,
+          "avg": 80
+        },
+        {
+          "t": 267,
+          "avg": 80
+        },
+        {
+          "t": 272,
+          "avg": 85
+        },
+        {
+          "t": 277,
+          "avg": 80
+        },
+        {
+          "t": 282,
+          "avg": 80
+        },
+        {
+          "t": 287,
+          "avg": 75
+        },
+        {
+          "t": 292,
+          "avg": 75
+        },
+        {
+          "t": 298,
+          "avg": 40
+        },
+        {
+          "t": 303,
+          "avg": 45
+        },
+        {
+          "t": 309,
+          "avg": 50
+        },
+        {
+          "t": 315,
+          "avg": 65
+        },
+        {
+          "t": 320,
+          "avg": 90
+        },
+        {
+          "t": 325,
+          "avg": 90
+        },
+        {
+          "t": 330,
+          "avg": 95
+        },
+        {
+          "t": 335,
+          "avg": 90
+        },
+        {
+          "t": 340,
+          "avg": 85
+        },
+        {
+          "t": 345,
+          "avg": 75
+        },
+        {
+          "t": 350,
+          "avg": 70
+        },
+        {
+          "t": 355,
+          "avg": 65
+        },
+        {
+          "t": 361,
+          "avg": 60
+        },
+        {
+          "t": 366,
+          "avg": 50
+        },
+        {
+          "t": 372,
+          "avg": 50
+        },
+        {
+          "t": 378,
+          "avg": 45
+        },
+        {
+          "t": 383,
+          "avg": 40
+        },
+        {
+          "t": 388,
+          "avg": 30
+        },
+        {
+          "t": 393,
+          "avg": 15
+        },
+        {
+          "t": 398,
+          "avg": 5
+        },
+        {
+          "t": 403,
+          "avg": 5
+        },
+        {
+          "t": 408,
+          "avg": 0
+        }
+      ],
+      "duration": 413,
+      "id": 1780400472292,
+      "date": "02.06.2026 14:41:12",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Geliştirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 23,
+      "timeline": [
+        {
+          "time": "00:00:26",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:53",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:05:57",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:08:14",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:10:52",
+          "msg": "Dikkat kritik: %50'i (1/2) odak kaybetti. Ort. %28. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 26,
+          "avg": 0
+        },
+        {
+          "t": 31,
+          "avg": 33
+        },
+        {
+          "t": 37,
+          "avg": 35
+        },
+        {
+          "t": 42,
+          "avg": 40
+        },
+        {
+          "t": 47,
+          "avg": 50
+        },
+        {
+          "t": 52,
+          "avg": 65
+        },
+        {
+          "t": 57,
+          "avg": 95
+        },
+        {
+          "t": 62,
+          "avg": 95
+        },
+        {
+          "t": 67,
+          "avg": 95
+        },
+        {
+          "t": 72,
+          "avg": 100
+        },
+        {
+          "t": 77,
+          "avg": 100
+        },
+        {
+          "t": 82,
+          "avg": 100
+        },
+        {
+          "t": 87,
+          "avg": 100
+        },
+        {
+          "t": 92,
+          "avg": 100
+        },
+        {
+          "t": 97,
+          "avg": 95
+        },
+        {
+          "t": 102,
+          "avg": 95
+        },
+        {
+          "t": 107,
+          "avg": 100
+        },
+        {
+          "t": 112,
+          "avg": 100
+        },
+        {
+          "t": 117,
+          "avg": 75
+        },
+        {
+          "t": 122,
+          "avg": 70
+        },
+        {
+          "t": 128,
+          "avg": 50
+        },
+        {
+          "t": 133,
+          "avg": 60
+        },
+        {
+          "t": 138,
+          "avg": 70
+        },
+        {
+          "t": 143,
+          "avg": 60
+        },
+        {
+          "t": 148,
+          "avg": 60
+        },
+        {
+          "t": 153,
+          "avg": 55
+        },
+        {
+          "t": 158,
+          "avg": 50
+        },
+        {
+          "t": 163,
+          "avg": 70
+        },
+        {
+          "t": 168,
+          "avg": 80
+        },
+        {
+          "t": 173,
+          "avg": 70
+        },
+        {
+          "t": 179,
+          "avg": 50
+        },
+        {
+          "t": 184,
+          "avg": 50
+        },
+        {
+          "t": 189,
+          "avg": 60
+        },
+        {
+          "t": 194,
+          "avg": 75
+        },
+        {
+          "t": 199,
+          "avg": 90
+        },
+        {
+          "t": 204,
+          "avg": 90
+        },
+        {
+          "t": 209,
+          "avg": 90
+        },
+        {
+          "t": 214,
+          "avg": 60
+        },
+        {
+          "t": 220,
+          "avg": 45
+        },
+        {
+          "t": 225,
+          "avg": 45
+        },
+        {
+          "t": 230,
+          "avg": 30
+        },
+        {
+          "t": 235,
+          "avg": 45
+        },
+        {
+          "t": 240,
+          "avg": 50
+        },
+        {
+          "t": 245,
+          "avg": 55
+        },
+        {
+          "t": 250,
+          "avg": 65
+        },
+        {
+          "t": 255,
+          "avg": 60
+        },
+        {
+          "t": 260,
+          "avg": 50
+        },
+        {
+          "t": 265,
+          "avg": 50
+        },
+        {
+          "t": 271,
+          "avg": 55
+        },
+        {
+          "t": 276,
+          "avg": 65
+        },
+        {
+          "t": 282,
+          "avg": 70
+        },
+        {
+          "t": 287,
+          "avg": 50
+        },
+        {
+          "t": 292,
+          "avg": 30
+        },
+        {
+          "t": 297,
+          "avg": 15
+        },
+        {
+          "t": 303,
+          "avg": 5
+        },
+        {
+          "t": 308,
+          "avg": 20
+        },
+        {
+          "t": 313,
+          "avg": 40
+        },
+        {
+          "t": 319,
+          "avg": 55
+        },
+        {
+          "t": 325,
+          "avg": 70
+        },
+        {
+          "t": 330,
+          "avg": 65
+        },
+        {
+          "t": 335,
+          "avg": 60
+        },
+        {
+          "t": 340,
+          "avg": 75
+        },
+        {
+          "t": 345,
+          "avg": 70
+        },
+        {
+          "t": 350,
+          "avg": 55
+        },
+        {
+          "t": 355,
+          "avg": 35
+        },
+        {
+          "t": 360,
+          "avg": 10
+        },
+        {
+          "t": 365,
+          "avg": 10
+        },
+        {
+          "t": 370,
+          "avg": 20
+        },
+        {
+          "t": 376,
+          "avg": 30
+        },
+        {
+          "t": 381,
+          "avg": 35
+        },
+        {
+          "t": 386,
+          "avg": 30
+        },
+        {
+          "t": 391,
+          "avg": 25
+        },
+        {
+          "t": 396,
+          "avg": 45
+        },
+        {
+          "t": 401,
+          "avg": 45
+        },
+        {
+          "t": 406,
+          "avg": 55
+        },
+        {
+          "t": 411,
+          "avg": 75
+        },
+        {
+          "t": 416,
+          "avg": 65
+        },
+        {
+          "t": 421,
+          "avg": 50
+        },
+        {
+          "t": 426,
+          "avg": 50
+        },
+        {
+          "t": 431,
+          "avg": 60
+        },
+        {
+          "t": 436,
+          "avg": 75
+        },
+        {
+          "t": 441,
+          "avg": 90
+        },
+        {
+          "t": 446,
+          "avg": 95
+        },
+        {
+          "t": 451,
+          "avg": 95
+        },
+        {
+          "t": 456,
+          "avg": 100
+        },
+        {
+          "t": 462,
+          "avg": 90
+        },
+        {
+          "t": 467,
+          "avg": 90
+        },
+        {
+          "t": 472,
+          "avg": 75
+        },
+        {
+          "t": 477,
+          "avg": 75
+        },
+        {
+          "t": 482,
+          "avg": 60
+        },
+        {
+          "t": 487,
+          "avg": 40
+        },
+        {
+          "t": 492,
+          "avg": 35
+        },
+        {
+          "t": 497,
+          "avg": 10
+        },
+        {
+          "t": 502,
+          "avg": 10
+        },
+        {
+          "t": 507,
+          "avg": 5
+        },
+        {
+          "t": 512,
+          "avg": 0
+        },
+        {
+          "t": 517,
+          "avg": 0
+        },
+        {
+          "t": 522,
+          "avg": 0
+        },
+        {
+          "t": 527,
+          "avg": 5
+        },
+        {
+          "t": 532,
+          "avg": 25
+        },
+        {
+          "t": 538,
+          "avg": 50
+        },
+        {
+          "t": 543,
+          "avg": 75
+        },
+        {
+          "t": 548,
+          "avg": 75
+        },
+        {
+          "t": 553,
+          "avg": 84
+        },
+        {
+          "t": 558,
+          "avg": 85
+        },
+        {
+          "t": 564,
+          "avg": 73
+        },
+        {
+          "t": 569,
+          "avg": 73
+        },
+        {
+          "t": 574,
+          "avg": 55
+        },
+        {
+          "t": 580,
+          "avg": 53
+        },
+        {
+          "t": 585,
+          "avg": 55
+        },
+        {
+          "t": 590,
+          "avg": 60
+        },
+        {
+          "t": 595,
+          "avg": 73
+        },
+        {
+          "t": 600,
+          "avg": 85
+        },
+        {
+          "t": 605,
+          "avg": 95
+        },
+        {
+          "t": 610,
+          "avg": 80
+        },
+        {
+          "t": 616,
+          "avg": 48
+        },
+        {
+          "t": 621,
+          "avg": 48
+        },
+        {
+          "t": 626,
+          "avg": 53
+        },
+        {
+          "t": 632,
+          "avg": 58
+        },
+        {
+          "t": 637,
+          "avg": 63
+        },
+        {
+          "t": 642,
+          "avg": 43
+        },
+        {
+          "t": 647,
+          "avg": 38
+        },
+        {
+          "t": 652,
+          "avg": 28
+        },
+        {
+          "t": 657,
+          "avg": 23
+        },
+        {
+          "t": 662,
+          "avg": 23
+        }
+      ],
+      "duration": 662,
+      "id": 1780401838125,
+      "date": "02.06.2026 15:03:58",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Geliştirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 90,
+      "timeline": [
+        {
+          "time": "00:00:17",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:22",
+          "msg": "🚫 ertan.kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:41",
+          "msg": "🚫 umid.yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:50",
+          "msg": "🚫 umid.yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:56",
+          "msg": "🚫 umid.yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:41",
+          "msg": "🚫 umid.yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:41",
+          "msg": "🚫 umid.yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:48",
+          "msg": "Dikkat kritik: %50'i (1/2) odak kaybetti. Ort. %30. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 17,
+          "avg": 0
+        },
+        {
+          "t": 22,
+          "avg": 9
+        },
+        {
+          "t": 27,
+          "avg": 21
+        },
+        {
+          "t": 32,
+          "avg": 32
+        },
+        {
+          "t": 37,
+          "avg": 35
+        },
+        {
+          "t": 42,
+          "avg": 28
+        },
+        {
+          "t": 47,
+          "avg": 21
+        },
+        {
+          "t": 52,
+          "avg": 11
+        },
+        {
+          "t": 57,
+          "avg": 15
+        },
+        {
+          "t": 63,
+          "avg": 25
+        },
+        {
+          "t": 68,
+          "avg": 40
+        },
+        {
+          "t": 73,
+          "avg": 45
+        },
+        {
+          "t": 78,
+          "avg": 50
+        },
+        {
+          "t": 83,
+          "avg": 68
+        },
+        {
+          "t": 88,
+          "avg": 68
+        },
+        {
+          "t": 93,
+          "avg": 83
+        },
+        {
+          "t": 98,
+          "avg": 80
+        },
+        {
+          "t": 103,
+          "avg": 55
+        },
+        {
+          "t": 108,
+          "avg": 30
+        },
+        {
+          "t": 113,
+          "avg": 8
+        },
+        {
+          "t": 118,
+          "avg": 28
+        },
+        {
+          "t": 123,
+          "avg": 78
+        },
+        {
+          "t": 128,
+          "avg": 100
+        },
+        {
+          "t": 134,
+          "avg": 95
+        },
+        {
+          "t": 139,
+          "avg": 95
+        },
+        {
+          "t": 144,
+          "avg": 68
+        },
+        {
+          "t": 149,
+          "avg": 71
+        },
+        {
+          "t": 154,
+          "avg": 77
+        },
+        {
+          "t": 159,
+          "avg": 80
+        },
+        {
+          "t": 164,
+          "avg": 100
+        },
+        {
+          "t": 169,
+          "avg": 100
+        },
+        {
+          "t": 174,
+          "avg": 100
+        },
+        {
+          "t": 180,
+          "avg": 100
+        },
+        {
+          "t": 185,
+          "avg": 100
+        },
+        {
+          "t": 190,
+          "avg": 100
+        },
+        {
+          "t": 195,
+          "avg": 100
+        },
+        {
+          "t": 200,
+          "avg": 100
+        },
+        {
+          "t": 205,
+          "avg": 100
+        },
+        {
+          "t": 210,
+          "avg": 100
+        },
+        {
+          "t": 215,
+          "avg": 100
+        },
+        {
+          "t": 220,
+          "avg": 95
+        },
+        {
+          "t": 225,
+          "avg": 80
+        },
+        {
+          "t": 230,
+          "avg": 80
+        },
+        {
+          "t": 235,
+          "avg": 80
+        },
+        {
+          "t": 240,
+          "avg": 85
+        },
+        {
+          "t": 245,
+          "avg": 100
+        },
+        {
+          "t": 250,
+          "avg": 100
+        },
+        {
+          "t": 255,
+          "avg": 100
+        },
+        {
+          "t": 260,
+          "avg": 100
+        },
+        {
+          "t": 265,
+          "avg": 100
+        },
+        {
+          "t": 270,
+          "avg": 100
+        },
+        {
+          "t": 275,
+          "avg": 100
+        },
+        {
+          "t": 280,
+          "avg": 100
+        },
+        {
+          "t": 285,
+          "avg": 100
+        },
+        {
+          "t": 290,
+          "avg": 100
+        },
+        {
+          "t": 295,
+          "avg": 100
+        },
+        {
+          "t": 300,
+          "avg": 100
+        },
+        {
+          "t": 305,
+          "avg": 100
+        },
+        {
+          "t": 310,
+          "avg": 100
+        },
+        {
+          "t": 315,
+          "avg": 100
+        },
+        {
+          "t": 320,
+          "avg": 100
+        },
+        {
+          "t": 325,
+          "avg": 100
+        },
+        {
+          "t": 330,
+          "avg": 100
+        },
+        {
+          "t": 335,
+          "avg": 100
+        },
+        {
+          "t": 340,
+          "avg": 100
+        },
+        {
+          "t": 345,
+          "avg": 100
+        },
+        {
+          "t": 350,
+          "avg": 100
+        },
+        {
+          "t": 355,
+          "avg": 95
+        },
+        {
+          "t": 360,
+          "avg": 95
+        },
+        {
+          "t": 365,
+          "avg": 95
+        },
+        {
+          "t": 370,
+          "avg": 95
+        },
+        {
+          "t": 375,
+          "avg": 100
+        },
+        {
+          "t": 380,
+          "avg": 100
+        },
+        {
+          "t": 385,
+          "avg": 100
+        }
+      ],
+      "duration": 389,
+      "id": 1780402510390,
+      "date": "02.06.2026 15:15:10",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Algoritma ve Veri Yapıları",
+      "classInfo": "3 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:51",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:56",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:44",
+          "msg": "🚫 Umid Yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:56",
+          "msg": "Dikkat kritik: %100'i (2/2) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:10",
+          "msg": "📷 Umid Yuldashbayev kamerayı kapattı",
+          "type": "warning"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 16,
+          "avg": 100
+        },
+        {
+          "t": 22,
+          "avg": 100
+        },
+        {
+          "t": 27,
+          "avg": 86
+        },
+        {
+          "t": 32,
+          "avg": 89
+        },
+        {
+          "t": 37,
+          "avg": 90
+        },
+        {
+          "t": 42,
+          "avg": 90
+        },
+        {
+          "t": 47,
+          "avg": 70
+        },
+        {
+          "t": 52,
+          "avg": 45
+        },
+        {
+          "t": 57,
+          "avg": 20
+        },
+        {
+          "t": 62,
+          "avg": 0
+        },
+        {
+          "t": 67,
+          "avg": 0
+        },
+        {
+          "t": 72,
+          "avg": 0
+        },
+        {
+          "t": 77,
+          "avg": 0
+        },
+        {
+          "t": 82,
+          "avg": 0
+        },
+        {
+          "t": 87,
+          "avg": 0
+        },
+        {
+          "t": 92,
+          "avg": 0
+        },
+        {
+          "t": 97,
+          "avg": 0
+        },
+        {
+          "t": 102,
+          "avg": 0
+        },
+        {
+          "t": 107,
+          "avg": 0
+        },
+        {
+          "t": 112,
+          "avg": 0
+        },
+        {
+          "t": 117,
+          "avg": 0
+        },
+        {
+          "t": 122,
+          "avg": 0
+        },
+        {
+          "t": 127,
+          "avg": 0
+        },
+        {
+          "t": 132,
+          "avg": 0
+        },
+        {
+          "t": 137,
+          "avg": 0
+        },
+        {
+          "t": 142,
+          "avg": 0
+        }
+      ],
+      "duration": 144,
+      "studentCount": 2,
+      "id": 1780403142927,
+      "date": "02.06.2026 15:25:42",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Geliştirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:33",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:53",
+          "msg": "📷 Ertan Kadim kamerayı kapattı",
+          "type": "warning"
+        },
+        {
+          "time": "00:00:54",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:40",
+          "msg": "🚫 Umid Yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:44",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 33,
+          "avg": 0
+        },
+        {
+          "t": 38,
+          "avg": 0
+        },
+        {
+          "t": 43,
+          "avg": 35
+        },
+        {
+          "t": 48,
+          "avg": 35
+        },
+        {
+          "t": 53,
+          "avg": 50
+        },
+        {
+          "t": 58,
+          "avg": 5
+        },
+        {
+          "t": 63,
+          "avg": 0
+        },
+        {
+          "t": 69,
+          "avg": 5
+        },
+        {
+          "t": 75,
+          "avg": 35
+        },
+        {
+          "t": 80,
+          "avg": 50
+        },
+        {
+          "t": 85,
+          "avg": 55
+        },
+        {
+          "t": 90,
+          "avg": 55
+        },
+        {
+          "t": 95,
+          "avg": 40
+        },
+        {
+          "t": 100,
+          "avg": 45
+        },
+        {
+          "t": 105,
+          "avg": 65
+        },
+        {
+          "t": 110,
+          "avg": 95
+        },
+        {
+          "t": 116,
+          "avg": 100
+        },
+        {
+          "t": 121,
+          "avg": 100
+        },
+        {
+          "t": 126,
+          "avg": 100
+        },
+        {
+          "t": 131,
+          "avg": 100
+        },
+        {
+          "t": 136,
+          "avg": 90
+        },
+        {
+          "t": 141,
+          "avg": 100
+        },
+        {
+          "t": 146,
+          "avg": 75
+        },
+        {
+          "t": 151,
+          "avg": 75
+        },
+        {
+          "t": 156,
+          "avg": 75
+        },
+        {
+          "t": 161,
+          "avg": 85
+        },
+        {
+          "t": 166,
+          "avg": 95
+        },
+        {
+          "t": 171,
+          "avg": 95
+        },
+        {
+          "t": 176,
+          "avg": 88
+        },
+        {
+          "t": 181,
+          "avg": 93
+        },
+        {
+          "t": 186,
+          "avg": 93
+        },
+        {
+          "t": 191,
+          "avg": 93
+        },
+        {
+          "t": 196,
+          "avg": 93
+        },
+        {
+          "t": 201,
+          "avg": 90
+        },
+        {
+          "t": 206,
+          "avg": 95
+        },
+        {
+          "t": 211,
+          "avg": 95
+        },
+        {
+          "t": 216,
+          "avg": 100
+        },
+        {
+          "t": 221,
+          "avg": 100
+        },
+        {
+          "t": 226,
+          "avg": 100
+        },
+        {
+          "t": 231,
+          "avg": 95
+        },
+        {
+          "t": 236,
+          "avg": 80
+        },
+        {
+          "t": 242,
+          "avg": 75
+        },
+        {
+          "t": 247,
+          "avg": 70
+        },
+        {
+          "t": 252,
+          "avg": 80
+        },
+        {
+          "t": 257,
+          "avg": 75
+        },
+        {
+          "t": 262,
+          "avg": 75
+        },
+        {
+          "t": 267,
+          "avg": 85
+        },
+        {
+          "t": 272,
+          "avg": 75
+        },
+        {
+          "t": 277,
+          "avg": 55
+        },
+        {
+          "t": 282,
+          "avg": 35
+        },
+        {
+          "t": 287,
+          "avg": 10
+        }
+      ],
+      "duration": 292,
+      "studentCount": 1,
+      "students": [
+        {
+          "name": "Umid Yuldashbayev",
+          "focusScore": 0,
+          "camOn": true
+        }
+      ],
+      "id": 1780484365958,
+      "date": "03.06.2026 13:59:25",
+      "replayAvailable": false,
+      "recording": "lesson_1780484365958.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Yönetimi ve Geliştirme",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:33",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:53",
+          "msg": "📷 Ertan Kadim kamerayı kapattı",
+          "type": "warning"
+        },
+        {
+          "time": "00:00:54",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:40",
+          "msg": "🚫 Umid Yuldashbayev kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:44",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 33,
+          "avg": 0
+        },
+        {
+          "t": 38,
+          "avg": 0
+        },
+        {
+          "t": 43,
+          "avg": 35
+        },
+        {
+          "t": 48,
+          "avg": 35
+        },
+        {
+          "t": 53,
+          "avg": 50
+        },
+        {
+          "t": 58,
+          "avg": 5
+        },
+        {
+          "t": 63,
+          "avg": 0
+        },
+        {
+          "t": 69,
+          "avg": 5
+        },
+        {
+          "t": 75,
+          "avg": 35
+        },
+        {
+          "t": 80,
+          "avg": 50
+        },
+        {
+          "t": 85,
+          "avg": 55
+        },
+        {
+          "t": 90,
+          "avg": 55
+        },
+        {
+          "t": 95,
+          "avg": 40
+        },
+        {
+          "t": 100,
+          "avg": 45
+        },
+        {
+          "t": 105,
+          "avg": 65
+        },
+        {
+          "t": 110,
+          "avg": 95
+        },
+        {
+          "t": 116,
+          "avg": 100
+        },
+        {
+          "t": 121,
+          "avg": 100
+        },
+        {
+          "t": 126,
+          "avg": 100
+        },
+        {
+          "t": 131,
+          "avg": 100
+        },
+        {
+          "t": 136,
+          "avg": 90
+        },
+        {
+          "t": 141,
+          "avg": 100
+        },
+        {
+          "t": 146,
+          "avg": 75
+        },
+        {
+          "t": 151,
+          "avg": 75
+        },
+        {
+          "t": 156,
+          "avg": 75
+        },
+        {
+          "t": 161,
+          "avg": 85
+        },
+        {
+          "t": 166,
+          "avg": 95
+        },
+        {
+          "t": 171,
+          "avg": 95
+        },
+        {
+          "t": 176,
+          "avg": 88
+        },
+        {
+          "t": 181,
+          "avg": 93
+        },
+        {
+          "t": 186,
+          "avg": 93
+        },
+        {
+          "t": 191,
+          "avg": 93
+        },
+        {
+          "t": 196,
+          "avg": 93
+        },
+        {
+          "t": 201,
+          "avg": 90
+        },
+        {
+          "t": 206,
+          "avg": 95
+        },
+        {
+          "t": 211,
+          "avg": 95
+        },
+        {
+          "t": 216,
+          "avg": 100
+        },
+        {
+          "t": 221,
+          "avg": 100
+        },
+        {
+          "t": 226,
+          "avg": 100
+        },
+        {
+          "t": 231,
+          "avg": 95
+        },
+        {
+          "t": 236,
+          "avg": 80
+        },
+        {
+          "t": 242,
+          "avg": 75
+        },
+        {
+          "t": 247,
+          "avg": 70
+        },
+        {
+          "t": 252,
+          "avg": 80
+        },
+        {
+          "t": 257,
+          "avg": 75
+        },
+        {
+          "t": 262,
+          "avg": 75
+        },
+        {
+          "t": 267,
+          "avg": 85
+        },
+        {
+          "t": 272,
+          "avg": 75
+        },
+        {
+          "t": 277,
+          "avg": 55
+        },
+        {
+          "t": 282,
+          "avg": 35
+        },
+        {
+          "t": 287,
+          "avg": 10
+        },
+        {
+          "t": 292,
+          "avg": 0
+        }
+      ],
+      "duration": 349,
+      "studentCount": 0,
+      "students": [],
+      "id": 1780484423037,
+      "date": "03.06.2026 14:00:23",
+      "replayAvailable": true,
+      "recording": "lesson_1780484423037.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:18",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:21",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:07",
+          "msg": "📷 Ertan Kadim kamerayı kapattı",
+          "type": "warning"
+        },
+        {
+          "time": "00:01:18",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 18,
+          "avg": 0
+        },
+        {
+          "t": 23,
+          "avg": 2
+        },
+        {
+          "t": 28,
+          "avg": 2
+        },
+        {
+          "t": 33,
+          "avg": 0
+        },
+        {
+          "t": 38,
+          "avg": 0
+        },
+        {
+          "t": 43,
+          "avg": 0
+        },
+        {
+          "t": 48,
+          "avg": 0
+        },
+        {
+          "t": 53,
+          "avg": 0
+        },
+        {
+          "t": 58,
+          "avg": 0
+        },
+        {
+          "t": 63,
+          "avg": 0
+        },
+        {
+          "t": 68,
+          "avg": 0
+        },
+        {
+          "t": 73,
+          "avg": 0
+        },
+        {
+          "t": 78,
+          "avg": 0
+        },
+        {
+          "t": 83,
+          "avg": 0
+        },
+        {
+          "t": 88,
+          "avg": 0
+        },
+        {
+          "t": 93,
+          "avg": 0
+        },
+        {
+          "t": 98,
+          "avg": 0
+        },
+        {
+          "t": 103,
+          "avg": 0
+        }
+      ],
+      "duration": 114,
+      "studentCount": 0,
+      "students": [],
+      "id": 1780577249993,
+      "date": "04.06.2026 15:47:29",
+      "replayAvailable": true,
+      "recording": "lesson_1780577249993.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 81,
+      "timeline": [
+        {
+          "time": "00:00:19",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:31",
+          "msg": "😕 Kafa karışıklığı: 1/1 öğrenci şaşkın görünüyor. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:00:31",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 17,
+          "avg": 85
+        },
+        {
+          "t": 23,
+          "avg": 51
+        },
+        {
+          "t": 28,
+          "avg": 35
+        },
+        {
+          "t": 34,
+          "avg": 34
+        },
+        {
+          "t": 39,
+          "avg": 42
+        },
+        {
+          "t": 44,
+          "avg": 53
+        },
+        {
+          "t": 49,
+          "avg": 57
+        },
+        {
+          "t": 55,
+          "avg": 61
+        },
+        {
+          "t": 60,
+          "avg": 57
+        },
+        {
+          "t": 65,
+          "avg": 68
+        },
+        {
+          "t": 70,
+          "avg": 72
+        },
+        {
+          "t": 75,
+          "avg": 78
+        },
+        {
+          "t": 80,
+          "avg": 78
+        },
+        {
+          "t": 86,
+          "avg": 85
+        }
+      ],
+      "duration": 88,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780949428130",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 81,
+          "camOn": true,
+          "joinedAt": 13
+        }
+      ],
+      "id": 1780949516963,
+      "date": "08.06.2026 23:11:56",
+      "replayAvailable": true
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 8,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780950595788",
+      "students": [],
+      "id": 1780950604099,
+      "date": "08.06.2026 23:30:04",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 45,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780950862537",
+      "students": [],
+      "id": 1780950908189,
+      "date": "08.06.2026 23:35:08",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 92,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780951436557",
+      "students": [],
+      "id": 1780951529210,
+      "date": "08.06.2026 23:45:29",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 6,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780951542037",
+      "students": [],
+      "id": 1780951549019,
+      "date": "08.06.2026 23:45:49",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 34,
+      "timeline": [
+        {
+          "time": "00:00:56",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %2. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:58",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %4. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:14",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 56,
+          "avg": 2
+        },
+        {
+          "t": 61,
+          "avg": 2
+        },
+        {
+          "t": 66,
+          "avg": 0
+        },
+        {
+          "t": 71,
+          "avg": 0
+        },
+        {
+          "t": 76,
+          "avg": 0
+        },
+        {
+          "t": 81,
+          "avg": 0
+        },
+        {
+          "t": 86,
+          "avg": 0
+        },
+        {
+          "t": 91,
+          "avg": 0
+        },
+        {
+          "t": 96,
+          "avg": 0
+        },
+        {
+          "t": 101,
+          "avg": 0
+        },
+        {
+          "t": 106,
+          "avg": 0
+        },
+        {
+          "t": 111,
+          "avg": 0
+        },
+        {
+          "t": 116,
+          "avg": 0
+        },
+        {
+          "t": 121,
+          "avg": 13
+        },
+        {
+          "t": 126,
+          "avg": 21
+        },
+        {
+          "t": 131,
+          "avg": 34
+        }
+      ],
+      "duration": 137,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780952071056",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 34,
+          "camOn": true,
+          "joinedAt": 0
+        }
+      ],
+      "id": 1780952208081,
+      "date": "08.06.2026 23:56:48",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [],
+      "focusHistory": [],
+      "duration": 3,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780952217486",
+      "students": [],
+      "id": 1780952221458,
+      "date": "08.06.2026 23:57:01",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:15",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:17",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 15,
+          "avg": 0
+        }
+      ],
+      "duration": 363,
+      "studentCount": 0,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780952333916",
+      "students": [],
+      "id": 1780952697727,
+      "date": "09.06.2026 00:04:57",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "4 / BÖTE",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:07",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:19",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:49",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:04",
+          "msg": "😕 Kafa karışıklığı: 1/1 öğrenci şaşkın görünüyor. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:01:05",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:05",
+          "msg": "😕 Kafa karışıklığı: 1/1 öğrenci şaşkın görünüyor. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:01:07",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:08",
+          "msg": "😕 Kafa karışıklığı: 1/1 öğrenci şaşkın görünüyor. Konuyu özetleyin.",
+          "type": "warning"
+        },
+        {
+          "time": "00:01:08",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:19",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:50",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:11",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %16. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:20",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:50",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:11",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %24. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:20",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:51",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:12",
+          "msg": "Dikkat kritik: %100'i (2/2) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:22",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:53",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:05:12",
+          "msg": "Dikkat kritik: %100'i (2/2) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 7,
+          "avg": 0
+        },
+        {
+          "t": 12,
+          "avg": 26
+        },
+        {
+          "t": 18,
+          "avg": 52
+        },
+        {
+          "t": 23,
+          "avg": 4
+        },
+        {
+          "t": 28,
+          "avg": 17
+        },
+        {
+          "t": 33,
+          "avg": 9
+        },
+        {
+          "t": 38,
+          "avg": 0
+        },
+        {
+          "t": 43,
+          "avg": 2
+        },
+        {
+          "t": 48,
+          "avg": 9
+        },
+        {
+          "t": 53,
+          "avg": 4
+        },
+        {
+          "t": 58,
+          "avg": 0
+        },
+        {
+          "t": 63,
+          "avg": 30
+        },
+        {
+          "t": 68,
+          "avg": 40
+        },
+        {
+          "t": 73,
+          "avg": 12
+        },
+        {
+          "t": 78,
+          "avg": 0
+        },
+        {
+          "t": 83,
+          "avg": 4
+        },
+        {
+          "t": 88,
+          "avg": 0
+        },
+        {
+          "t": 93,
+          "avg": 0
+        },
+        {
+          "t": 98,
+          "avg": 0
+        },
+        {
+          "t": 103,
+          "avg": 0
+        },
+        {
+          "t": 108,
+          "avg": 0
+        },
+        {
+          "t": 116,
+          "avg": 13
+        },
+        {
+          "t": 121,
+          "avg": 20
+        },
+        {
+          "t": 126,
+          "avg": 16
+        },
+        {
+          "t": 131,
+          "avg": 16
+        },
+        {
+          "t": 136,
+          "avg": 12
+        },
+        {
+          "t": 141,
+          "avg": 13
+        },
+        {
+          "t": 146,
+          "avg": 0
+        },
+        {
+          "t": 151,
+          "avg": 0
+        },
+        {
+          "t": 157,
+          "avg": 4
+        },
+        {
+          "t": 162,
+          "avg": 4
+        },
+        {
+          "t": 167,
+          "avg": 0
+        },
+        {
+          "t": 172,
+          "avg": 0
+        },
+        {
+          "t": 177,
+          "avg": 0
+        },
+        {
+          "t": 182,
+          "avg": 4
+        },
+        {
+          "t": 187,
+          "avg": 13
+        },
+        {
+          "t": 192,
+          "avg": 24
+        },
+        {
+          "t": 197,
+          "avg": 10
+        },
+        {
+          "t": 202,
+          "avg": 4
+        },
+        {
+          "t": 207,
+          "avg": 4
+        },
+        {
+          "t": 216,
+          "avg": 2
+        },
+        {
+          "t": 221,
+          "avg": 2
+        },
+        {
+          "t": 226,
+          "avg": 2
+        },
+        {
+          "t": 231,
+          "avg": 0
+        },
+        {
+          "t": 236,
+          "avg": 2
+        },
+        {
+          "t": 241,
+          "avg": 0
+        },
+        {
+          "t": 246,
+          "avg": 2
+        },
+        {
+          "t": 251,
+          "avg": 0
+        },
+        {
+          "t": 256,
+          "avg": 0
+        },
+        {
+          "t": 261,
+          "avg": 2
+        },
+        {
+          "t": 266,
+          "avg": 5
+        },
+        {
+          "t": 271,
+          "avg": 5
+        },
+        {
+          "t": 276,
+          "avg": 5
+        },
+        {
+          "t": 281,
+          "avg": 0
+        },
+        {
+          "t": 286,
+          "avg": 0
+        },
+        {
+          "t": 291,
+          "avg": 0
+        },
+        {
+          "t": 296,
+          "avg": 0
+        },
+        {
+          "t": 301,
+          "avg": 0
+        },
+        {
+          "t": 306,
+          "avg": 0
+        },
+        {
+          "t": 311,
+          "avg": 0
+        }
+      ],
+      "duration": 329,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780952933615",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 0,
+          "camOn": true,
+          "joinedAt": 5
+        }
+      ],
+      "id": 1780953262878,
+      "date": "09.06.2026 00:14:22",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:06",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:07",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:38",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 6,
+          "avg": 0
+        },
+        {
+          "t": 11,
+          "avg": 6
+        },
+        {
+          "t": 16,
+          "avg": 4
+        },
+        {
+          "t": 21,
+          "avg": 0
+        },
+        {
+          "t": 26,
+          "avg": 0
+        },
+        {
+          "t": 31,
+          "avg": 0
+        },
+        {
+          "t": 36,
+          "avg": 0
+        },
+        {
+          "t": 41,
+          "avg": 0
+        },
+        {
+          "t": 46,
+          "avg": 0
+        }
+      ],
+      "duration": 48,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780953395075",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 0,
+          "camOn": true,
+          "joinedAt": 3
+        }
+      ],
+      "id": 1780953443318,
+      "date": "09.06.2026 00:17:23",
+      "replayAvailable": false
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 9,
+      "timeline": [
+        {
+          "time": "00:00:08",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:05",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:08",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:56",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:08",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %13. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:35",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:06",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:09",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %9. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:09",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:38",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 8,
+          "avg": 0
+        },
+        {
+          "t": 13,
+          "avg": 26
+        },
+        {
+          "t": 18,
+          "avg": 28
+        },
+        {
+          "t": 23,
+          "avg": 40
+        },
+        {
+          "t": 29,
+          "avg": 52
+        },
+        {
+          "t": 34,
+          "avg": 65
+        },
+        {
+          "t": 39,
+          "avg": 81
+        },
+        {
+          "t": 44,
+          "avg": 73
+        },
+        {
+          "t": 49,
+          "avg": 80
+        },
+        {
+          "t": 54,
+          "avg": 77
+        },
+        {
+          "t": 60,
+          "avg": 52
+        },
+        {
+          "t": 65,
+          "avg": 39
+        },
+        {
+          "t": 70,
+          "avg": 22
+        },
+        {
+          "t": 75,
+          "avg": 9
+        },
+        {
+          "t": 80,
+          "avg": 68
+        },
+        {
+          "t": 85,
+          "avg": 100
+        },
+        {
+          "t": 90,
+          "avg": 71
+        },
+        {
+          "t": 98,
+          "avg": 64
+        },
+        {
+          "t": 104,
+          "avg": 51
+        },
+        {
+          "t": 110,
+          "avg": 38
+        },
+        {
+          "t": 115,
+          "avg": 34
+        },
+        {
+          "t": 120,
+          "avg": 21
+        },
+        {
+          "t": 125,
+          "avg": 17
+        },
+        {
+          "t": 130,
+          "avg": 4
+        },
+        {
+          "t": 135,
+          "avg": 9
+        },
+        {
+          "t": 140,
+          "avg": 17
+        },
+        {
+          "t": 146,
+          "avg": 26
+        },
+        {
+          "t": 151,
+          "avg": 38
+        },
+        {
+          "t": 157,
+          "avg": 38
+        },
+        {
+          "t": 163,
+          "avg": 30
+        },
+        {
+          "t": 168,
+          "avg": 35
+        },
+        {
+          "t": 173,
+          "avg": 39
+        },
+        {
+          "t": 178,
+          "avg": 35
+        },
+        {
+          "t": 183,
+          "avg": 26
+        },
+        {
+          "t": 188,
+          "avg": 13
+        },
+        {
+          "t": 193,
+          "avg": 0
+        },
+        {
+          "t": 198,
+          "avg": 0
+        },
+        {
+          "t": 203,
+          "avg": 0
+        },
+        {
+          "t": 208,
+          "avg": 0
+        },
+        {
+          "t": 213,
+          "avg": 0
+        },
+        {
+          "t": 218,
+          "avg": 0
+        },
+        {
+          "t": 223,
+          "avg": 0
+        },
+        {
+          "t": 228,
+          "avg": 0
+        },
+        {
+          "t": 233,
+          "avg": 0
+        },
+        {
+          "t": 238,
+          "avg": 0
+        },
+        {
+          "t": 243,
+          "avg": 0
+        },
+        {
+          "t": 248,
+          "avg": 0
+        },
+        {
+          "t": 253,
+          "avg": 0
+        },
+        {
+          "t": 258,
+          "avg": 0
+        },
+        {
+          "t": 263,
+          "avg": 0
+        },
+        {
+          "t": 268,
+          "avg": 4
+        },
+        {
+          "t": 273,
+          "avg": 9
+        },
+        {
+          "t": 278,
+          "avg": 9
+        }
+      ],
+      "duration": 279,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780953516705",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 9,
+          "camOn": true,
+          "joinedAt": 4
+        }
+      ],
+      "id": 1780953796362,
+      "date": "09.06.2026 00:23:16",
+      "replayAvailable": false,
+      "recording": "lesson_1780953796362.webm"
+    },
+    {
+      "teacher": "ercan.akpinar",
+      "lessonName": "Proje Geliştirme ve Yönetimi",
+      "classInfo": "BTE-84U9",
+      "avgFocus": 0,
+      "timeline": [
+        {
+          "time": "00:00:08",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:00:26",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:09",
+          "msg": "😴 1 öğrenci dikkatini kaybetti veya kameradan uzaklaştı. Kısa bir aktivite deneyin.",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:13",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:01:44",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:09",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %25. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:02:16",
+          "msg": "🚫 Ertan Kadim kameradan uzaklaştı",
+          "type": "danger"
+        },
+        {
+          "time": "00:03:10",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:04:11",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:05:12",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:06:13",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:07:13",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:08:13",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:09:14",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:10:15",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:11:16",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:12:16",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:13:17",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:14:18",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:15:19",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:16:20",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:17:20",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:18:21",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:19:22",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:20:23",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:21:24",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:22:25",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        },
+        {
+          "time": "00:23:25",
+          "msg": "Dikkat kritik: %100'i (1/1) odak kaybetti. Ort. %0. Sınıfı canlandırın!",
+          "type": "danger"
+        }
+      ],
+      "focusHistory": [
+        {
+          "t": 8,
+          "avg": 0
+        },
+        {
+          "t": 13,
+          "avg": 57
+        },
+        {
+          "t": 19,
+          "avg": 69
+        },
+        {
+          "t": 24,
+          "avg": 59
+        },
+        {
+          "t": 29,
+          "avg": 42
+        },
+        {
+          "t": 34,
+          "avg": 26
+        },
+        {
+          "t": 39,
+          "avg": 4
+        },
+        {
+          "t": 44,
+          "avg": 20
+        },
+        {
+          "t": 49,
+          "avg": 20
+        },
+        {
+          "t": 54,
+          "avg": 40
+        },
+        {
+          "t": 60,
+          "avg": 65
+        },
+        {
+          "t": 65,
+          "avg": 55
+        },
+        {
+          "t": 70,
+          "avg": 56
+        },
+        {
+          "t": 75,
+          "avg": 31
+        },
+        {
+          "t": 80,
+          "avg": 16
+        },
+        {
+          "t": 85,
+          "avg": 16
+        },
+        {
+          "t": 90,
+          "avg": 35
+        },
+        {
+          "t": 95,
+          "avg": 60
+        },
+        {
+          "t": 100,
+          "avg": 79
+        },
+        {
+          "t": 105,
+          "avg": 64
+        },
+        {
+          "t": 110,
+          "avg": 49
+        },
+        {
+          "t": 115,
+          "avg": 38
+        },
+        {
+          "t": 120,
+          "avg": 18
+        },
+        {
+          "t": 125,
+          "avg": 24
+        },
+        {
+          "t": 130,
+          "avg": 30
+        },
+        {
+          "t": 135,
+          "avg": 80
+        },
+        {
+          "t": 140,
+          "avg": 5
+        },
+        {
+          "t": 145,
+          "avg": 0
+        },
+        {
+          "t": 150,
+          "avg": 0
+        },
+        {
+          "t": 156,
+          "avg": 0
+        },
+        {
+          "t": 161,
+          "avg": 0
+        },
+        {
+          "t": 166,
+          "avg": 0
+        },
+        {
+          "t": 171,
+          "avg": 0
+        },
+        {
+          "t": 176,
+          "avg": 0
+        },
+        {
+          "t": 181,
+          "avg": 0
+        },
+        {
+          "t": 186,
+          "avg": 0
+        },
+        {
+          "t": 191,
+          "avg": 0
+        },
+        {
+          "t": 196,
+          "avg": 0
+        },
+        {
+          "t": 201,
+          "avg": 0
+        },
+        {
+          "t": 206,
+          "avg": 0
+        },
+        {
+          "t": 211,
+          "avg": 0
+        },
+        {
+          "t": 216,
+          "avg": 0
+        },
+        {
+          "t": 221,
+          "avg": 0
+        },
+        {
+          "t": 226,
+          "avg": 0
+        },
+        {
+          "t": 231,
+          "avg": 0
+        },
+        {
+          "t": 236,
+          "avg": 0
+        },
+        {
+          "t": 241,
+          "avg": 0
+        },
+        {
+          "t": 246,
+          "avg": 0
+        },
+        {
+          "t": 251,
+          "avg": 0
+        },
+        {
+          "t": 256,
+          "avg": 0
+        },
+        {
+          "t": 261,
+          "avg": 0
+        },
+        {
+          "t": 266,
+          "avg": 0
+        },
+        {
+          "t": 271,
+          "avg": 0
+        },
+        {
+          "t": 276,
+          "avg": 0
+        },
+        {
+          "t": 281,
+          "avg": 0
+        },
+        {
+          "t": 286,
+          "avg": 0
+        },
+        {
+          "t": 291,
+          "avg": 0
+        },
+        {
+          "t": 296,
+          "avg": 0
+        },
+        {
+          "t": 301,
+          "avg": 0
+        },
+        {
+          "t": 306,
+          "avg": 0
+        },
+        {
+          "t": 311,
+          "avg": 0
+        },
+        {
+          "t": 316,
+          "avg": 0
+        },
+        {
+          "t": 321,
+          "avg": 0
+        },
+        {
+          "t": 326,
+          "avg": 0
+        },
+        {
+          "t": 331,
+          "avg": 0
+        },
+        {
+          "t": 336,
+          "avg": 0
+        },
+        {
+          "t": 341,
+          "avg": 0
+        },
+        {
+          "t": 346,
+          "avg": 0
+        },
+        {
+          "t": 351,
+          "avg": 0
+        },
+        {
+          "t": 356,
+          "avg": 0
+        },
+        {
+          "t": 361,
+          "avg": 0
+        },
+        {
+          "t": 366,
+          "avg": 0
+        },
+        {
+          "t": 371,
+          "avg": 0
+        },
+        {
+          "t": 376,
+          "avg": 0
+        },
+        {
+          "t": 381,
+          "avg": 0
+        },
+        {
+          "t": 386,
+          "avg": 0
+        },
+        {
+          "t": 391,
+          "avg": 0
+        },
+        {
+          "t": 396,
+          "avg": 0
+        },
+        {
+          "t": 401,
+          "avg": 0
+        },
+        {
+          "t": 406,
+          "avg": 0
+        },
+        {
+          "t": 411,
+          "avg": 0
+        },
+        {
+          "t": 416,
+          "avg": 0
+        },
+        {
+          "t": 421,
+          "avg": 0
+        },
+        {
+          "t": 426,
+          "avg": 0
+        },
+        {
+          "t": 431,
+          "avg": 0
+        },
+        {
+          "t": 436,
+          "avg": 0
+        },
+        {
+          "t": 441,
+          "avg": 0
+        },
+        {
+          "t": 446,
+          "avg": 0
+        },
+        {
+          "t": 451,
+          "avg": 0
+        },
+        {
+          "t": 456,
+          "avg": 0
+        },
+        {
+          "t": 461,
+          "avg": 0
+        },
+        {
+          "t": 466,
+          "avg": 0
+        },
+        {
+          "t": 471,
+          "avg": 0
+        },
+        {
+          "t": 476,
+          "avg": 0
+        },
+        {
+          "t": 481,
+          "avg": 0
+        },
+        {
+          "t": 486,
+          "avg": 0
+        },
+        {
+          "t": 491,
+          "avg": 0
+        },
+        {
+          "t": 496,
+          "avg": 0
+        },
+        {
+          "t": 501,
+          "avg": 0
+        },
+        {
+          "t": 506,
+          "avg": 0
+        },
+        {
+          "t": 511,
+          "avg": 0
+        },
+        {
+          "t": 516,
+          "avg": 0
+        },
+        {
+          "t": 521,
+          "avg": 0
+        },
+        {
+          "t": 526,
+          "avg": 0
+        },
+        {
+          "t": 531,
+          "avg": 0
+        },
+        {
+          "t": 536,
+          "avg": 0
+        },
+        {
+          "t": 541,
+          "avg": 0
+        },
+        {
+          "t": 546,
+          "avg": 0
+        },
+        {
+          "t": 551,
+          "avg": 0
+        },
+        {
+          "t": 556,
+          "avg": 0
+        },
+        {
+          "t": 561,
+          "avg": 0
+        },
+        {
+          "t": 566,
+          "avg": 0
+        },
+        {
+          "t": 571,
+          "avg": 0
+        },
+        {
+          "t": 576,
+          "avg": 0
+        },
+        {
+          "t": 581,
+          "avg": 0
+        },
+        {
+          "t": 586,
+          "avg": 0
+        },
+        {
+          "t": 591,
+          "avg": 0
+        },
+        {
+          "t": 596,
+          "avg": 0
+        },
+        {
+          "t": 601,
+          "avg": 0
+        },
+        {
+          "t": 606,
+          "avg": 0
+        },
+        {
+          "t": 611,
+          "avg": 0
+        },
+        {
+          "t": 616,
+          "avg": 0
+        },
+        {
+          "t": 621,
+          "avg": 0
+        },
+        {
+          "t": 626,
+          "avg": 0
+        },
+        {
+          "t": 631,
+          "avg": 0
+        },
+        {
+          "t": 636,
+          "avg": 0
+        },
+        {
+          "t": 641,
+          "avg": 0
+        },
+        {
+          "t": 646,
+          "avg": 0
+        },
+        {
+          "t": 651,
+          "avg": 0
+        },
+        {
+          "t": 656,
+          "avg": 0
+        },
+        {
+          "t": 661,
+          "avg": 0
+        },
+        {
+          "t": 666,
+          "avg": 0
+        },
+        {
+          "t": 671,
+          "avg": 0
+        },
+        {
+          "t": 676,
+          "avg": 0
+        },
+        {
+          "t": 681,
+          "avg": 0
+        },
+        {
+          "t": 686,
+          "avg": 0
+        },
+        {
+          "t": 691,
+          "avg": 0
+        },
+        {
+          "t": 696,
+          "avg": 0
+        },
+        {
+          "t": 701,
+          "avg": 0
+        },
+        {
+          "t": 706,
+          "avg": 0
+        },
+        {
+          "t": 711,
+          "avg": 0
+        },
+        {
+          "t": 716,
+          "avg": 0
+        },
+        {
+          "t": 721,
+          "avg": 0
+        },
+        {
+          "t": 726,
+          "avg": 0
+        },
+        {
+          "t": 731,
+          "avg": 0
+        },
+        {
+          "t": 736,
+          "avg": 0
+        },
+        {
+          "t": 741,
+          "avg": 0
+        },
+        {
+          "t": 746,
+          "avg": 0
+        },
+        {
+          "t": 751,
+          "avg": 0
+        },
+        {
+          "t": 756,
+          "avg": 0
+        },
+        {
+          "t": 761,
+          "avg": 0
+        },
+        {
+          "t": 766,
+          "avg": 0
+        },
+        {
+          "t": 771,
+          "avg": 0
+        },
+        {
+          "t": 776,
+          "avg": 0
+        },
+        {
+          "t": 781,
+          "avg": 0
+        },
+        {
+          "t": 786,
+          "avg": 0
+        },
+        {
+          "t": 791,
+          "avg": 0
+        },
+        {
+          "t": 796,
+          "avg": 0
+        },
+        {
+          "t": 801,
+          "avg": 0
+        },
+        {
+          "t": 806,
+          "avg": 0
+        },
+        {
+          "t": 811,
+          "avg": 0
+        },
+        {
+          "t": 816,
+          "avg": 0
+        },
+        {
+          "t": 821,
+          "avg": 0
+        },
+        {
+          "t": 826,
+          "avg": 0
+        },
+        {
+          "t": 831,
+          "avg": 0
+        },
+        {
+          "t": 836,
+          "avg": 0
+        },
+        {
+          "t": 841,
+          "avg": 0
+        },
+        {
+          "t": 846,
+          "avg": 0
+        },
+        {
+          "t": 851,
+          "avg": 0
+        },
+        {
+          "t": 856,
+          "avg": 0
+        },
+        {
+          "t": 861,
+          "avg": 0
+        },
+        {
+          "t": 866,
+          "avg": 0
+        },
+        {
+          "t": 871,
+          "avg": 0
+        },
+        {
+          "t": 876,
+          "avg": 0
+        },
+        {
+          "t": 881,
+          "avg": 0
+        },
+        {
+          "t": 886,
+          "avg": 0
+        },
+        {
+          "t": 891,
+          "avg": 0
+        },
+        {
+          "t": 896,
+          "avg": 0
+        },
+        {
+          "t": 901,
+          "avg": 0
+        },
+        {
+          "t": 906,
+          "avg": 0
+        },
+        {
+          "t": 911,
+          "avg": 0
+        },
+        {
+          "t": 916,
+          "avg": 0
+        },
+        {
+          "t": 921,
+          "avg": 0
+        },
+        {
+          "t": 926,
+          "avg": 0
+        },
+        {
+          "t": 931,
+          "avg": 0
+        },
+        {
+          "t": 936,
+          "avg": 0
+        },
+        {
+          "t": 941,
+          "avg": 0
+        },
+        {
+          "t": 946,
+          "avg": 0
+        },
+        {
+          "t": 951,
+          "avg": 0
+        },
+        {
+          "t": 956,
+          "avg": 0
+        },
+        {
+          "t": 961,
+          "avg": 0
+        },
+        {
+          "t": 966,
+          "avg": 0
+        },
+        {
+          "t": 971,
+          "avg": 0
+        },
+        {
+          "t": 976,
+          "avg": 0
+        },
+        {
+          "t": 981,
+          "avg": 0
+        },
+        {
+          "t": 986,
+          "avg": 0
+        },
+        {
+          "t": 991,
+          "avg": 0
+        },
+        {
+          "t": 996,
+          "avg": 0
+        },
+        {
+          "t": 1001,
+          "avg": 0
+        },
+        {
+          "t": 1006,
+          "avg": 0
+        },
+        {
+          "t": 1011,
+          "avg": 0
+        },
+        {
+          "t": 1016,
+          "avg": 0
+        },
+        {
+          "t": 1021,
+          "avg": 0
+        },
+        {
+          "t": 1026,
+          "avg": 0
+        },
+        {
+          "t": 1031,
+          "avg": 0
+        },
+        {
+          "t": 1036,
+          "avg": 0
+        },
+        {
+          "t": 1041,
+          "avg": 0
+        },
+        {
+          "t": 1046,
+          "avg": 0
+        },
+        {
+          "t": 1051,
+          "avg": 0
+        },
+        {
+          "t": 1056,
+          "avg": 0
+        },
+        {
+          "t": 1061,
+          "avg": 0
+        },
+        {
+          "t": 1066,
+          "avg": 0
+        },
+        {
+          "t": 1071,
+          "avg": 0
+        },
+        {
+          "t": 1076,
+          "avg": 0
+        },
+        {
+          "t": 1081,
+          "avg": 0
+        },
+        {
+          "t": 1086,
+          "avg": 0
+        },
+        {
+          "t": 1091,
+          "avg": 0
+        },
+        {
+          "t": 1096,
+          "avg": 0
+        },
+        {
+          "t": 1101,
+          "avg": 0
+        },
+        {
+          "t": 1106,
+          "avg": 0
+        },
+        {
+          "t": 1111,
+          "avg": 0
+        },
+        {
+          "t": 1116,
+          "avg": 0
+        },
+        {
+          "t": 1121,
+          "avg": 0
+        },
+        {
+          "t": 1126,
+          "avg": 0
+        },
+        {
+          "t": 1131,
+          "avg": 0
+        },
+        {
+          "t": 1136,
+          "avg": 0
+        },
+        {
+          "t": 1141,
+          "avg": 0
+        },
+        {
+          "t": 1146,
+          "avg": 0
+        },
+        {
+          "t": 1151,
+          "avg": 0
+        },
+        {
+          "t": 1156,
+          "avg": 0
+        },
+        {
+          "t": 1161,
+          "avg": 0
+        },
+        {
+          "t": 1166,
+          "avg": 0
+        },
+        {
+          "t": 1171,
+          "avg": 0
+        },
+        {
+          "t": 1176,
+          "avg": 0
+        },
+        {
+          "t": 1181,
+          "avg": 0
+        },
+        {
+          "t": 1186,
+          "avg": 0
+        },
+        {
+          "t": 1191,
+          "avg": 0
+        },
+        {
+          "t": 1196,
+          "avg": 0
+        },
+        {
+          "t": 1201,
+          "avg": 0
+        },
+        {
+          "t": 1206,
+          "avg": 0
+        },
+        {
+          "t": 1211,
+          "avg": 0
+        },
+        {
+          "t": 1216,
+          "avg": 0
+        },
+        {
+          "t": 1221,
+          "avg": 0
+        },
+        {
+          "t": 1226,
+          "avg": 0
+        },
+        {
+          "t": 1231,
+          "avg": 0
+        },
+        {
+          "t": 1236,
+          "avg": 0
+        },
+        {
+          "t": 1241,
+          "avg": 0
+        },
+        {
+          "t": 1246,
+          "avg": 0
+        },
+        {
+          "t": 1251,
+          "avg": 0
+        },
+        {
+          "t": 1256,
+          "avg": 0
+        },
+        {
+          "t": 1261,
+          "avg": 0
+        },
+        {
+          "t": 1266,
+          "avg": 0
+        },
+        {
+          "t": 1271,
+          "avg": 0
+        },
+        {
+          "t": 1276,
+          "avg": 0
+        },
+        {
+          "t": 1281,
+          "avg": 0
+        },
+        {
+          "t": 1286,
+          "avg": 0
+        },
+        {
+          "t": 1291,
+          "avg": 0
+        },
+        {
+          "t": 1296,
+          "avg": 0
+        },
+        {
+          "t": 1301,
+          "avg": 0
+        },
+        {
+          "t": 1306,
+          "avg": 0
+        },
+        {
+          "t": 1311,
+          "avg": 0
+        },
+        {
+          "t": 1316,
+          "avg": 0
+        },
+        {
+          "t": 1321,
+          "avg": 0
+        },
+        {
+          "t": 1326,
+          "avg": 0
+        },
+        {
+          "t": 1331,
+          "avg": 0
+        },
+        {
+          "t": 1336,
+          "avg": 0
+        },
+        {
+          "t": 1341,
+          "avg": 0
+        },
+        {
+          "t": 1346,
+          "avg": 0
+        },
+        {
+          "t": 1351,
+          "avg": 0
+        },
+        {
+          "t": 1356,
+          "avg": 0
+        },
+        {
+          "t": 1361,
+          "avg": 0
+        },
+        {
+          "t": 1366,
+          "avg": 0
+        },
+        {
+          "t": 1371,
+          "avg": 0
+        },
+        {
+          "t": 1376,
+          "avg": 0
+        },
+        {
+          "t": 1381,
+          "avg": 0
+        },
+        {
+          "t": 1386,
+          "avg": 0
+        },
+        {
+          "t": 1391,
+          "avg": 0
+        },
+        {
+          "t": 1396,
+          "avg": 0
+        },
+        {
+          "t": 1401,
+          "avg": 0
+        },
+        {
+          "t": 1406,
+          "avg": 0
+        },
+        {
+          "t": 1411,
+          "avg": 0
+        },
+        {
+          "t": 1416,
+          "avg": 0
+        },
+        {
+          "t": 1421,
+          "avg": 0
+        },
+        {
+          "t": 1426,
+          "avg": 0
+        },
+        {
+          "t": 1431,
+          "avg": 0
+        },
+        {
+          "t": 1436,
+          "avg": 0
+        },
+        {
+          "t": 1441,
+          "avg": 0
+        },
+        {
+          "t": 1446,
+          "avg": 0
+        }
+      ],
+      "duration": 1448,
+      "studentCount": 1,
+      "courseId": "c_1780576745852",
+      "sessionId": "ls_1780954030734",
+      "students": [
+        {
+          "name": "Ertan Kadim",
+          "focusScore": 0,
+          "camOn": true,
+          "joinedAt": 5
+        }
+      ],
+      "id": 1780955479485,
+      "date": "09.06.2026 00:51:19",
+      "replayAvailable": false
+    }
+  ],
+  "classes": [
+    {
+      "id": "c_1780491698793",
+      "name": "Test Sinifi",
+      "code": "",
+      "classInfo": "",
+      "teacher": "ercan.akpinar",
+      "teacherName": "Dr. Ercan Akpınar",
+      "color": "#6366f1",
+      "icon": "📚",
+      "desc": "",
+      "joinCode": "TEST-6ZPE",
+      "students": [
+        "ertan.kadim"
+      ],
+      "pendingRequests": [],
+      "createdAt": "2026-06-03T13:01:38.793Z"
+    },
+    {
+      "id": "c_1780576745852",
+      "name": "Proje Geliştirme ve Yönetimi",
+      "code": "BTE 4002",
+      "classInfo": "4 / BÖTE",
+      "teacher": "ercan.akpinar",
+      "teacherName": "Dr. Ercan Akpınar",
+      "color": "#f59e0b",
+      "icon": "📚",
+      "desc": "Bu derste öğrencilere; proje ve bileşenlerine ilişkin kavramlar; projenin tanımı ve işlevi; proje döngüsü yönetimi; sorun analizi; proje konusunun seçimi; literatürün taranması; projenin amacı; projede kullanılacak yöntem; projenin özgün değeri; veri toplama araçları; proje iş ve zaman çizelgesi; proje yönetim yazılımları; projenin bütçesi; risk planları; projelerde yaygın etki; proje ekibi; çağrılı projeler; ulusal projeler (TÜBİTAK, DPT, Ulusal Kalkınma Ajansları, Bakanlıklar vb.); uluslararası projeler (AB vb.); özgün bir proje önerisi oluşturma konularında bilgi, beceri ve yeterlilik kazandırmak amaçlanmaktadır.",
+      "joinCode": "BTE-84U9",
+      "students": [
+        "ertan.kadim",
+        "umid.yuldashbayev"
+      ],
+      "pendingRequests": [],
+      "createdAt": "2026-06-04T12:39:05.852Z",
+      "schedule": {
+        "Pazartesi": [
+          "08:00-08:40",
+          "08:50-09:30"
+        ]
+      }
+    }
+  ],
+  "tokenLedger": [
+    {
+      "id": "txn_1780491677939_57p",
+      "username": "ertan.kadim",
+      "amount": 50,
+      "type": "manual",
+      "reason": "Test manual award",
+      "fromUser": "ercan.akpinar",
+      "classId": null,
+      "lessonId": null,
+      "timestamp": "2026-06-03T13:01:17.939Z"
+    },
+    {
+      "id": "txn_1780578026029_erw",
+      "username": "ertan.kadim",
+      "amount": 100,
+      "type": "manual",
+      "reason": "derse aktif katılım",
+      "fromUser": "ercan.akpinar",
+      "classId": "c_1780576745852",
+      "lessonId": null,
+      "timestamp": "2026-06-04T13:00:26.029Z"
+    },
+    {
+      "id": "txn_1780749713400",
+      "username": "ertan.kadim",
+      "amount": -75,
+      "type": "purchase",
+      "reason": "Mağaza: Uzay Teması",
+      "fromUser": "system",
+      "timestamp": "2026-06-06T12:41:53.400Z"
+    },
+    {
+      "id": "txn_1780831496557_eur",
+      "username": "umid.yuldashbayev",
+      "amount": 150,
+      "type": "manual",
+      "reason": "hoşgeldin ödülü",
+      "fromUser": "ercan.akpinar",
+      "classId": "c_1780576745852",
+      "lessonId": null,
+      "timestamp": "2026-06-07T11:24:56.557Z"
+    },
+    {
+      "id": "txn_1780831522369",
+      "username": "umid.yuldashbayev",
+      "amount": -75,
+      "type": "purchase",
+      "reason": "Mağaza: Uzay Teması",
+      "fromUser": "system",
+      "timestamp": "2026-06-07T11:25:22.369Z"
+    },
+    {
+      "id": "txn_1780949528165_092",
+      "username": "ertan.kadim",
+      "amount": 30,
+      "type": "manual",
+      "reason": "Katıldı, Odaklandı, Aktif Katılım, Kamera Açık",
+      "fromUser": "ercan.akpinar",
+      "classId": null,
+      "lessonId": 1780949516963,
+      "timestamp": "2026-06-08T20:12:08.165Z"
+    },
+    {
+      "id": "txn_1780953268718_o09",
+      "username": "ertan.kadim",
+      "amount": 15,
+      "type": "manual",
+      "reason": "Katıldı, Kamera Açık",
+      "fromUser": "ercan.akpinar",
+      "classId": null,
+      "lessonId": 1780953262878,
+      "timestamp": "2026-06-08T21:14:28.718Z"
+    }
+  ],
+  "storePurchases": [
+    {
+      "id": "pur_1780749713400",
+      "username": "ertan.kadim",
+      "itemId": "s_theme_space",
+      "itemName": "Uzay Teması",
+      "price": 75,
+      "timestamp": "2026-06-06T12:41:53.400Z"
+    },
+    {
+      "id": "pur_1780831522369",
+      "username": "umid.yuldashbayev",
+      "itemId": "s_theme_space",
+      "itemName": "Uzay Teması",
+      "price": 75,
+      "timestamp": "2026-06-07T11:25:22.369Z"
+    }
+  ],
+  "tokenConfig": {},
+  "sessions": {
+    "947f96dcfc47168d4d9a95243bbeee8d": "ercan.akpinar",
+    "6e9d2a84f458361301d5ca53d0adad85": "ertan.kadim",
+    "5a6001c5e91bac793dc75a0f6e4dfe5b": "ertan.kadim",
+    "0faad450acf67c1aa537574e53464d08": "ertan.kadim",
+    "51e026a3b1f5a615900d11f3aa27a1a7": "umid.yuldashbayev",
+    "2d4c076c2bf34a477df5896b241c77b5": "ertan.kadim",
+    "4ac1f8cc698cb0103218684cbf2f1d5d": "ertan.kadim",
+    "2d57b61220082ebf9514e18d8f6be7b7": "ertan.kadim"
+  },
+  "live_sessions": [
+    {
+      "id": "ls_1780747334658",
+      "courseId": "c_1780576745852",
+      "title": "1. hafta",
+      "roomId": "qqo1az",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-06T12:02:14.658Z",
+      "endedAt": "2026-06-06T12:02:21.182Z",
+      "lessonReportId": 1780747341183
+    },
+    {
+      "id": "ls_1780748002767",
+      "courseId": "c_1780576745852",
+      "title": "2. hafta canlu ders",
+      "roomId": "5osmjp",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-06T12:13:22.767Z",
+      "endedAt": "2026-06-06T12:16:54.059Z",
+      "lessonReportId": 1780748214060
+    },
+    {
+      "id": "ls_1780753371198",
+      "courseId": "c_1780576745852",
+      "title": "Proje Geliştirme ve Yönetimi",
+      "roomId": "8l141w",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-06T13:42:51.198Z",
+      "endedAt": "2026-06-06T13:42:57.788Z",
+      "lessonReportId": 1780753377789
+    },
+    {
+      "id": "ls_1780946645015",
+      "courseId": "c_1780576745852",
+      "title": "3. Hafta",
+      "roomId": "3l70cy",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T19:24:05.016Z",
+      "endedAt": "2026-06-08T19:28:55.570Z",
+      "lessonReportId": 1780946935574
+    },
+    {
+      "id": "ls_1780948135041",
+      "courseId": "c_1780576745852",
+      "title": "asdasd",
+      "roomId": "edpmpl",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T19:48:55.041Z",
+      "endedAt": "2026-06-08T19:49:01.412Z",
+      "lessonReportId": 1780948141414
+    },
+    {
+      "id": "ls_1780948819371",
+      "courseId": "c_1780576745852",
+      "title": "5. hafta",
+      "roomId": "pps903",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:00:19.371Z",
+      "endedAt": "2026-06-08T20:03:12.042Z",
+      "lessonReportId": 1780948992044
+    },
+    {
+      "id": "ls_1780949428130",
+      "courseId": "c_1780576745852",
+      "title": "qweqeqe",
+      "roomId": "zc10zs",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:10:28.130Z",
+      "endedAt": "2026-06-08T20:11:56.961Z",
+      "lessonReportId": 1780949516963
+    },
+    {
+      "id": "ls_1780950595788",
+      "courseId": "c_1780576745852",
+      "title": "asd",
+      "roomId": "k423v9",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:29:55.789Z",
+      "endedAt": "2026-06-08T20:30:04.098Z",
+      "lessonReportId": 1780950604099
+    },
+    {
+      "id": "ls_1780950862537",
+      "courseId": "c_1780576745852",
+      "title": "qqqq",
+      "roomId": "bu83so",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:34:22.537Z",
+      "endedAt": "2026-06-08T20:35:08.188Z",
+      "lessonReportId": 1780950908189
+    },
+    {
+      "id": "ls_1780951436557",
+      "courseId": "c_1780576745852",
+      "title": "qqqqqqq",
+      "roomId": "prl8d9",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:43:56.557Z",
+      "endedAt": "2026-06-08T20:45:29.208Z",
+      "lessonReportId": 1780951529210
+    },
+    {
+      "id": "ls_1780951542037",
+      "courseId": "c_1780576745852",
+      "title": "dasdasd",
+      "roomId": "8ejsex",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:45:42.037Z",
+      "endedAt": "2026-06-08T20:45:49.018Z",
+      "lessonReportId": 1780951549019
+    },
+    {
+      "id": "ls_1780952071056",
+      "courseId": "c_1780576745852",
+      "title": "12345",
+      "roomId": "4fi92k",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:54:31.057Z",
+      "endedAt": "2026-06-08T20:56:48.079Z",
+      "lessonReportId": 1780952208081
+    },
+    {
+      "id": "ls_1780952217486",
+      "courseId": "c_1780576745852",
+      "title": "qweqweqweqwe",
+      "roomId": "vh4gdf",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:56:57.486Z",
+      "endedAt": "2026-06-08T20:57:01.457Z",
+      "lessonReportId": 1780952221458
+    },
+    {
+      "id": "ls_1780952333916",
+      "courseId": "c_1780576745852",
+      "title": "qqqqq",
+      "roomId": "0s660f",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T20:58:53.915Z",
+      "endedAt": "2026-06-08T21:04:57.726Z",
+      "lessonReportId": 1780952697727
+    },
+    {
+      "id": "ls_1780952933615",
+      "courseId": "c_1780576745852",
+      "title": "qqqqqq",
+      "roomId": "stbjq0",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T21:08:53.616Z",
+      "endedAt": "2026-06-08T21:14:22.876Z",
+      "lessonReportId": 1780953262878
+    },
+    {
+      "id": "ls_1780953395075",
+      "courseId": "c_1780576745852",
+      "title": "sssss",
+      "roomId": "qe6gpk",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T21:16:35.076Z",
+      "endedAt": "2026-06-08T21:17:23.315Z",
+      "lessonReportId": 1780953443318
+    },
+    {
+      "id": "ls_1780953516705",
+      "courseId": "c_1780576745852",
+      "title": "6. Hafta",
+      "roomId": "yv5vtt",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T21:18:36.704Z",
+      "endedAt": "2026-06-08T21:23:16.359Z",
+      "lessonReportId": 1780953796362
+    },
+    {
+      "id": "ls_1780954030734",
+      "courseId": "c_1780576745852",
+      "title": "sss",
+      "roomId": "1xnbuv",
+      "teacherUsername": "ercan.akpinar",
+      "status": "ended",
+      "createdAt": "2026-06-08T21:27:10.735Z",
+      "endedAt": "2026-06-08T21:51:19.483Z",
+      "lessonReportId": 1780955479485
+    }
+  ],
+  "materials": [],
+  "quizzes": [
+    {
+      "id": "49gqyrugpg7mq5a3wen",
+      "courseId": "c_1780576745852",
+      "teacher": "ercan.akpinar",
+      "title": "asdasdasdasd",
+      "desc": "asdadsasd",
+      "questions": [
+        {
+          "id": "8oqlbuxh0tlmq5a4021",
+          "type": "mc",
+          "text": "asd",
+          "options": [
+            "asdasd",
+            "as",
+            "dasd",
+            "asd"
+          ],
+          "correct": "B"
+        },
+        {
+          "id": "28bzu9a4utcimq5a42zm",
+          "type": "open",
+          "text": "asdasdasdasd"
+        }
+      ],
+      "status": "published",
+      "createdAt": "2026-06-08T14:01:09.842Z",
+      "updatedAt": "2026-06-08T14:01:09.842Z"
+    }
+  ],
+  "quizResponses": [
+    {
+      "id": "qr_1780927741008_zpc",
+      "quizId": "49gqyrugpg7mq5a3wen",
+      "courseId": "c_1780576745852",
+      "username": "ertan.kadim",
+      "answers": {
+        "0": "B",
+        "1": "asdasd"
+      },
+      "submittedAt": "2026-06-08T14:09:01.008Z"
+    }
+  ],
+  "announcements": [],
+  "assignments": [],
+  "submissions": []
+}

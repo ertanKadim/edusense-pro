@@ -1,0 +1,6 @@
+node_modules/
+.claude/
+server_err.txt
+server_out.txt
+*.log
+.env

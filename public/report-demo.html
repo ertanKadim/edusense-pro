@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSense Pro — Ders Raporu</title>
+<script src="/chart.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --accent:#6366f1;--accent2:#8b5cf6;--accent-lt:#eef2ff;
+  --success:#10b981;--success-lt:#ecfdf5;
+  --warning:#f59e0b;--warning-lt:#fffbeb;
+  --danger:#ef4444;--danger-lt:#fef2f2;
+  --text:#0f172a;--dim:#475569;--muted:#94a3b8;
+  --border:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
+}
+body{font-family:system-ui,Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);min-height:100vh;}
+
+/* NAV */
+.topnav{background:var(--surface);border-bottom:1px solid var(--border);padding:.8rem 2rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:10;}
+.back-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:9px;background:var(--bg);color:var(--dim);font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:.15s;}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);}
+.logo-name{font-family:system-ui,Arial,sans-serif;font-size:.95rem;font-weight:800;margin-left:auto;}
+.logo-name span{color:var(--accent);}
+.export-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:9px;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.2s;}
+.export-btn:hover{opacity:.9;}
+
+/* MAIN */
+.container{max-width:1100px;margin:0 auto;padding:2rem;}
+
+/* LESSON HEADER */
+.lesson-header{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:20px;padding:2rem;color:#fff;margin-bottom:2rem;position:relative;overflow:hidden;}
+.lesson-header::after{content:'';position:absolute;top:-30%;right:-10%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.08);}
+.lh-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:700;margin-bottom:.85rem;}
+.lh-title{font-family:system-ui,Arial,sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.3px;margin-bottom:.4rem;}
+.lh-meta{font-size:.88rem;opacity:.8;margin-bottom:1.5rem;}
+.lh-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.lh-stat{text-align:center;}
+.lh-stat-val{font-family:system-ui,Arial,sans-serif;font-size:1.6rem;font-weight:800;display:block;margin-bottom:2px;}
+.lh-stat-lbl{font-size:.73rem;opacity:.75;}
+
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+@media(max-width:900px){.stat-row{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:.2s;position:relative;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06);}
+.sc-icon{font-size:1.5rem;margin-bottom:.75rem;}
+.sc-val{font-family:system-ui,Arial,sans-serif;font-size:2rem;font-weight:800;margin-bottom:3px;}
+.sc-lbl{font-size:.73rem;color:var(--muted);}
+.sc-change{position:absolute;top:.9rem;right:.9rem;font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:100px;}
+.up{background:var(--success-lt);color:var(--success);}
+.down{background:var(--danger-lt);color:var(--danger);}
+.neutral{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.grid-2-equal{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+@media(max-width:900px){.grid-2,.grid-2-equal{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.card-header{padding:1.1rem 1.4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-family:system-ui,Arial,sans-serif;font-size:.88rem;font-weight:700;}
+.card-body{padding:1.4rem;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:700;}
+.badge-blue{background:var(--accent-lt);color:var(--accent);}
+.badge-green{background:var(--success-lt);color:var(--success);}
+.badge-yellow{background:var(--warning-lt);color:var(--warning);}
+.badge-red{background:var(--danger-lt);color:var(--danger);}
+
+/* TIMELINE */
+.tl-list{display:flex;flex-direction:column;gap:.5rem;}
+.tl-item{display:flex;align-items:flex-start;gap:.7rem;padding:.75rem 1rem;border-radius:10px;border-left:3px solid transparent;}
+.tl-item.danger{border-left-color:var(--danger);background:var(--danger-lt);}
+.tl-item.warning{border-left-color:var(--warning);background:var(--warning-lt);}
+.tl-item.info{border-left-color:var(--accent);background:var(--accent-lt);}
+.tl-time{font-family:system-ui,Arial,sans-serif;font-size:.72rem;font-weight:700;color:var(--accent);white-space:nowrap;}
+.tl-msg{font-size:.82rem;color:var(--dim);line-height:1.45;}
+.tl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.tl-item.danger .tl-dot{background:var(--danger);}
+.tl-item.warning .tl-dot{background:var(--warning);}
+.tl-item.info .tl-dot{background:var(--accent);}
+
+/* AI RECOMMENDATIONS */
+.ai-section{background:linear-gradient(135deg,var(--accent-lt),#f5f3ff);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:1.4rem;margin-bottom:1.5rem;}
+.ai-header-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;}
+.ai-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:4px 12px;border-radius:100px;font-size:.7rem;font-weight:700;font-family:system-ui,Arial,sans-serif;}
+.ai-recs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+@media(max-width:900px){.ai-recs{grid-template-columns:1fr;}}
+.ai-rec{background:var(--surface);border-radius:10px;padding:1.1rem;border:1px solid var(--border);}
+.ai-rec-icon{font-size:1.4rem;margin-bottom:.5rem;}
+.ai-rec-title{font-family:system-ui,Arial,sans-serif;font-size:.82rem;font-weight:700;margin-bottom:.35rem;}
+.ai-rec-text{font-size:.8rem;color:var(--dim);line-height:1.55;}
+.ai-rec-cat{display:inline-block;margin-top:.6rem;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:100px;}
+
+/* PARTICIPATION BAR */
+.part-list{display:flex;flex-direction:column;gap:.7rem;}
+.part-item{display:flex;align-items:center;gap.7rem;gap:.7rem;}
+.part-label{width:100px;font-size:.8rem;color:var(--dim);flex-shrink:0;}
+.part-bar-wrap{flex:1;height:8px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border);}
+.part-bar{height:100%;border-radius:100px;}
+.part-pct{width:40px;text-align:right;font-family:system-ui,Arial,sans-serif;font-size:.82rem;font-weight:800;flex-shrink:0;}
+
+/* NEXT LESSON */
+.next-lesson-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1.5rem;}
+.nl-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;}
+.nl-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.nl-title{font-family:system-ui,Arial,sans-serif;font-size:.88rem;font-weight:800;}
+.nl-sub{font-size:.75rem;color:var(--muted);}
+.nl-items{display:flex;flex-direction:column;gap:.5rem;}
+.nl-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:var(--dim);}
+.nl-item::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px;}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+  <a class="back-btn" href="/teacher-demo.html">
+    <svg style="width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Arşive Dön
+  </a>
+  <div style="height:20px;width:1px;background:var(--border);"></div>
+  <div style="font-size:.82rem;color:var(--muted);">Ders Raporu</div>
+  <div class="logo-name">EduSense <span>Pro</span></div>
+  <button class="export-btn">
+    <svg style="width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    PDF İndir
+  </button>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- Lesson Header -->
+  <div class="lesson-header">
+    <div class="lh-badge">📊 Ders Sonu Raporu</div>
+    <div class="lh-title">deneme dersi 1</div>
+    <div class="lh-meta">4/BÖTE &nbsp;·&nbsp; 21.05.2026 17:38 &nbsp;·&nbsp; Dr. admin</div>
+    <div class="lh-stats">
+      <div class="lh-stat"><span class="lh-stat-val">%95</span><span class="lh-stat-lbl">Ort. Odak</span></div>
+      <div class="lh-stat"><span class="lh-stat-val">1:13</span><span class="lh-stat-lbl">Ders Süresi</span></div>
+      <div class="lh-stat"><span class="lh-stat-val">0</span><span class="lh-stat-lbl">Kritik An</span></div>
+      <div class="lh-stat"><span class="lh-stat-val">%100</span><span class="lh-stat-lbl">Katılım</span></div>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="sc-change up">+12%</div>
+      <div class="sc-icon">🎯</div>
+      <div class="sc-val" style="color:var(--success);">%95</div>
+      <div class="sc-lbl">Ortalama Dikkat</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-change up">+3%</div>
+      <div class="sc-icon">👥</div>
+      <div class="sc-val" style="color:var(--accent);">%100</div>
+      <div class="sc-lbl">Katılım Oranı</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-change neutral">Sabit</div>
+      <div class="sc-icon">📹</div>
+      <div class="sc-val" style="color:var(--accent2);">%87</div>
+      <div class="sc-lbl">Kamera Açık Oranı</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-change down">0 kritik</div>
+      <div class="sc-icon">⚡</div>
+      <div class="sc-val" style="color:var(--success);">0</div>
+      <div class="sc-lbl">Kritik An Sayısı</div>
+    </div>
+  </div>
+
+  <!-- Focus chart + mood -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📈 Ders Boyunca Dikkat Trendi</div>
+        <span class="badge badge-green">Ortalama %95</span>
+      </div>
+      <div class="card-body">
+        <canvas id="focusChart" height="120"></canvas>
+        <div style="display:flex;gap:2rem;margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <div style="text-align:center;">
+            <div style="font-family:system-ui,Arial,sans-serif;font-size:1.2rem;font-weight:800;color:var(--success);">%100</div>
+            <div style="font-size:.72rem;color:var(--muted);">Zirve</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:system-ui,Arial,sans-serif;font-size:1.2rem;font-weight:800;color:var(--warning);">%60</div>
+            <div style="font-size:.72rem;color:var(--muted);">En Düşük</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:system-ui,Arial,sans-serif;font-size:1.2rem;font-weight:800;color:var(--accent);">%95</div>
+            <div style="font-size:.72rem;color:var(--muted);">Ortalama</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:system-ui,Arial,sans-serif;font-size:1.2rem;font-weight:800;color:var(--text);">73sn</div>
+            <div style="font-size:.72rem;color:var(--muted);">Toplam Süre</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">😊 Duygu Dağılımı</div>
+      </div>
+      <div class="card-body">
+        <canvas id="moodChart" height="160"></canvas>
+        <div style="display:flex;flex-direction:column;gap:.45rem;margin-top:1rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;">
+            <span>😊 Mutlu</span>
+            <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:var(--success);">42%</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;">
+            <span>😐 Nötr</span>
+            <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:var(--accent);">35%</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;">
+            <span>😲 Şaşkın</span>
+            <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:var(--warning);">15%</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;">
+            <span>😴 Dağınık</span>
+            <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:var(--muted);">8%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Participation breakdown + timeline -->
+  <div class="grid-2-equal">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📊 Katılım Detayı</div>
+      </div>
+      <div class="card-body">
+        <div class="part-list">
+          <div class="part-item">
+            <div class="part-label">Odaklanmış</div>
+            <div class="part-bar-wrap"><div class="part-bar" style="width:85%;background:var(--success);"></div></div>
+            <div class="part-pct" style="color:var(--success);">85%</div>
+          </div>
+          <div class="part-item">
+            <div class="part-label">Kamera Açık</div>
+            <div class="part-bar-wrap"><div class="part-bar" style="width:87%;background:var(--accent);"></div></div>
+            <div class="part-pct" style="color:var(--accent);">87%</div>
+          </div>
+          <div class="part-item">
+            <div class="part-label">Aktif Katılım</div>
+            <div class="part-bar-wrap"><div class="part-bar" style="width:100%;background:var(--accent2);"></div></div>
+            <div class="part-pct" style="color:var(--accent2);">100%</div>
+          </div>
+          <div class="part-item">
+            <div class="part-label">Mutlu Duygu</div>
+            <div class="part-bar-wrap"><div class="part-bar" style="width:42%;background:var(--warning);"></div></div>
+            <div class="part-pct" style="color:var(--warning);">42%</div>
+          </div>
+          <div class="part-item">
+            <div class="part-label">Kritik Anlar</div>
+            <div class="part-bar-wrap"><div class="part-bar" style="width:0%;background:var(--danger);"></div></div>
+            <div class="part-pct" style="color:var(--success);">0</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem;padding-top:1.1rem;border-top:1px solid var(--border);">
+          <div style="font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem;">Sınıf Karşılaştırması</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:.82rem;color:var(--dim);">Bu ders</div>
+            <div style="display:flex;align-items:center;gap:.4rem;">
+              <div style="height:4px;width:60px;background:var(--border);border-radius:100px;overflow:hidden;"><div style="height:100%;width:95%;background:var(--success);border-radius:100px;"></div></div>
+              <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;font-size:.85rem;color:var(--success);">%95</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.4rem;">
+            <div style="font-size:.82rem;color:var(--dim);">Dönem ort.</div>
+            <div style="display:flex;align-items:center;gap:.4rem;">
+              <div style="height:4px;width:60px;background:var(--border);border-radius:100px;overflow:hidden;"><div style="height:100%;width:58%;background:var(--warning);border-radius:100px;"></div></div>
+              <span style="font-family:system-ui,Arial,sans-serif;font-weight:800;font-size:.85rem;color:var(--warning);">%58</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">⏱️ Kritik Anlar Zaman Çizelgesi</div>
+        <span class="badge badge-green">0 kritik an</span>
+      </div>
+      <div class="card-body">
+        <div style="text-align:center;padding:2.5rem 1rem;color:var(--muted);">
+          <div style="font-size:3rem;margin-bottom:.75rem;">🎉</div>
+          <div style="font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:.35rem;">Mükemmel ders!</div>
+          <div style="font-size:.82rem;line-height:1.6;">Bu ders boyunca hiç kritik dikkat düşüşü yaşanmadı. Öğrenciler yüksek odak seviyesini kordu.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Recommendations -->
+  <div class="ai-section">
+    <div class="ai-header-row">
+      <div style="font-size:1.3rem;">🤖</div>
+      <div>
+        <div style="font-family:system-ui,Arial,sans-serif;font-size:.92rem;font-weight:800;color:var(--accent);">AI Pedagoji Özeti</div>
+        <div style="font-size:.75rem;color:var(--dim);">Bu dersin analizi ve sonraki ders önerileri</div>
+      </div>
+      <div style="margin-left:auto;"><span class="ai-badge">Otomatik Analiz</span></div>
+    </div>
+    <div class="ai-recs">
+      <div class="ai-rec">
+        <div class="ai-rec-icon">✨</div>
+        <div class="ai-rec-title">Bu Ders Çok İyi Geçti!</div>
+        <div class="ai-rec-text">Ortalama %95 dikkat seviyesiyle bu dönemin en başarılı dersiydi. Öğrenciler yüksek enerji ve katılımla dersi takip etti.</div>
+        <span class="ai-rec-cat" style="background:var(--success-lt);color:var(--success);">Başarı</span>
+      </div>
+      <div class="ai-rec">
+        <div class="ai-rec-icon">📚</div>
+        <div class="ai-rec-title">Sonraki Ders İçin</div>
+        <div class="ai-rec-text">Bu derste olduğu gibi interaktif örnekler kullanmaya devam edin. %15 şaşkın duygu oranı bazı kavramların daha fazla örneklenmesi gerektiğini gösteriyor.</div>
+        <span class="ai-rec-cat" style="background:var(--accent-lt);color:var(--accent);">Öneri</span>
+      </div>
+      <div class="ai-rec">
+        <div class="ai-rec-icon">🕐</div>
+        <div class="ai-rec-title">Optimum Ders Süresi</div>
+        <div class="ai-rec-text">73 saniyelik bu kısa ders yüksek dikkat sağladı. Daha uzun derslerde 20-25 dakikalık segmentler ve kısa molalar planlamanızı öneririz.</div>
+        <span class="ai-rec-cat" style="background:var(--warning-lt);color:var(--warning);">Strateji</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next lesson suggestions -->
+  <div class="next-lesson-card">
+    <div class="nl-header">
+      <div class="nl-icon">🎯</div>
+      <div>
+        <div class="nl-title">Sonraki Ders İçin Öneriler</div>
+        <div class="nl-sub">AI analizine dayalı pedagojik tavsiyelerin</div>
+      </div>
+    </div>
+    <div class="nl-items">
+      <div class="nl-item">Bu ders %42 mutlu duygu oranıyla güçlüydü. Benzer interaktif yaklaşımı bir sonraki konuya uygula.</div>
+      <div class="nl-item">%15 şaşkın oranı için dersin başında kısa bir ön-test veya kavram haritası paylaş.</div>
+      <div class="nl-item">Kamera açık oranını %87'den daha yukarı çekmek için ilk katılım kural hatırlatması yap.</div>
+      <div class="nl-item">Bu dersteki odak grafiğini öğrencilerle paylaşmayı düşün — motivasyon etkisi yaratabileceği tahmin ediliyor.</div>
+    </div>
+  </div>
+
+  <!-- Bottom navigation -->
+  <div style="display:flex;gap:1rem;justify-content:center;padding:1rem 0 2rem;">
+    <a href="/teacher-demo.html" style="display:flex;align-items:center;gap:6px;padding:10px 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--dim);font-weight:600;font-size:.85rem;text-decoration:none;transition:.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--dim)'">← Öğretmen Paneli</a>
+    <a href="/index.html" style="display:flex;align-items:center;gap:6px;padding:10px 20px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;color:#fff;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.85rem;text-decoration:none;transition:.2s;">Ana Sayfa</a>
+    <a href="/student-demo.html" style="display:flex;align-items:center;gap:6px;padding:10px 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--dim);font-weight:600;font-size:.85rem;text-decoration:none;transition:.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--dim)'">Öğrenci Paneli →</a>
+  </div>
+
+</div>
+
+<script>
+// Focus over time chart
+const focusData=[100,94,75,60,65,100,95,90,95];
+const labels=['0:23','0:28','0:33','0:40','0:45','0:50','0:55','1:03','1:08'];
+const ctx1=document.getElementById('focusChart').getContext('2d');
+new Chart(ctx1,{type:'line',data:{
+  labels,
+  datasets:[{
+    label:'Odak %',data:focusData,
+    borderColor:'#6366f1',
+    backgroundColor:(ctx)=>{
+      const g=ctx.chart.ctx.createLinearGradient(0,0,0,200);
+      g.addColorStop(0,'rgba(99,102,241,.25)');
+      g.addColorStop(1,'rgba(99,102,241,.02)');
+      return g;
+    },
+    tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#6366f1',borderWidth:2
+  }]
+},options:{
+  responsive:true,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Odak: %'+ctx.raw}}},
+  scales:{
+    y:{min:0,max:100,ticks:{color:'#94a3b8',font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(0,0,0,.04)'}},
+    x:{ticks:{color:'#94a3b8',font:{size:10}},grid:{display:false}}
+  }
+}});
+
+// Mood doughnut
+const ctx2=document.getElementById('moodChart').getContext('2d');
+new Chart(ctx2,{type:'doughnut',data:{
+  labels:['Mutlu','Nötr','Şaşkın','Dağınık'],
+  datasets:[{data:[42,35,15,8],backgroundColor:['#10b981','#6366f1','#f59e0b','#94a3b8'],borderWidth:0,hoverOffset:6}]
+},options:{
+  responsive:true,cutout:'60%',
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.label+': %'+ctx.raw}}}
+}});
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSense Pro — Canlı Ders</title>
+<script src="/chart.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --accent:#6366f1;--accent2:#8b5cf6;--accent-lt:#eef2ff;
+  --success:#10b981;--success-lt:#ecfdf5;
+  --warning:#f59e0b;--warning-lt:#fffbeb;
+  --danger:#ef4444;--danger-lt:#fef2f2;
+  --text:#0f172a;--dim:#475569;--muted:#94a3b8;
+  --border:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
+  --dark:#0f172a;--dark2:#1e293b;--dark3:#334155;
+}
+html,body{height:100%;overflow:hidden;}
+body{font-family:system-ui,Arial,sans-serif;color:#e2e8f0;background:var(--dark);display:flex;flex-direction:column;}
+
+/* TOP BAR */
+.topbar{background:var(--dark2);border-bottom:1px solid rgba(255,255,255,.08);padding:.7rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-shrink:0;}
+.topbar-logo{display:flex;align-items:center;gap:8px;margin-right:auto;}
+.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.logo-icon svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-name{font-family:system-ui,Arial,sans-serif;font-size:.9rem;font-weight:800;color:#fff;}
+.logo-name span{color:var(--accent);}
+.lesson-badge{display:flex;align-items:center;gap:.5rem;font-size:.82rem;}
+.badge-live{display:flex;align-items:center;gap:5px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;border-radius:100px;padding:4px 11px;font-size:.72rem;font-weight:700;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--danger);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6)}}
+.topbar-timer{font-family:system-ui,Arial,sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:2px;color:#fff;}
+.topbar-participants{font-size:.8rem;color:#94a3b8;background:rgba(255,255,255,.06);padding:4px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.08);}
+
+/* MAIN LAYOUT */
+.classroom{display:grid;grid-template-columns:1fr 280px;flex:1;overflow:hidden;}
+
+/* LEFT AREA */
+.cl-left{display:flex;flex-direction:column;overflow:hidden;}
+
+/* SCREEN SHARE AREA */
+.screen-area{flex:1;position:relative;background:#0a0f1e;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.screen-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,.2);text-align:center;padding:2rem;}
+.screen-placeholder svg{width:64px;height:64px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.4;}
+.screen-placeholder h3{font-family:system-ui,Arial,sans-serif;font-size:1rem;color:rgba(255,255,255,.3);}
+.screen-placeholder p{font-size:.8rem;opacity:.5;}
+.screen-overlay{position:absolute;inset:0;pointer-events:none;}
+.overlay-tl{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:.5rem;}
+.overlay-tr{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:.5rem;}
+.pill{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:4px 12px;font-size:.72rem;color:rgba(255,255,255,.85);font-family:system-ui,Arial,sans-serif;font-weight:700;letter-spacing:.5px;}
+.pill.accent{border-color:rgba(99,102,241,.5);color:#a5b4fc;}
+.pill.success{border-color:rgba(16,185,129,.4);color:#6ee7b7;}
+
+/* PiP CAMERA (student view) */
+.pip-cam{position:absolute;bottom:14px;right:14px;width:150px;height:112px;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,.15);box-shadow:0 4px 20px rgba(0,0,0,.5);z-index:5;}
+.pip-cam-inner{width:100%;height:100%;background:linear-gradient(135deg,#1e293b,#0f172a);display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+.pip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%);display:flex;align-items:flex-end;padding:6px 8px;justify-content:space-between;}
+.pip-name{font-size:.62rem;color:rgba(255,255,255,.8);font-weight:600;}
+.pip-focus-bar{width:50px;height:3px;background:rgba(255,255,255,.2);border-radius:100px;overflow:hidden;}
+.pip-focus-fill{height:100%;background:var(--success);border-radius:100px;width:78%;}
+
+/* STUDENT FOCUS (right corner overlay for teacher) */
+.focus-overlay{position:absolute;bottom:14px;left:14px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem 1rem;min-width:160px;}
+.fo-title{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:.4rem;font-weight:700;}
+.fo-score{font-family:system-ui,Arial,sans-serif;font-size:1.6rem;font-weight:800;line-height:1;}
+.fo-bar{height:4px;background:rgba(255,255,255,.1);border-radius:100px;margin-top:.4rem;overflow:hidden;}
+.fo-fill{height:100%;border-radius:100px;}
+
+/* CONTROLS */
+.controls{background:var(--dark2);border-top:1px solid rgba(255,255,255,.08);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;flex-shrink:0;}
+.ctrl-btn{display:inline-flex;flex-direction:column;align-items:center;gap:.3rem;padding:.6rem .9rem;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);cursor:pointer;transition:.15s;font-size:.65rem;font-weight:600;}
+.ctrl-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ctrl-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2);}
+.ctrl-btn.active{background:var(--success);border-color:var(--success);color:#fff;}
+.ctrl-btn.muted{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.3);color:#fca5a5;}
+.ctrl-btn.share{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.3);color:#a5b4fc;}
+.ctrl-spacer{flex:1;}
+.ctrl-leave{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.25rem;background:var(--danger);border:none;border-radius:10px;color:#fff;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s;text-decoration:none;}
+.ctrl-leave:hover{background:#dc2626;}
+
+/* RIGHT PANEL */
+.cl-right{background:var(--dark2);border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;overflow:hidden;}
+
+/* TABS */
+.panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.08);}
+.panel-tab{flex:1;padding:.65rem;text-align:center;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;transition:.15s;border-bottom:2px solid transparent;}
+.panel-tab:hover{color:rgba(255,255,255,.7);}
+.panel-tab.active{color:#a5b4fc;border-bottom-color:var(--accent);}
+
+/* PANEL CONTENT */
+.panel-content{flex:1;overflow-y:auto;padding:.85rem;}
+.panel-section{margin-bottom:1.1rem;}
+.panel-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);font-weight:700;margin-bottom:.5rem;}
+
+/* STUDENT CARDS */
+.student-list{display:flex;flex-direction:column;gap:.45rem;}
+.s-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;transition:.15s;}
+.s-row:hover{background:rgba(255,255,255,.07);}
+.s-emoji{font-size:1.1rem;flex-shrink:0;}
+.s-details{flex:1;min-width:0;}
+.s-name-r{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.s-bar-r{height:2px;background:rgba(255,255,255,.1);border-radius:100px;margin-top:3px;overflow:hidden;}
+.s-fill-r{height:100%;border-radius:100px;}
+.s-pct{font-family:system-ui,Arial,sans-serif;font-size:.82rem;font-weight:800;flex-shrink:0;}
+
+/* CHAT */
+.chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.5rem;padding:.85rem;padding-bottom:.5rem;}
+.chat-msg{display:flex;flex-direction:column;gap:2px;}
+.chat-name{font-size:.67rem;font-weight:700;color:rgba(255,255,255,.4);}
+.chat-bubble{background:rgba(255,255,255,.06);border-radius:0 8px 8px 8px;padding:.5rem .75rem;font-size:.8rem;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.06);max-width:100%;word-break:break-word;}
+.chat-msg.mine .chat-bubble{background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.3);border-radius:8px 0 8px 8px;color:#c7d2fe;}
+.chat-msg.mine .chat-name{text-align:right;}
+.chat-input-wrap{padding:.75rem;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:.5rem;}
+.chat-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.5rem .75rem;color:#e2e8f0;font-family:system-ui,Arial,sans-serif;font-size:.82rem;outline:none;}
+.chat-input::placeholder{color:rgba(255,255,255,.25);}
+.chat-input:focus{border-color:rgba(99,102,241,.4);}
+.chat-send{background:var(--accent);border:none;border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.chat-send svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* AI overlay in right panel */
+.ai-box{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:.85rem;}
+.ai-box-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:#a5b4fc;font-weight:700;margin-bottom:.5rem;}
+.ai-box-msg{font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.55;}
+
+/* MINI CHART */
+.mini-chart-wrap{background:rgba(255,255,255,.03);border-radius:8px;padding:.6rem;border:1px solid rgba(255,255,255,.06);}
+
+/* TABS CONTENT */
+.tab-pane{display:none;}
+.tab-pane.active{display:flex;flex-direction:column;height:100%;}
+
+/* PRIVACY badge for student */
+.privacy-badge{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:.5rem .75rem;font-size:.72rem;color:#6ee7b7;display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;}
+
+/* Focus score (student side) */
+.my-focus-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1rem;text-align:center;margin-bottom:.85rem;}
+.my-focus-num{font-family:system-ui,Arial,sans-serif;font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:.3rem;}
+.my-focus-label{font-size:.73rem;color:rgba(255,255,255,.4);}
+.my-mood-row{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.06);}
+.my-mood-emoji{font-size:1.5rem;}
+.my-mood-label{font-size:.8rem;color:rgba(255,255,255,.6);}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><polyline points="2 8 12 3 22 8"/><polyline points="2 13 12 8 22 13"/><polyline points="2 18 12 13 22 18"/></svg></div>
+    <div class="logo-name">EduSense <span>Pro</span></div>
+  </div>
+  <div class="badge-live"><span class="live-dot"></span> Canlı</div>
+  <div class="lesson-badge">
+    <span style="font-family:system-ui,Arial,sans-serif;font-weight:700;color:#e2e8f0;font-size:.88rem;">Algoritma ve Veri Yapıları</span>
+    <span style="color:rgba(255,255,255,.35);">·</span>
+    <span style="color:rgba(255,255,255,.5);font-size:.82rem;">4/BÖTE</span>
+  </div>
+  <div class="topbar-timer" id="topbar-timer">00:00:00</div>
+  <div class="topbar-participants">👥 18 katılımcı</div>
+</div>
+
+<!-- CLASSROOM -->
+<div class="classroom">
+
+  <!-- LEFT: SCREEN + CONTROLS -->
+  <div class="cl-left">
+
+    <!-- Screen share area -->
+    <div class="screen-area" id="screen-area">
+      <!-- Demo: simulated screen content -->
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1f35,#0d1117);display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- Simulated code editor -->
+        <div style="width:80%;max-width:700px;background:#1e2235;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.06);">
+          <div style="background:#2d3250;padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.4);margin-left:.5rem;">algoritma.py</span>
+          </div>
+          <div style="padding:1.25rem;font-family:monospace;font-size:.85rem;line-height:1.7;color:#e2e8f0;">
+            <div><span style="color:#c792ea;">def</span> <span style="color:#82aaff;">bubble_sort</span>(arr):</div>
+            <div style="padding-left:1.5rem;"><span style="color:#c792ea;">n</span> = len(arr)</div>
+            <div style="padding-left:1.5rem;"><span style="color:#c792ea;">for</span> i <span style="color:#c792ea;">in</span> range(n):</div>
+            <div style="padding-left:3rem;"><span style="color:#c792ea;">for</span> j <span style="color:#c792ea;">in</span> range(<span style="color:#f78c6c;">0</span>, n-i-<span style="color:#f78c6c;">1</span>):</div>
+            <div style="padding-left:4.5rem;"><span style="color:#c792ea;">if</span> arr[j] > arr[j+<span style="color:#f78c6c;">1</span>]:</div>
+            <div style="padding-left:6rem;color:#94a3b8;"># Swap elements</div>
+            <div style="padding-left:6rem;">arr[j], arr[j+<span style="color:#f78c6c;">1</span>] = arr[j+<span style="color:#f78c6c;">1</span>], arr[j]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlays -->
+      <div class="screen-overlay">
+        <div class="overlay-tl">
+          <div class="pill">Öğr. Dr. Mehmet Yıldız</div>
+          <div class="pill accent">Ekran Paylaşılıyor</div>
+        </div>
+        <div class="overlay-tr">
+          <div class="pill success" id="focus-pill">Sınıf Odağı: %67</div>
+        </div>
+
+        <!-- Teacher: focus overlay -->
+        <div class="focus-overlay" id="teacher-overlay">
+          <div class="fo-title">Sınıf Dikkat</div>
+          <div class="fo-score" id="focus-num" style="color:var(--warning);">%67</div>
+          <div class="fo-bar"><div class="fo-fill" id="focus-fill" style="width:67%;background:var(--warning);"></div></div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:.35rem;">18 öğrenci analiz ediliyor</div>
+        </div>
+
+        <!-- Student: PiP camera -->
+        <div class="pip-cam" id="student-pip">
+          <div class="pip-cam-inner">🧑</div>
+          <div class="pip-overlay">
+            <span class="pip-name">Sen</span>
+            <div class="pip-focus-bar"><div class="pip-focus-fill" id="pip-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <button class="ctrl-btn active" id="btn-mic" onclick="toggleCtrl(this,'mic')">
+        <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        Mikrofon
+      </button>
+      <button class="ctrl-btn" id="btn-cam" onclick="toggleCtrl(this,'cam')">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Kamera
+      </button>
+      <button class="ctrl-btn share" id="btn-share" onclick="toggleCtrl(this,'share')">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        Ekran Paylaş
+      </button>
+      <button class="ctrl-btn" id="btn-hand" onclick="toggleCtrl(this,'hand')">
+        <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        El Kaldır
+      </button>
+
+      <div class="ctrl-spacer"></div>
+
+      <!-- Role toggle for demo -->
+      <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.4rem .6rem;">
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4);">Görünüm:</span>
+        <button style="background:rgba(99,102,241,.3);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;border-radius:6px;padding:3px 9px;font-size:.7rem;font-weight:700;cursor:pointer;" onclick="toggleRole()">
+          <span id="role-label">Öğretmen</span>
+        </button>
+      </div>
+
+      <a class="ctrl-leave" href="/report-demo.html">
+        <svg style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Dersten Ayrıl
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="cl-right">
+    <div class="panel-tabs">
+      <div class="panel-tab active" onclick="switchTab(this,'students')">Öğrenciler</div>
+      <div class="panel-tab" onclick="switchTab(this,'chat')">Sohbet</div>
+      <div class="panel-tab" onclick="switchTab(this,'ai')">AI Asistan</div>
+    </div>
+
+    <!-- STUDENTS TAB -->
+    <div class="tab-pane active" id="tab-students" style="flex-direction:column;overflow-y:auto;">
+      <div class="panel-content">
+        <!-- Student focus score (student view) -->
+        <div id="student-view-section">
+          <div class="privacy-badge">🛡️ Görüntün cihazında analiz ediliyor — sunucuya gönderilmiyor</div>
+          <div class="my-focus-card">
+            <div class="my-focus-num" id="my-focus" style="color:var(--success);">%78</div>
+            <div class="my-focus-label">Anlık Odak Skorun</div>
+            <div style="height:4px;background:rgba(255,255,255,.1);border-radius:100px;margin:.5rem 0;overflow:hidden;">
+              <div style="height:100%;width:78%;background:var(--success);border-radius:100px;" id="my-focus-bar"></div>
+            </div>
+            <div class="my-mood-row">
+              <div class="my-mood-emoji" id="my-mood-emoji">😊</div>
+              <div class="my-mood-label" id="my-mood-label">Mutlu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher: student list -->
+        <div id="teacher-view-section" style="display:none;">
+          <div class="panel-label">Katılımcılar (18)</div>
+          <div class="student-list" id="student-list-panel"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAT TAB -->
+    <div class="tab-pane" id="tab-chat" style="flex-direction:column;">
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-msg">
+          <div class="chat-name">Öğr. Dr. Mehmet Yıldız</div>
+          <div class="chat-bubble">Merhaba herkes! Bugün bubble sort'u inceleyeceğiz.</div>
+        </div>
+        <div class="chat-msg">
+          <div class="chat-name">Ahmet Y.</div>
+          <div class="chat-bubble">Hocam, worst case O(n²) mi?</div>
+        </div>
+        <div class="chat-msg">
+          <div class="chat-name">Öğr. Dr. Mehmet Yıldız</div>
+          <div class="chat-bubble">Evet Ahmet, kesinlikle! Tüm n² karşılaştırma yapılır.</div>
+        </div>
+        <div class="chat-msg">
+          <div class="chat-name">Ayşe K.</div>
+          <div class="chat-bubble">Peki best case O(n) olabiliyor mu?</div>
+        </div>
+        <div class="chat-msg">
+          <div class="chat-name">Öğr. Dr. Mehmet Yıldız</div>
+          <div class="chat-bubble">Çok güzel soru Ayşe! Optimized versiyonda evet, O(n) mümkün.</div>
+        </div>
+        <div class="chat-msg mine">
+          <div class="chat-name">Sen</div>
+          <div class="chat-bubble">Anladım, teşekkürler hocam!</div>
+        </div>
+      </div>
+      <div class="chat-input-wrap">
+        <input class="chat-input" type="text" placeholder="Mesaj yaz..." id="chat-input" onkeypress="handleChat(event)">
+        <button class="chat-send" onclick="sendChat()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- AI TAB -->
+    <div class="tab-pane" id="tab-ai" style="overflow-y:auto;">
+      <div class="panel-content">
+        <div class="panel-label">AI Asistan Önerileri</div>
+        <div class="ai-box" style="margin-bottom:.7rem;">
+          <div class="ai-box-title">⚠️ Acil Öneri</div>
+          <div class="ai-box-msg" id="ai-msg">Sınıfın dikkati son 5 dakikada %67'ye düştü. Kısa bir interaktif soru sormanız öğrencilerin dikkatini toparlayacaktır.</div>
+        </div>
+        <div class="ai-box" style="margin-bottom:.7rem;background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.25);">
+          <div class="ai-box-title" style="color:#fbbf24;">😲 Kafa Karışıklığı</div>
+          <div class="ai-box-msg">5 öğrenci şaşkın görünüyor. Bubble sort'un swap adımını tekrar görsel olarak göstermeniz yardımcı olabilir.</div>
+        </div>
+        <div class="ai-box" style="margin-bottom:.7rem;background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.25);">
+          <div class="ai-box-title" style="color:#34d399;">✅ Pozitif</div>
+          <div class="ai-box-msg">15/18 öğrenci kamera açık. Katılım oranı çok iyi!</div>
+        </div>
+
+        <div class="panel-label" style="margin-top:1.1rem;">Anlık Odak Trendi</div>
+        <div class="mini-chart-wrap">
+          <canvas id="miniChart" height="100"></canvas>
+        </div>
+
+        <div class="panel-label" style="margin-top:1rem;">Duygu Dağılımı</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
+          <div style="background:rgba(255,255,255,.04);border-radius:7px;padding:.5rem .65rem;text-align:center;">
+            <div style="font-size:1.3rem;">😊</div>
+            <div style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:#6ee7b7;font-size:.9rem;">7</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.3);">Mutlu</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:7px;padding:.5rem .65rem;text-align:center;">
+            <div style="font-size:1.3rem;">😐</div>
+            <div style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:#a5b4fc;font-size:.9rem;">5</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.3);">Nötr</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:7px;padding:.5rem .65rem;text-align:center;">
+            <div style="font-size:1.3rem;">😲</div>
+            <div style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:#fbbf24;font-size:.9rem;">3</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.3);">Şaşkın</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:7px;padding:.5rem .65rem;text-align:center;">
+            <div style="font-size:1.3rem;">😴</div>
+            <div style="font-family:system-ui,Arial,sans-serif;font-weight:800;color:#fca5a5;font-size:.9rem;">3</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.3);">Dağınık</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Timer
+let secs=0;
+const timerEl=document.getElementById('topbar-timer');
+setInterval(()=>{
+  secs++;
+  const h=Math.floor(secs/3600).toString().padStart(2,'0');
+  const m=Math.floor((secs%3600)/60).toString().padStart(2,'0');
+  const s=(secs%60).toString().padStart(2,'0');
+  timerEl.textContent=`${h}:${m}:${s}`;
+},1000);
+
+// Tab switching
+function switchTab(btn,id){
+  document.querySelectorAll('.panel-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const pane=document.getElementById('tab-'+id);
+  if(pane) pane.classList.add('active');
+  if(id==='ai') initMiniChart();
+}
+
+// Control toggles
+function toggleCtrl(btn,type){
+  btn.classList.toggle('active');
+  if(type==='cam'){btn.classList.toggle('muted',!btn.classList.contains('active'));}
+}
+
+// Role toggle
+let isTeacher=false;
+function toggleRole(){
+  isTeacher=!isTeacher;
+  document.getElementById('role-label').textContent=isTeacher?'Öğrenci':'Öğretmen';
+  document.getElementById('teacher-overlay').style.display=isTeacher?'none':'block';
+  document.getElementById('student-pip').style.display=isTeacher?'block':'none';
+  document.getElementById('focus-pill').style.display=isTeacher?'block':'none';
+  document.getElementById('student-view-section').style.display=isTeacher?'block':'none';
+  document.getElementById('teacher-view-section').style.display=isTeacher?'block':'none';
+}
+
+// Students
+const students=[
+  {name:'Ahmet Yılmaz',score:85,mood:'😊'},{name:'Ayşe Kaya',score:72,mood:'😐'},
+  {name:'Mehmet Demir',score:15,mood:'😴'},{name:'Fatma Öztürk',score:90,mood:'😊'},
+  {name:'Ali Can',score:45,mood:'😲'},{name:'Zeynep Türk',score:78,mood:'😊'},
+  {name:'Burak Şahin',score:20,mood:'😴'},{name:'Elif Mert',score:82,mood:'😊'},
+  {name:'Can Bayer',score:60,mood:'😐'},{name:'Selin Aydın',score:35,mood:'😲'},
+  {name:'Emre Kurt',score:95,mood:'😊'},{name:'Yıldız Nur',score:10,mood:'😴'},
+];
+function renderStudentList(){
+  const list=document.getElementById('student-list-panel');
+  list.innerHTML=students.map(s=>{
+    const color=s.score>=60?'#10b981':s.score>=30?'#f59e0b':'#ef4444';
+    return `<div class="s-row">
+      <div class="s-emoji">${s.mood}</div>
+      <div class="s-details">
+        <div class="s-name-r">${s.name}</div>
+        <div class="s-bar-r"><div class="s-fill-r" style="width:${s.score}%;background:${color};"></div></div>
+      </div>
+      <div class="s-pct" style="color:${color};">%${s.score}</div>
+    </div>`;
+  }).join('');
+}
+renderStudentList();
+
+// Mini chart
+let chartInited=false;
+function initMiniChart(){
+  if(chartInited) return; chartInited=true;
+  const ctx=document.getElementById('miniChart').getContext('2d');
+  new Chart(ctx,{type:'line',data:{
+    labels:['1','2','3','4','5','6','7','8','9','10'],
+    datasets:[{data:[80,75,70,68,72,65,67,70,68,65],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,.1)',tension:.4,fill:true,pointRadius:0,borderWidth:1.5}]
+  },options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:'rgba(255,255,255,.3)',font:{size:9}},grid:{color:'rgba(255,255,255,.05)'}},x:{ticks:{color:'rgba(255,255,255,.3)',font:{size:9}},grid:{display:false}}}}});
+}
+
+// Chat
+const chatMsgs=[
+  {from:'Fatma Ö.',msg:'Peki insertion sort ile karşılaştırırsak?'},
+  {from:'Öğr. Dr. Mehmet Yıldız',msg:'Çok iyi soru! O(n²) ama insertion sort genellikle daha hızlı.'},
+  {from:'Can B.',msg:'Gerçek dünyada bubble sort kullanılır mı?'},
+];
+let chatIdx=0;
+setInterval(()=>{
+  if(chatIdx<chatMsgs.length){
+    addChatMsg(chatMsgs[chatIdx].from,chatMsgs[chatIdx].msg);
+    chatIdx++;
+  }
+},6000);
+
+function addChatMsg(from,msg){
+  const div=document.createElement('div');
+  div.className='chat-msg';
+  div.innerHTML=`<div class="chat-name">${from}</div><div class="chat-bubble">${msg}</div>`;
+  const container=document.getElementById('chat-messages');
+  container.appendChild(div);
+  container.scrollTop=container.scrollHeight;
+}
+function sendChat(){
+  const inp=document.getElementById('chat-input');
+  const val=inp.value.trim();
+  if(!val) return;
+  const div=document.createElement('div');
+  div.className='chat-msg mine';
+  div.innerHTML=`<div class="chat-name">Sen</div><div class="chat-bubble">${val}</div>`;
+  document.getElementById('chat-messages').appendChild(div);
+  document.getElementById('chat-messages').scrollTop=9999;
+  inp.value='';
+}
+function handleChat(e){if(e.key==='Enter') sendChat();}
+
+// AI msg cycling
+const aiMsgs=[
+  "Sınıfın dikkati son 5 dakikada %67'ye düştü. Kısa bir interaktif soru sorun.",
+  "Dikkat tekrar yükseliyor! Anlatımınızı sürdürebilirsiniz.",
+  "3 öğrenci 5 dakikadır kamera kapalı, kontrol edebilirsiniz.",
+  "Sınıfın %80'i aktif katılımda. Harika bir ders akışı!",
+];
+let aiIdx=0;
+setInterval(()=>{
+  const el=document.getElementById('ai-msg');
+  if(el){aiIdx=(aiIdx+1)%aiMsgs.length; el.style.opacity=0; setTimeout(()=>{el.textContent=aiMsgs[aiIdx];el.style.opacity=1;},300);}
+},10000);
+
+// Focus simulation
+const focusValues=[85,78,72,67,70,65,68,71,67,73];
+let fi=0;
+setInterval(()=>{
+  fi=(fi+1)%focusValues.length;
+  const val=focusValues[fi];
+  const color=val>=70?'var(--success)':val>=40?'var(--warning)':'var(--danger)';
+  document.getElementById('focus-num').style.color=color;
+  document.getElementById('focus-num').textContent='%'+val;
+  document.getElementById('focus-fill').style.width=val+'%';
+  document.getElementById('focus-fill').style.background=color;
+  document.getElementById('focus-pill').textContent='Sınıf Odağı: %'+val;
+  document.getElementById('my-focus').textContent='%'+(70+Math.floor(Math.random()*25));
+  document.getElementById('my-focus-bar').style.width=(70+Math.floor(Math.random()*25))+'%';
+},3000);
+</script>
+</body>
+</html>

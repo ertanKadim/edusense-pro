@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSense Pro — Giriş</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent:  #3b82f6;
+            --danger:  #ef4444;
+            --text:    #0f172a;
+            --dim:     #475569;
+            --muted:   #94a3b8;
+            --border:  #e2e8f0;
+            --bg:      #f1f5f9;
+            --surface: #ffffff;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .wrapper {
+            width: 100%; max-width: 400px; padding: 1.25rem;
+            animation: reveal .5s cubic-bezier(.16,1,.3,1) both;
+        }
+        @keyframes reveal { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.25rem 2rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,.06), 0 2px 4px -2px rgba(0,0,0,.04);
+        }
+
+        /* Logo */
+        .logo-row { display:flex; align-items:center; gap:11px; margin-bottom:1.85rem; }
+        .logo-icon {
+            width:40px; height:40px; border-radius:10px; background:var(--accent);
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        }
+        .logo-icon svg { width:19px; height:19px; fill:none; stroke:white; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+        .logo-name { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800; color:var(--text); }
+        .logo-name span { color:var(--accent); }
+
+        h1 { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:.25rem; }
+        .sub { font-size:.87rem; color:var(--muted); margin-bottom:1.85rem; }
+
+        /* Form */
+        .field { margin-bottom:.95rem; }
+        .field label { display:block; font-size:.72rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--dim); margin-bottom:.38rem; }
+        .input-wrap { position:relative; }
+        .input-wrap svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); width:15px; height:15px; fill:none; stroke:var(--muted); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; transition:stroke .2s; }
+        .input-wrap:focus-within svg { stroke:var(--accent); }
+        input {
+            width:100%; padding:11px 12px 11px 38px;
+            border-radius:.6rem; border:1.5px solid var(--border);
+            background:var(--surface); color:var(--text);
+            font-family:'DM Sans',sans-serif; font-size:.92rem;
+            outline:none; transition:border-color .2s, box-shadow .2s;
+        }
+        input::placeholder { color:var(--muted); }
+        input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(59,130,246,.1); }
+
+        .divider { height:1px; background:var(--border); margin:1.3rem 0; }
+
+        .btn {
+            width:100%; padding:13px;
+            background:var(--accent); color:white; border:none; border-radius:.6rem;
+            font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem;
+            cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+            transition:background .15s;
+        }
+        .btn:hover { background:#2563eb; }
+        .btn.loading { pointer-events:none; opacity:.75; }
+        .spinner { display:none; width:16px; height:16px; border:2px solid rgba(255,255,255,.3); border-top-color:white; border-radius:50%; animation:spin .7s linear infinite; }
+        .btn.loading .spinner { display:block; }
+        .btn.loading .btn-text, .btn.loading .btn-icon { display:none; }
+        .btn-icon svg { width:15px; height:15px; fill:none; stroke:white; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+        @keyframes spin { to{transform:rotate(360deg)} }
+
+        .error { display:none; margin-top:.65rem; font-size:.8rem; color:var(--danger); text-align:center; background:#fef2f2; border:1px solid #fecaca; border-radius:.45rem; padding:.5rem .75rem; }
+
+        @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)} 40%{transform:translateX(5px)} 60%{transform:translateX(-3px)} 80%{transform:translateX(3px)} }
+        .shake { animation:shake .35s ease; }
+
+        /* Demo */
+        .demo {
+            margin-top:1.3rem; padding:10px 14px;
+            background:var(--bg); border:1px solid var(--border);
+            border-radius:.6rem; display:flex; align-items:center; gap:9px;
+        }
+        .demo-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+        .demo p { font-size:.78rem; color:var(--muted); }
+        .demo strong { color:var(--dim); font-weight:600; }
+
+        footer { text-align:center; margin-top:1.5rem; font-size:.73rem; color:var(--muted); }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="card" id="card">
+            <div class="logo-row">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="2 8 12 3 22 8"/>
+                        <polyline points="2 13 12 8 22 13"/>
+                        <polyline points="2 18 12 13 22 18"/>
+                    </svg>
+                </div>
+                <div class="logo-name">EduSense <span>Pro</span></div>
+            </div>
+
+            <h1>Hoş Geldiniz</h1>
+            <p class="sub">Hesabınıza giriş yapın</p>
+
+            <div class="field">
+                <label for="username">Kullanıcı Adı</label>
+                <div class="input-wrap">
+                    <input type="text" id="username" placeholder="Kullanıcı adınız" autocomplete="off">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Şifre</label>
+                <div class="input-wrap">
+                    <input type="password" id="password" placeholder="••••••••">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <button class="btn" id="loginBtn" onclick="login()">
+                <span class="spinner"></span>
+                <span class="btn-text">Giriş Yap</span>
+                <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
+
+            <p class="error" id="error"></p>
+
+            <div class="demo">
+                <div class="demo-dot"></div>
+                <p>Öğretmen: <strong>ercan.akpinar / 123456</strong> &nbsp;·&nbsp; Öğrenci: <strong>ertan.kadim / 123456</strong></p>
+            </div>
+        </div>
+        <footer>© 2025 EduSense Pro</footer>
+    </div>
+
+    <script>
+        if (localStorage.getItem('edusense_user')) window.location.href = '/app';
+
+        async function login() {
+            const u   = document.getElementById('username').value.trim();
+            const p   = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const err = document.getElementById('error');
+            err.style.display = 'none';
+
+            if (!u || !p) { shake(); err.textContent = 'Lütfen tüm alanları doldurun.'; err.style.display = 'block'; return; }
+
+            btn.classList.add('loading');
+            try {
+                const res  = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({username:u, password:p}) });
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('edusense_user',  JSON.stringify(data.user));
+                    localStorage.setItem('edusense_token', data.token);
+                    setTimeout(() => window.location.href = '/app', 200);
+                } else {
+                    btn.classList.remove('loading');
+                    shake(); err.textContent = 'Kullanıcı adı veya şifre hatalı.'; err.style.display = 'block';
+                }
+            } catch(e) {
+                btn.classList.remove('loading');
+                err.textContent = 'Sunucuya bağlanılamadı.'; err.style.display = 'block';
+            }
+        }
+
+        function shake() {
+            const c = document.getElementById('card');
+            c.classList.add('shake');
+            setTimeout(() => c.classList.remove('shake'), 400);
+        }
+
+        document.addEventListener('keypress', e => { if (e.key === 'Enter') login(); });
+    </script>
+</body>
+</html>
