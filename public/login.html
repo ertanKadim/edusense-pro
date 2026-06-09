@@ -94,8 +94,9 @@
         .demo {
             margin-top:1.3rem; padding:10px 14px;
             background:var(--bg); border:1px solid var(--border);
-            border-radius:.6rem; display:flex; align-items:center; gap:9px;
+            border-radius:.6rem; display:flex; flex-direction:column; gap:5px;
         }
+        .demo-row { display:flex; align-items:center; gap:9px; }
         .demo-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; }
         .demo p { font-size:.78rem; color:var(--muted); }
         .demo strong { color:var(--dim); font-weight:600; }
@@ -147,8 +148,18 @@
             <p class="error" id="error"></p>
 
             <div class="demo">
-                <div class="demo-dot"></div>
-                <p>Öğretmen: <strong>ercan.akpinar / 123456</strong> &nbsp;·&nbsp; Öğrenci 1: <strong>ertan.kadim / 123456</strong> &nbsp;·&nbsp; Öğrenci 2: <strong>umid.yuldashbayev / 123456</strong></p>
+                <div class="demo-row">
+                    <div class="demo-dot"></div>
+                    <p>Öğretmen: <strong>ercan.akpinar / 123456</strong></p>
+                </div>
+                <div class="demo-row">
+                    <div class="demo-dot"></div>
+                    <p>Öğrenci 1: <strong>ertan.kadim / 123456</strong></p>
+                </div>
+                <div class="demo-row">
+                    <div class="demo-dot"></div>
+                    <p>Öğrenci 2: <strong>umid.yuldashbayev / 123456</strong></p>
+                </div>
             </div>
         </div>
         <footer>© 2025 EduSense Pro</footer>
