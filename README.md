@@ -89,4 +89,4 @@ edusense-pro/
 
 ---
 
-© 2025 EduSense Pro
+© 2026 EduSense Pro
