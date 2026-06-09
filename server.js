@@ -1375,6 +1375,7 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('\n  EduSense Pro  →  http://localhost:3000/login.html\n');
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`\n  EduSense Pro  →  http://localhost:${PORT}/login.html\n`);
 });
