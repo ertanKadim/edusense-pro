@@ -82,7 +82,8 @@
       "avgFocus": 100,
       "timeline": [],
       "id": 1776602825809,
-      "date": "19.04.2026 15:47:05"
+      "date": "19.04.2026 15:47:05",
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -108,7 +109,7 @@
       "timeline": [],
       "id": 1779372103549,
       "date": "21.05.2026 17:01:43",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -458,7 +459,7 @@
       "duration": 13,
       "id": 1780395449867,
       "date": "02.06.2026 13:17:29",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -530,7 +531,7 @@
       "duration": 95,
       "id": 1780395563678,
       "date": "02.06.2026 13:19:23",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -859,7 +860,7 @@
       "duration": 413,
       "id": 1780400472292,
       "date": "02.06.2026 14:41:12",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -1748,7 +1749,7 @@
       "duration": 389,
       "id": 1780402510390,
       "date": "02.06.2026 15:15:10",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2143,7 +2144,7 @@
       ],
       "id": 1780484365958,
       "date": "03.06.2026 13:59:25",
-      "replayAvailable": false,
+      "replayAvailable": true,
       "recording": "lesson_1780484365958.webm"
     },
     {
@@ -2615,7 +2616,7 @@
       "students": [],
       "id": 1780950604099,
       "date": "08.06.2026 23:30:04",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2631,7 +2632,7 @@
       "students": [],
       "id": 1780950908189,
       "date": "08.06.2026 23:35:08",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2647,7 +2648,7 @@
       "students": [],
       "id": 1780951529210,
       "date": "08.06.2026 23:45:29",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2663,7 +2664,7 @@
       "students": [],
       "id": 1780951549019,
       "date": "08.06.2026 23:45:49",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2767,7 +2768,7 @@
       ],
       "id": 1780952208081,
       "date": "08.06.2026 23:56:48",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2783,7 +2784,7 @@
       "students": [],
       "id": 1780952221458,
       "date": "08.06.2026 23:57:01",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -2815,7 +2816,7 @@
       "students": [],
       "id": 1780952697727,
       "date": "09.06.2026 00:04:57",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -3185,7 +3186,7 @@
       ],
       "id": 1780953262878,
       "date": "09.06.2026 00:14:22",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -3261,7 +3262,7 @@
       ],
       "id": 1780953443318,
       "date": "09.06.2026 00:17:23",
-      "replayAvailable": false
+      "replayAvailable": true
     },
     {
       "teacher": "ercan.akpinar",
@@ -3548,7 +3549,7 @@
       ],
       "id": 1780953796362,
       "date": "09.06.2026 00:23:16",
-      "replayAvailable": false,
+      "replayAvailable": true,
       "recording": "lesson_1780953796362.webm"
     },
     {
@@ -4866,7 +4867,7 @@
       ],
       "id": 1780955479485,
       "date": "09.06.2026 00:51:19",
-      "replayAvailable": false
+      "replayAvailable": true
     }
   ],
   "classes": [
@@ -5014,7 +5015,12 @@
     "51e026a3b1f5a615900d11f3aa27a1a7": "umid.yuldashbayev",
     "2d4c076c2bf34a477df5896b241c77b5": "ertan.kadim",
     "4ac1f8cc698cb0103218684cbf2f1d5d": "ertan.kadim",
-    "2d57b61220082ebf9514e18d8f6be7b7": "ertan.kadim"
+    "2d57b61220082ebf9514e18d8f6be7b7": "ertan.kadim",
+    "dac4747b3297843507a3610a4076b4bc": "ercan.akpinar",
+    "8baf3cbc9734efc2608585bd6a2cb87c": "ercan.akpinar",
+    "c1476f34252105e389f1a7ff519e186f": "ercan.akpinar",
+    "ec8669e2052851f0b8082feea7759143": "ercan.akpinar",
+    "0d411171e534aeb87eb59197943ac41a": "ercan.akpinar"
   },
   "live_sessions": [
     {
