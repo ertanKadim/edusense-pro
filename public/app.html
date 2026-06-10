@@ -3228,7 +3228,7 @@ function addChatMessage(listId, sender, role, text, time) {
 /* ── PDF EXPORT ── */
 let _currentLessonForPDF = null;
 
-function downloadLessonPDF() {
+async function downloadLessonPDF() {
     const l = _currentLessonForPDF; if (!l) return;
     const dur = l.duration ? fmtTime(l.duration) : '—';
     const tl  = l.timeline || [];
@@ -3298,10 +3298,27 @@ tr:last-child td{border-bottom:none;}
 <div class="footer"><span>EduSense Pro · Yapay Zeka Destekli Eğitim Analizi</span><span>${esc(l.lessonName)} · ${esc(l.date)}</span></div>
 </body></html>`;
 
-    const w = window.open('', '_blank', 'width=960,height=720');
-    w.document.write(html);
-    w.document.close();
-    w.onload = () => { setTimeout(() => w.print(), 400); };
+    showToast('PDF hazırlanıyor…', 'info');
+    try {
+        const res = await fetch('/api/pdf', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html, filename: `${l.lessonName} - ${l.date}` })
+        });
+        if (!res.ok) throw new Error();
+        const blob = await res.blob();
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href = url;
+        a.download = `${l.lessonName} - ${l.date}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        showToast('PDF indirildi!', 'success');
+    } catch {
+        showToast('PDF oluşturulamadı.', 'danger');
+    }
 }
 
 /* ── Mock öğrenci listesi (deterministik) ── */

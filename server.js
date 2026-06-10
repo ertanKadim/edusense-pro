@@ -1375,6 +1375,31 @@ io.on('connection', (socket) => {
     });
 });
 
+// ── PDF oluşturma ──────────────────────────────────────────────────────────────
+app.post('/api/pdf', express.json({ limit: '6mb' }), async (req, res) => {
+    const { html, filename } = req.body || {};
+    if (!html) return res.status(400).json({ error: 'HTML eksik' });
+    try {
+        const { chromium } = require('playwright');
+        const browser = await chromium.launch();
+        const page    = await browser.newPage();
+        await page.setContent(html, { waitUntil: 'load' });
+        const pdf = await page.pdf({
+            format: 'A4',
+            printBackground: true,
+            margin: { top: '1.5cm', right: '1.5cm', bottom: '1.5cm', left: '1.5cm' }
+        });
+        await browser.close();
+        const safe = (filename || 'ders-raporu').replace(/[\/\\:*?"<>|]/g, '_') + '.pdf';
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(safe)}`);
+        res.send(Buffer.from(pdf));
+    } catch (e) {
+        console.error('[PDF]', e.message);
+        res.status(500).json({ error: 'PDF oluşturulamadı' });
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`\n  EduSense Pro  →  http://localhost:${PORT}/login.html\n`);
