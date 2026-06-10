@@ -3348,7 +3348,7 @@ function _buildAISuggestions(l, tl) {
 /* ── Mock odak grafik verisi ── */
 function _focusChartData(l) {
     const fh = l.focusHistory || [];
-    if (fh.length >= 4) return fh;
+    if (fh.length >= 4) return fh.map(item => typeof item === 'object' ? (item.avg ?? 0) : item);
     const f = l.avgFocus || 65;
     return Array.from({length:16}, (_,i) => {
         const p = i/15;
@@ -4840,10 +4840,10 @@ function _renderLessonDetailFull(l) {
                 </div>
                 <div class="ld-card">
                     <div class="ld-section-title">🥧 Katılım Dağılımı</div>
-                    <div style="width:180px;height:180px;margin:0 auto;position:relative;">
+                    <div style="position:relative;max-width:140px;margin:0 auto;">
                         <canvas id="ld-part-chart"></canvas>
                     </div>
-                    <div id="ld-part-legend" style="display:flex;flex-direction:column;gap:6px;margin-top:14px;"></div>
+                    <div id="ld-part-legend" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;"></div>
                 </div>
             </div>
 
@@ -4921,8 +4921,10 @@ function _renderLessonDetailFull(l) {
 
 function _initDetailCharts(l) {
     const focusData = _focusChartData(l);
+    const fh = l.focusHistory || [];
+    const hasTs = fh.length >= 4 && typeof fh[0] === 'object' && 't' in fh[0];
     const labels = focusData.map((_, i) => {
-        const sec = Math.round(i * (l.duration||1800) / Math.max(focusData.length-1,1));
+        const sec = hasTs ? (fh[i]?.t ?? 0) : Math.round(i * (l.duration||1800) / Math.max(focusData.length-1,1));
         return `${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;
     });
 
@@ -4968,7 +4970,8 @@ function _initDetailCharts(l) {
                 datasets: [{ data: values, backgroundColor: colors, borderWidth: 2, borderColor: 'var(--surface)', hoverOffset: 6 }]
             },
             options: {
-                responsive: false,
+                responsive: true,
+                maintainAspectRatio: true,
                 animation: false,
                 cutout: '62%',
                 plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: %${ctx.parsed}` } } }
@@ -4979,9 +4982,9 @@ function _initDetailCharts(l) {
         if (leg) {
             leg.innerHTML = labels.map((lbl, i) => `
                 <div style="display:flex;align-items:center;gap:8px;">
-                    <span style="width:11px;height:11px;border-radius:3px;background:${colors[i]};flex-shrink:0;display:inline-block;"></span>
-                    <span style="font-size:.75rem;color:var(--dim);flex:1;">${lbl}</span>
-                    <span style="font-size:.78rem;font-weight:700;color:${colors[i]};">%${values[i]}</span>
+                    <span style="width:10px;height:10px;border-radius:3px;background:${colors[i]};flex-shrink:0;display:inline-block;"></span>
+                    <span style="font-size:.75rem;color:var(--dim);flex:1;min-width:0;">${lbl}</span>
+                    <span style="font-size:.78rem;font-weight:700;color:${colors[i]};flex-shrink:0;white-space:nowrap;">%${values[i]}</span>
                 </div>`).join('');
         }
     }
