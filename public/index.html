@@ -13,139 +13,228 @@
   --border:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
 }
 html{scroll-behavior:smooth;}
-body{font-family:system-ui,Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;}
+body{font-family:system-ui,'Segoe UI',Arial,sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(226,232,240,.6);transition:.3s;}
+/* ── NAV ──────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:.85rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.3s;}
+nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,.7);box-shadow:0 1px 12px rgba(0,0,0,.06);}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.nav-logo-icon svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
-.nav-logo-name{font-family:system-ui,Arial,sans-serif;font-size:1.05rem;font-weight:800;color:var(--text);}
-.nav-logo-name span{color:var(--accent);}
+.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-icon svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.nav-logo-name{font-size:1.05rem;font-weight:800;color:#fff;}
+nav.scrolled .nav-logo-name{color:var(--text);}
+.nav-logo-name span{color:#a5b4fc;}
+nav.scrolled .nav-logo-name span{color:var(--accent);}
 .nav-links{display:flex;gap:2rem;align-items:center;}
-.nav-links a{font-size:.87rem;font-weight:500;color:var(--dim);text-decoration:none;transition:.2s;}
-.nav-links a:hover{color:var(--accent);}
-.nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:9px 20px;border-radius:8px;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.84rem;text-decoration:none;transition:.2s;}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.nav-links a{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.8);text-decoration:none;transition:.2s;}
+nav.scrolled .nav-links a{color:var(--dim);}
+.nav-links a:hover{color:#fff;}
+nav.scrolled .nav-links a:hover{color:var(--accent);}
+.nav-cta{background:rgba(255,255,255,.15);color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;font-size:.84rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.35);transition:.2s;backdrop-filter:blur(4px);}
+nav.scrolled .nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;}
+.nav-cta:hover{background:rgba(255,255,255,.25);}
+nav.scrolled .nav-cta:hover{opacity:.9;transform:translateY(-1px);}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 2rem 4rem;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);opacity:.07;}
-.hero-orb1{position:absolute;top:-10%;right:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.18),transparent 70%);}
-.hero-orb2{position:absolute;bottom:-15%;left:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.15),transparent 70%);}
-.hero-inner{max-width:800px;text-align:center;position:relative;z-index:1;}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--accent-lt);border:1px solid rgba(99,102,241,.3);color:var(--accent);border-radius:100px;padding:6px 16px;font-size:.78rem;font-weight:600;margin-bottom:2rem;letter-spacing:.02em;}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
-.hero-title{font-family:system-ui,Arial,sans-serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1.4rem;letter-spacing:-2px;}
-.hero-title .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-subtitle{font-size:1.1rem;color:var(--dim);line-height:1.7;max-width:580px;margin:0 auto 2.5rem;}
-.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-hero-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:14px 28px;border-radius:12px;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(99,102,241,.35);transition:.25s;}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(99,102,241,.45);}
-.btn-hero-secondary{background:var(--surface);color:var(--text);padding:14px 28px;border-radius:12px;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:2px solid var(--border);transition:.25s;}
-.btn-hero-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
-.btn-hero-tertiary{background:rgba(255,255,255,.7);color:var(--dim);padding:14px 28px;border-radius:12px;font-family:system-ui,Arial,sans-serif;font-weight:600;font-size:.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--border);backdrop-filter:blur(4px);transition:.25s;}
-.btn-hero-tertiary:hover{border-color:var(--success);color:var(--success);}
-.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;flex-wrap:wrap;}
-.hero-stat-num{font-family:system-ui,Arial,sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-stat-lbl{font-size:.82rem;color:var(--muted);margin-top:2px;}
+/* ── HERO ─────────────────────────────────────────── */
+.hero{min-height:100vh;background:linear-gradient(150deg,#0f172a 0%,#1e1b4b 45%,#2d1b69 100%);position:relative;overflow:hidden;display:flex;align-items:center;padding:7rem 2.5rem 5rem;}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4;}
+.hero-glow1{position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.22),transparent 65%);}
+.hero-glow2{position:absolute;bottom:-30%;left:-15%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 65%);}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;border-radius:100px;padding:5px 14px;font-size:.75rem;font-weight:600;margin-bottom:1.75rem;letter-spacing:.03em;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#a5b4fc;animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.6)}}
+.hero-title{font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:800;line-height:1.1;color:#fff;margin-bottom:1.4rem;letter-spacing:-1.5px;}
+.hero-title .grad{background:linear-gradient(135deg,#a5b4fc,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:2.5rem;max-width:480px;}
+.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:13px 24px;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:7px;box-shadow:0 6px 20px rgba(99,102,241,.4);transition:.25s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(99,102,241,.5);}
+.btn-outline{background:rgba(255,255,255,.08);color:#fff;padding:13px 24px;border-radius:10px;font-weight:600;font-size:.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(255,255,255,.25);transition:.25s;backdrop-filter:blur(4px);}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.45);}
+.hero-trust{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.hero-trust-label{font-size:.75rem;color:rgba(255,255,255,.4);font-weight:500;}
+.trust-avatar{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;margin-left:-6px;}
+.trust-avatar:first-child{margin-left:0;}
+.trust-count{font-size:.78rem;color:rgba(255,255,255,.6);font-weight:600;}
 
-/* FEATURES */
-.section{padding:5rem 2rem;}
+/* ── DASHBOARD MOCKUP ─────────────────────────────── */
+.hero-right{position:relative;}
+.dashboard-mock{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:1.25rem;backdrop-filter:blur(8px);box-shadow:0 32px 80px rgba(0,0,0,.5);animation:floatY 4s ease-in-out infinite;}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.mock-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.mock-topbar-left{display:flex;align-items:center;gap:.5rem;}
+.mock-dot{width:8px;height:8px;border-radius:50%;}
+.mock-topbar-title{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7);margin-left:.5rem;}
+.mock-live-badge{background:rgba(16,185,129,.2);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:100px;padding:2px 9px;font-size:.65rem;font-weight:700;display:flex;align-items:center;gap:4px;}
+.mock-live-dot{width:5px;height:5px;border-radius:50%;background:#10b981;animation:pulse 1.2s infinite;}
+.mock-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem;}
+.mock-stat-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .75rem;text-align:center;}
+.mock-stat-val{font-size:1.2rem;font-weight:800;margin-bottom:2px;}
+.mock-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.45);font-weight:500;}
+.mock-ai-card{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:10px;padding:.75rem 1rem;margin-bottom:1rem;display:flex;align-items:flex-start;gap:.6rem;}
+.mock-ai-icon{font-size:.9rem;flex-shrink:0;margin-top:1px;}
+.mock-ai-text{font-size:.7rem;color:rgba(255,255,255,.75);line-height:1.5;}
+.mock-ai-label{font-size:.6rem;color:#a5b4fc;font-weight:700;margin-bottom:2px;}
+.mock-students-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;}
+.mock-student{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.5rem .4rem;text-align:center;}
+.mock-stu-av{width:28px;height:28px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;}
+.mock-stu-name{font-size:.55rem;color:rgba(255,255,255,.5);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mock-stu-score{font-size:.6rem;font-weight:700;margin-top:2px;}
+/* Floating notif */
+.mock-notif{position:absolute;top:-18px;right:-18px;background:#fff;border-radius:12px;padding:.6rem .9rem;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;align-items:center;gap:.5rem;animation:floatY 3.5s ease-in-out .5s infinite;}
+.mock-notif-icon{font-size:.95rem;}
+.mock-notif-text{font-size:.7rem;font-weight:600;color:var(--text);}
+.mock-notif-sub{font-size:.62rem;color:var(--muted);}
+.mock-report{position:absolute;bottom:-16px;left:-18px;background:#fff;border-radius:12px;padding:.6rem .9rem;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;align-items:center;gap:.5rem;animation:floatY 4.5s ease-in-out 1s infinite;}
+
+/* ── TRUST BAR ────────────────────────────────────── */
+.trust-bar{background:#f8fafc;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.4rem 2.5rem;}
+.trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.trust-bar-label{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;}
+.trust-school{font-size:.85rem;font-weight:700;color:#94a3b8;display:flex;align-items:center;gap:.4rem;transition:.2s;}
+.trust-school:hover{color:var(--accent);}
+
+/* ── SECTIONS ─────────────────────────────────────── */
+.section{padding:5.5rem 2.5rem;}
 .section-inner{max-width:1100px;margin:0 auto;}
-.section-badge{display:inline-block;background:var(--accent-lt);color:var(--accent);border-radius:100px;padding:5px 14px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;}
-.section-title{font-family:system-ui,Arial,sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px;}
-.section-sub{font-size:1rem;color:var(--dim);max-width:540px;line-height:1.7;}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
-.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:.3s;position:relative;overflow:hidden;}
-.feature-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0;transition:.3s;}
-.feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(99,102,241,.1);border-color:rgba(99,102,241,.3);}
-.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.4rem;background:var(--accent-lt);}
-.feature-title{font-family:system-ui,Arial,sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;}
-.feature-desc{font-size:.86rem;color:var(--dim);line-height:1.65;}
-.feature-tag{display:inline-block;margin-top:1rem;font-size:.72rem;font-weight:600;color:var(--accent);background:var(--accent-lt);padding:3px 10px;border-radius:100px;}
+.section-badge{display:inline-block;background:var(--accent-lt);color:var(--accent);border-radius:100px;padding:4px 14px;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem;}
+.section-title{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px;line-height:1.2;}
+.section-sub{font-size:.97rem;color:var(--dim);max-width:520px;line-height:1.75;}
+.centered{text-align:center;}
+.centered .section-sub{margin:0 auto;}
 
-/* HOW IT WORKS */
-.how-bg{background:linear-gradient(135deg,#f8fafc,#f1f5f9);}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-top:3rem;}
-.step-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;text-align:center;transition:.3s;}
-.step-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.06);}
-.step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;font-family:system-ui,Arial,sans-serif;font-size:1rem;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
-.step-title{font-family:system-ui,Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.5rem;}
-.step-desc{font-size:.83rem;color:var(--dim);line-height:1.6;}
+/* ── CORE FEATURES (3 big) ───────────────────────── */
+.core-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+@media(max-width:900px){.core-grid{grid-template-columns:1fr;}}
+.core-card{border-radius:18px;padding:2rem;position:relative;overflow:hidden;transition:.3s;}
+.core-card:hover{transform:translateY(-4px);}
+.core-card.c1{background:linear-gradient(135deg,#eef2ff,#f5f3ff);}
+.core-card.c2{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);}
+.core-card.c3{background:linear-gradient(135deg,#fff7ed,#fef3c7);}
+.core-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem;}
+.c1 .core-icon-wrap{background:rgba(99,102,241,.12);}
+.c2 .core-icon-wrap{background:rgba(16,185,129,.12);}
+.c3 .core-icon-wrap{background:rgba(245,158,11,.12);}
+.core-title{font-size:1.1rem;font-weight:800;margin-bottom:.6rem;color:var(--text);}
+.core-desc{font-size:.87rem;color:var(--dim);line-height:1.7;}
 
-/* ROLES */
+/* ── FEATURES GRID (6) ───────────────────────────── */
+.alt-bg{background:var(--bg);}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+@media(max-width:900px){.features-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.features-grid{grid-template-columns:1fr;}}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;transition:.3s;}
+.feature-card:hover{border-color:rgba(99,102,241,.35);box-shadow:0 8px 28px rgba(99,102,241,.08);transform:translateY(-3px);}
+.feat-icon{width:44px;height:44px;border-radius:12px;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1rem;}
+.feat-title{font-size:.97rem;font-weight:700;margin-bottom:.45rem;}
+.feat-desc{font-size:.84rem;color:var(--dim);line-height:1.65;}
+.feat-tag{display:inline-block;margin-top:.85rem;font-size:.69rem;font-weight:600;color:var(--accent);background:var(--accent-lt);padding:2px 9px;border-radius:100px;}
+
+/* ── HOW IT WORKS ────────────────────────────────── */
+.steps-wrap{margin-top:3rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;position:relative;}
+.steps-wrap::before{content:'';position:absolute;top:22px;left:calc(12.5% + 16px);right:calc(12.5% + 16px);height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.25;z-index:0;}
+@media(max-width:800px){.steps-wrap{grid-template-columns:1fr 1fr;}.steps-wrap::before{display:none;}}
+.step-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem 1.4rem;text-align:center;position:relative;z-index:1;transition:.3s;}
+.step-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.07);transform:translateY(-3px);}
+.step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;font-size:.95rem;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.step-title{font-size:.93rem;font-weight:700;margin-bottom:.45rem;}
+.step-desc{font-size:.81rem;color:var(--dim);line-height:1.6;}
+
+/* ── STATS ───────────────────────────────────────── */
+.stats-section{background:linear-gradient(135deg,#0f172a,#1e1b4b);padding:4.5rem 2.5rem;}
+.stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+@media(max-width:700px){.stats-inner{grid-template-columns:repeat(2,1fr);}}
+.stat-big-num{font-size:2.6rem;font-weight:800;background:linear-gradient(135deg,#a5b4fc,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.4rem;}
+.stat-big-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;line-height:1.5;}
+
+/* ── ROLES ───────────────────────────────────────── */
 .roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;}
 @media(max-width:700px){.roles-grid{grid-template-columns:1fr;}}
-.role-card{border-radius:20px;padding:2.5rem;color:#fff;position:relative;overflow:hidden;}
-.role-card.teacher{background:linear-gradient(135deg,#6366f1,#4f46e5);}
-.role-card.student{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
-.role-card::after{content:'';position:absolute;top:-30%;right:-10%;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.08);}
-.role-icon{font-size:2rem;margin-bottom:1rem;}
-.role-title{font-family:system-ui,Arial,sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:.5rem;}
-.role-desc{font-size:.88rem;opacity:.85;line-height:1.65;margin-bottom:1.5rem;}
-.role-features{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.75rem;}
-.role-feature{display:flex;align-items:center;gap:.6rem;font-size:.83rem;opacity:.9;}
-.role-feature::before{content:'✓';width:18px;height:18px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;}
-.role-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:10px 20px;border-radius:10px;font-family:system-ui,Arial,sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:.2s;backdrop-filter:blur(4px);}
-.role-btn:hover{background:rgba(255,255,255,.3);}
+.role-card{border-radius:20px;padding:2.25rem;color:#fff;position:relative;overflow:hidden;}
+.role-card.teacher{background:linear-gradient(145deg,#4338ca,#6366f1);}
+.role-card.student{background:linear-gradient(145deg,#7c3aed,#8b5cf6);}
+.role-card::after{content:'';position:absolute;top:-20%;right:-8%;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07);}
+.role-card::before{content:'';position:absolute;bottom:-25%;left:-5%;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);}
+.role-icon-wrap{width:52px;height:52px;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem;position:relative;z-index:1;}
+.role-title{font-size:1.25rem;font-weight:800;margin-bottom:.5rem;position:relative;z-index:1;}
+.role-desc{font-size:.87rem;opacity:.8;line-height:1.7;margin-bottom:1.4rem;max-width:360px;position:relative;z-index:1;}
+.role-features{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.75rem;position:relative;z-index:1;}
+.role-feature{display:flex;align-items:center;gap:.6rem;font-size:.84rem;opacity:.9;}
+.role-feature-dot{width:16px;height:16px;background:rgba(255,255,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.role-feature-dot svg{width:8px;height:8px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.role-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.35);color:#fff;padding:10px 20px;border-radius:10px;font-size:.85rem;font-weight:700;text-decoration:none;transition:.2s;position:relative;z-index:1;backdrop-filter:blur(4px);}
+.role-btn:hover{background:rgba(255,255,255,.28);}
 
-/* PRIVACY */
-.privacy-card{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1px solid #bbf7d0;border-radius:20px;padding:2.5rem;display:flex;gap:2rem;align-items:center;}
-@media(max-width:700px){.privacy-card{flex-direction:column;text-align:center;}}
-.privacy-icon{font-size:3rem;flex-shrink:0;}
-.privacy-title{font-family:system-ui,Arial,sans-serif;font-size:1.2rem;font-weight:800;color:#065f46;margin-bottom:.5rem;}
-.privacy-desc{font-size:.88rem;color:#065f46;opacity:.8;line-height:1.65;}
+/* ── PRIVACY ─────────────────────────────────────── */
+.privacy-card{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #bbf7d0;border-radius:20px;padding:2.5rem 3rem;display:flex;gap:2.5rem;align-items:center;margin-top:2rem;}
+@media(max-width:700px){.privacy-card{flex-direction:column;text-align:center;padding:2rem;}}
+.privacy-shield{width:64px;height:64px;background:linear-gradient(135deg,#10b981,#059669);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.8rem;}
+.privacy-title{font-size:1.2rem;font-weight:800;color:#065f46;margin-bottom:.5rem;}
+.privacy-desc{font-size:.87rem;color:#047857;line-height:1.7;}
+.privacy-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.85rem;}
+.privacy-pill{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#065f46;border-radius:100px;padding:3px 11px;font-size:.7rem;font-weight:600;}
 
-/* CTA SECTION */
-.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));padding:5rem 2rem;text-align:center;color:#fff;}
-.cta-title{font-family:system-ui,Arial,sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px;}
-.cta-sub{font-size:1.05rem;opacity:.85;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.65;}
-.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-cta-white{background:#fff;color:var(--accent);padding:14px 32px;border-radius:12px;font-family:system-ui,Arial,sans-serif;font-weight:800;font-size:.95rem;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:8px;}
-.btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
-.btn-cta-ghost{background:rgba(255,255,255,.15);color:#fff;padding:14px 32px;border-radius:12px;font-family:system-ui,Arial,sans-serif;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.4);transition:.2s;display:inline-flex;align-items:center;gap:8px;}
-.btn-cta-ghost:hover{background:rgba(255,255,255,.25);}
+/* ── CTA ─────────────────────────────────────────── */
+.cta-section{background:linear-gradient(135deg,#4338ca,#6366f1,#7c3aed);padding:5.5rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;top:-50%;left:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);}
+.cta-section::after{content:'';position:absolute;bottom:-50%;right:-15%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 70%);}
+.cta-inner{position:relative;z-index:1;}
+.cta-title{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;color:#fff;margin-bottom:1rem;letter-spacing:-1px;}
+.cta-sub{font-size:.97rem;color:rgba(255,255,255,.75);margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.btn-cta-white{background:#fff;color:var(--accent);padding:14px 30px;border-radius:11px;font-weight:800;font-size:.93rem;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+.btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.28);}
+.btn-cta-ghost{background:rgba(255,255,255,.12);color:#fff;padding:14px 30px;border-radius:11px;font-weight:700;font-size:.93rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.35);transition:.2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-cta-ghost:hover{background:rgba(255,255,255,.22);}
+.cta-demo-info{display:inline-flex;align-items:center;gap:1.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:.75rem 1.5rem;flex-wrap:wrap;justify-content:center;}
+.cta-demo-item{font-size:.78rem;color:rgba(255,255,255,.8);}
+.cta-demo-item strong{color:#fff;font-weight:700;}
+.cta-demo-sep{color:rgba(255,255,255,.3);font-size:.8rem;}
 
-/* FOOTER */
-footer{background:var(--text);color:rgba(255,255,255,.5);padding:2.5rem 2rem;text-align:center;}
-footer .footer-logo{font-family:system-ui,Arial,sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
-footer .footer-logo span{color:var(--accent);}
-footer p{font-size:.82rem;}
+/* ── FOOTER ──────────────────────────────────────── */
+footer{background:#0f172a;color:rgba(255,255,255,.4);padding:3rem 2.5rem 2rem;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem;}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr 1fr;gap:2rem;}}
+.footer-brand-name{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.footer-brand-name span{color:#a5b4fc;}
+.footer-brand-desc{font-size:.81rem;line-height:1.65;max-width:240px;}
+.footer-col-title{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.85rem;}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:.5rem;transition:.2s;}
+.footer-col a:hover{color:rgba(255,255,255,.8);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:.77rem;}
+.footer-tech{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.tech-badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:3px 9px;font-size:.68rem;color:rgba(255,255,255,.5);font-weight:500;}
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-right{display:none;}
+}
 @media(max-width:768px){
-  nav{padding:.8rem 1.2rem;}
+  nav{padding:.8rem 1.25rem;}
   .nav-links{display:none;}
-  .hero{padding:6rem 1.25rem 3rem;}
-  .hero-ctas{flex-direction:column;align-items:center;}
-  .hero-stats{gap:2rem;}
-  .features-grid{grid-template-columns:1fr;}
-  .steps-grid{grid-template-columns:1fr 1fr;}
+  .hero{padding:5.5rem 1.25rem 4rem;}
+  .section{padding:4rem 1.25rem;}
+  .core-grid,.features-grid{grid-template-columns:1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .trust-bar{padding:1.25rem;}
+  .trust-bar-inner{gap:1.5rem;}
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.anim{animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both;}
-.anim-d1{animation-delay:.1s;}
-.anim-d2{animation-delay:.2s;}
-.anim-d3{animation-delay:.3s;}
-.anim-d4{animation-delay:.4s;}
-
-/* FLOATING CARDS */
-.hero-visual{display:flex;justify-content:center;gap:1rem;margin-top:3.5rem;flex-wrap:wrap;}
-.mini-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:.3s;}
-.mini-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(99,102,241,.12);}
-.mini-card-icon{font-size:1.4rem;}
-.mini-card-text{font-size:.8rem;font-weight:600;color:var(--text);}
-.mini-card-sub{font-size:.7rem;color:var(--muted);}
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.anim{opacity:0;animation:fadeUp .65s cubic-bezier(.16,1,.3,1) both;}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<!-- ══ NAV ══════════════════════════════════════════ -->
+<nav id="main-nav">
   <div class="nav-logo">
     <div class="nav-logo-icon">
       <svg viewBox="0 0 24 24"><polyline points="2 8 12 3 22 8"/><polyline points="2 13 12 8 22 13"/><polyline points="2 18 12 13 22 18"/></svg>
@@ -161,209 +250,421 @@ footer p{font-size:.82rem;}
   <a class="nav-cta" href="/login.html">Hemen Başla →</a>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ══════════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-orb1"></div>
-  <div class="hero-orb2"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-badge anim"><span class="badge-dot"></span> Yapay Zeka Destekli Eğitim Platformu</div>
-    <h1 class="hero-title anim anim-d1">
-      Öğrencilerinizin<br>
-      <span class="gradient">Dikkatini Anlayın,</span><br>
-      Derslerinizi Güçlendirin
-    </h1>
-    <p class="hero-subtitle anim anim-d2">
-      EduSense Pro; yapay zeka ile öğrencilerin dikkat ve duygu durumunu gerçek zamanlı analiz eder,
-      öğretmenlere pedagojik öneriler sunar. Gizlilik önce gelir — yüz verisi cihazda işlenir.
-    </p>
-    <div class="hero-ctas anim anim-d3">
-      <a class="btn-hero-primary" href="/login.html">
-        <svg style="width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Öğretmen Paneline Git
-      </a>
-      <a class="btn-hero-secondary" href="/login.html">
-        <svg style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        Öğrenci Paneline Git
-      </a>
-      <a class="btn-hero-tertiary" href="/classroom-demo.html">
-        <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        Canlı Ders Demo
-      </a>
-    </div>
-
-    <!-- Floating mini cards -->
-    <div class="hero-visual anim anim-d4">
-      <div class="mini-card">
-        <div class="mini-card-icon">🎯</div>
-        <div><div class="mini-card-text">Anlık Odak Analizi</div><div class="mini-card-sub">Gerçek zamanlı · AI destekli</div></div>
+    <div class="hero-left">
+      <div class="hero-badge anim d1">
+        <span class="badge-dot"></span>
+        Yapay Zeka Destekli Eğitim Platformu
       </div>
-      <div class="mini-card">
-        <div class="mini-card-icon">🔒</div>
-        <div><div class="mini-card-text">Gizlilik Önce Gelir</div><div class="mini-card-sub">Veri cihazda işlenir</div></div>
+      <h1 class="hero-title anim d2">
+        Öğrencilerinizin<br>
+        <span class="grad">Dikkatini Anlayın,</span><br>
+        Dersinizi Güçlendirin
+      </h1>
+      <p class="hero-sub anim d3">
+        EduSense Pro; kamera tabanlı yapay zeka ile öğrencilerin anlık dikkat ve duygu
+        durumunu ölçer. Öğretmenlere gerçek zamanlı pedagojik öneriler sunar.
+        Yüz verisi sunucuya gönderilmez — gizlilik her zaman önce gelir.
+      </p>
+      <div class="hero-ctas anim d4">
+        <a class="btn-primary" href="/login.html">
+          <svg style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Öğretmen Paneli
+        </a>
+        <a class="btn-outline" href="/login.html">
+          <svg style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Öğrenci Paneli
+        </a>
       </div>
-      <div class="mini-card">
-        <div class="mini-card-icon">📊</div>
-        <div><div class="mini-card-text">Pedagojik Öneriler</div><div class="mini-card-sub">AI tabanlı tavsiyeler</div></div>
-      </div>
-      <div class="mini-card">
-        <div class="mini-card-icon">🎬</div>
-        <div><div class="mini-card-text">Ders Kayıtları</div><div class="mini-card-sub">Tekrar izle, öğren</div></div>
+      <div class="hero-trust anim d5">
+        <span class="hero-trust-label">Güvenilir platform</span>
+        <div style="display:flex;align-items:center;">
+          <div class="trust-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">EA</div>
+          <div class="trust-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">EK</div>
+          <div class="trust-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">UY</div>
+          <div class="trust-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">AK</div>
+          <div class="trust-avatar" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);">ZD</div>
+        </div>
+        <span class="trust-count">+120 aktif kullanıcı</span>
       </div>
     </div>
 
-    <div class="hero-stats">
-      <div><div class="hero-stat-num">%94</div><div class="hero-stat-lbl">Öğrenci Memnuniyeti</div></div>
-      <div><div class="hero-stat-num">+40%</div><div class="hero-stat-lbl">Dikkat Artışı</div></div>
-      <div><div class="hero-stat-num">Real-time</div><div class="hero-stat-lbl">AI Analizi</div></div>
-      <div><div class="hero-stat-num">0</div><div class="hero-stat-lbl">Veri Sunucuya Gönderilmez</div></div>
+    <div class="hero-right">
+      <!-- Floating notification -->
+      <div class="mock-notif">
+        <div class="mock-notif-icon">🤖</div>
+        <div>
+          <div class="mock-notif-text">AI Pedagoji Önerisi</div>
+          <div class="mock-notif-sub">Dikkat düşüyor — interaktif soru sorun</div>
+        </div>
+      </div>
+      <!-- Floating report card -->
+      <div class="mock-report">
+        <div class="mock-notif-icon">📊</div>
+        <div>
+          <div class="mock-notif-text">Ders Raporu Hazır</div>
+          <div class="mock-notif-sub">Ort. odak %78 · PDF indirildi</div>
+        </div>
+      </div>
+
+      <!-- Dashboard mockup -->
+      <div class="dashboard-mock">
+        <div class="mock-topbar">
+          <div class="mock-topbar-left">
+            <div class="mock-dot" style="background:#ef4444;"></div>
+            <div class="mock-dot" style="background:#f59e0b;"></div>
+            <div class="mock-dot" style="background:#10b981;"></div>
+            <span class="mock-topbar-title">EduSense Pro — Öğretmen Paneli</span>
+          </div>
+          <div class="mock-live-badge">
+            <div class="mock-live-dot"></div>
+            CANLI
+          </div>
+        </div>
+
+        <div class="mock-stats-row">
+          <div class="mock-stat-card">
+            <div class="mock-stat-val" style="color:#10b981;">%78</div>
+            <div class="mock-stat-lbl">Sınıf Odağı</div>
+          </div>
+          <div class="mock-stat-card">
+            <div class="mock-stat-val" style="color:#a5b4fc;">12</div>
+            <div class="mock-stat-lbl">Aktif Öğrenci</div>
+          </div>
+          <div class="mock-stat-card">
+            <div class="mock-stat-val" style="color:#f59e0b;">3</div>
+            <div class="mock-stat-lbl">Kritik An</div>
+          </div>
+        </div>
+
+        <div class="mock-ai-card">
+          <div class="mock-ai-icon">🤖</div>
+          <div>
+            <div class="mock-ai-label">AI Asistan</div>
+            <div class="mock-ai-text">"Sınıfın dikkat seviyesi son 3 dakikada %15 düştü. Kısa bir soru veya mini aktivite öneririz."</div>
+          </div>
+        </div>
+
+        <div class="mock-students-grid">
+          <div class="mock-student">
+            <div class="mock-stu-av" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">EA</div>
+            <div class="mock-stu-name">Ertan K.</div>
+            <div class="mock-stu-score" style="color:#10b981;">%85</div>
+          </div>
+          <div class="mock-student">
+            <div class="mock-stu-av" style="background:linear-gradient(135deg,#10b981,#059669);">UY</div>
+            <div class="mock-stu-name">Umid Y.</div>
+            <div class="mock-stu-score" style="color:#10b981;">%91</div>
+          </div>
+          <div class="mock-student">
+            <div class="mock-stu-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">AK</div>
+            <div class="mock-stu-name">Ayşe K.</div>
+            <div class="mock-stu-score" style="color:#f59e0b;">%62</div>
+          </div>
+          <div class="mock-student">
+            <div class="mock-stu-av" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">MK</div>
+            <div class="mock-stu-name">Mehmet K.</div>
+            <div class="mock-stu-score" style="color:#ef4444;">%41</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- ══ TRUST BAR ══════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-bar-label">Kullanılan Kurumlar</span>
+    <span class="trust-school">🏫 Anadolu Lisesi</span>
+    <span class="trust-school">🏛️ Teknik Üniversite</span>
+    <span class="trust-school">📚 Özel Eğitim Merkezi</span>
+    <span class="trust-school">🎓 STEM Akademi</span>
+    <span class="trust-school">🏢 Kurumsal Eğitim</span>
+  </div>
+</div>
+
+<!-- ══ STATS ══════════════════════════════════════════ -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-big-num">%94</div>
+      <div class="stat-big-lbl">Öğretmen memnuniyeti platform deneyiminde</div>
+    </div>
+    <div>
+      <div class="stat-big-num">+38%</div>
+      <div class="stat-big-lbl">Ortalama dikkat artışı ilk ayda</div>
+    </div>
+    <div>
+      <div class="stat-big-num">Gerçek Zamanlı</div>
+      <div class="stat-big-lbl">AI analizi her ders saniyesinde aktif</div>
+    </div>
+    <div>
+      <div class="stat-big-num">0 Byte</div>
+      <div class="stat-big-lbl">Yüz verisi sunucuya iletilmez — KVKK uyumlu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CORE FEATURES ══════════════════════════════════ -->
 <section class="section" id="features">
   <div class="section-inner">
-    <div class="section-badge">Özellikler</div>
-    <h2 class="section-title">Her şey, tek platformda</h2>
-    <p class="section-sub">Uzaktan eğitimi daha etkili, daha anlayışlı ve daha verimli hale getiren tüm araçlar burada.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <div class="feature-title">Duygu & Dikkat Analizi</div>
-        <div class="feature-desc">face-api.js ile öğrencinin anlık duygu durumu ve dikkat seviyesi cihazda analiz edilir. Mutlu, şaşkın, sıkılmış — her duygu yakalanır.</div>
-        <span class="feature-tag">AI Destekli</span>
+    <div class="section-badge">Temel Özellikler</div>
+    <h2 class="section-title">Eğitimi dönüştüren üç temel</h2>
+    <p class="section-sub">Dikkat analizi, akıllı öneriler ve kapsamlı raporlarla eğitim kalitesini sürekli yükseltin.</p>
+    <div class="core-grid">
+      <div class="core-card c1">
+        <div class="core-icon-wrap">🧠</div>
+        <div class="core-title">Gerçek Zamanlı Dikkat & Duygu Analizi</div>
+        <div class="core-desc">face-api.js tabanlı AI motoru öğrencinin anlık dikkat düzeyini, mutluluk, şaşkınlık, sıkılma gibi duygu durumlarını milisaniyeler içinde tarayıcıda işler. Hiçbir veri sunucuya gitmez.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📡</div>
-        <div class="feature-title">Canlı WebRTC Ders</div>
-        <div class="feature-desc">Ekran paylaşımı, ses ve video ile gerçek zamanlı canlı ders. Öğrenciler 6 haneli kodla saniyeler içinde katılır.</div>
-        <span class="feature-tag">WebRTC</span>
+      <div class="core-card c2">
+        <div class="core-icon-wrap">🤖</div>
+        <div class="core-title">Anlık AI Pedagoji Önerileri</div>
+        <div class="core-desc">"Sınıfın dikkati %30 düştü, kısa bir soru sorun" tarzı gerçek zamanlı uyarılar. Öğretmen derse etkili müdahale eder; kritik anlar zaman çizelgesine kaydedilir.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
-        <div class="feature-title">Pedagojik AI Önerileri</div>
-        <div class="feature-desc">"Sınıfın dikkati düşüyor, bir soru sorun" gibi gerçek zamanlı önerilerle derse müdahale edin. Akıllı asistan her an yanınızda.</div>
-        <span class="feature-tag">Akıllı Asistan</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📹</div>
-        <div class="feature-title">Ders Kayıtları & Tekrar</div>
-        <div class="feature-desc">Dersler otomatik kaydedilir. Öğrenciler tekrar izleyebilir, odak grafiklerini inceleyebilir. Öğretmen yayını açıp kapayabilir.</div>
-        <span class="feature-tag">Arşiv</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Detaylı Ders Raporları</div>
-        <div class="feature-desc">Her ders sonunda otomatik rapor oluşur. Ortalama dikkat, kritik anlar, katılım oranı, duygu dağılımı — hepsi grafiklerle.</div>
-        <span class="feature-tag">Analitik</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔐</div>
-        <div class="feature-title">Gizlilik Önce Gelir</div>
-        <div class="feature-desc">Yüz görüntüsü veya video kaydı sunucuya gönderilmez. Tüm analiz tarayıcıda gerçekleşir. KVKK uyumlu mimari.</div>
-        <span class="feature-tag">Güvenli</span>
+      <div class="core-card c3">
+        <div class="core-icon-wrap">📊</div>
+        <div class="core-title">Otomatik Ders Raporu & PDF</div>
+        <div class="core-desc">Ders bitişinde dikkat grafiği, katılım dağılımı, kritik anlar ve AI önerileri içeren tam rapor otomatik oluşur. PDF olarak tek tıkla indirilir, arşive eklenir.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section how-bg" id="how">
+<!-- ══ ALL FEATURES ══════════════════════════════════ -->
+<section class="section alt-bg">
   <div class="section-inner">
+    <div class="section-badge">Tüm Özellikler</div>
+    <h2 class="section-title">Her şey, tek platformda</h2>
+    <p class="section-sub">Uzaktan ve yüz yüze eğitimi daha verimli hale getiren tüm araçlar tek çatı altında.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon">📡</div>
+        <div class="feat-title">Canlı WebRTC Ders</div>
+        <div class="feat-desc">Ekran paylaşımı, ses ve HD video ile sıfır kurulumlu canlı ders. Öğrenciler 6 haneli kod ile saniyeler içinde katılır, ek yazılım gerektirmez.</div>
+        <span class="feat-tag">WebRTC</span>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🎬</div>
+        <div class="feat-title">Ders Kaydı & Tekrar Yayını</div>
+        <div class="feat-desc">Dersler isteğe bağlı kaydedilir. Öğrenciler tekrar izleyebilir, dikkat ve duygu geçmişlerini grafikle inceleyebilir. Öğretmen erişimi dilediği zaman açıp kapatabilir.</div>
+        <span class="feat-tag">Arşiv</span>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📝</div>
+        <div class="feat-title">Ödev & Değerlendirme</div>
+        <div class="feat-desc">Ödev oluşturma, dosya yükleme ve teslim takibi tek panelde. Öğrenciler görevlerini tamamlayıp yükler; öğretmen durumu anlık görür.</div>
+        <span class="feat-tag">LMS</span>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📣</div>
+        <div class="feat-title">Duyurular & Mesajlaşma</div>
+        <div class="feat-desc">Ders bazlı duyurular, anlık bildirimler ve kurs içi iletişim araçları. Öğrenciler yeni duyuruları anında görür, öğretmen sınıfa hızlıca ulaşır.</div>
+        <span class="feat-tag">İletişim</span>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🗓️</div>
+        <div class="feat-title">Ders Programı & Takvim</div>
+        <div class="feat-desc">Haftalık ders programı görünümü ve ay bazlı takvim. Yaklaşan dersler, ödevler ve önemli tarihler tek sayfada toplu görülür.</div>
+        <span class="feat-tag">Planlama</span>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🏆</div>
+        <div class="feat-title">Öğrenci Motivasyon Sistemi</div>
+        <div class="feat-desc">XP puanları, rozetler ve başarı seviyeleriyle öğrenci motivasyonunu artırın. Katılım, odak ve ödev teslimi otomatik olarak ödüllendirilir.</div>
+        <span class="feat-tag">Gamification</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ═══════════════════════════════════ -->
+<section class="section" id="how">
+  <div class="section-inner centered">
     <div class="section-badge">Nasıl Çalışır</div>
-    <h2 class="section-title">3 adımda akıllı ders</h2>
-    <p class="section-sub">Öğretmenler için dakikalar içinde kurulum, öğrenciler için anlık katılım.</p>
-    <div class="steps-grid">
+    <h2 class="section-title">4 adımda akıllı ders</h2>
+    <p class="section-sub">Dakikalar içinde kurulum, anlık katılım. Teknik bilgi gerekmez.</p>
+    <div class="steps-wrap">
       <div class="step-card">
         <div class="step-num">1</div>
         <div class="step-title">Ders Oluştur</div>
-        <div class="step-desc">Öğretmen ders adını girer, sistemi başlatır. Benzersiz 6 haneli kod otomatik oluşturulur.</div>
+        <div class="step-desc">Öğretmen ders adını ve sınıfını girer, sistemi başlatır. Otomatik 6 haneli katılım kodu üretilir.</div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
-        <div class="step-title">Katıl & Bağlan</div>
-        <div class="step-desc">Öğrenciler kodu girerek saniyeler içinde katılır. Kamera açılır, AI analiz başlar.</div>
+        <div class="step-title">Öğrenciler Katılır</div>
+        <div class="step-desc">Öğrenciler kodu girerek saniyeler içinde bağlanır. Kamera açılır, AI analizi otomatik başlar.</div>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
-        <div class="step-title">Anlık AI Analiz</div>
-        <div class="step-desc">Dikkat düşünce asistan öğretmeni uyarır. Sınıfın genel durumu her an görünür.</div>
+        <div class="step-title">AI Analiz & Uyarı</div>
+        <div class="step-desc">Dikkat düşünce AI asistan öğretmeni uyarır. Sınıfın genel durumu her an canlı panelde görünür.</div>
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
-        <div class="step-title">Rapor Al</div>
-        <div class="step-desc">Ders biter, otomatik rapor oluşur. Kayıt arşive eklenir. Sonraki ders için öneriler sunulur.</div>
+        <div class="step-title">Raporu İndir</div>
+        <div class="step-desc">Ders bitişinde otomatik rapor hazırlanır. PDF indirilir, arşive eklenir, sonraki ders için öneriler sunulur.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ROLES -->
-<section class="section" id="roles">
+<!-- ══ ROLES ══════════════════════════════════════════ -->
+<section class="section alt-bg" id="roles">
   <div class="section-inner">
     <div class="section-badge">Kim İçin</div>
-    <h2 class="section-title">Herkes için tasarlandı</h2>
-    <p class="section-sub">Öğretmen veya öğrenci — EduSense Pro ikisi için de farklı bir deneyim sunar.</p>
+    <h2 class="section-title">Herkes için farklı bir deneyim</h2>
+    <p class="section-sub">EduSense Pro, öğretmen ve öğrenci için özelleştirilmiş iki ayrı panel sunar.</p>
     <div class="roles-grid">
       <div class="role-card teacher">
-        <div class="role-icon">👨‍🏫</div>
+        <div class="role-icon-wrap">👨‍🏫</div>
         <div class="role-title">Öğretmenler İçin</div>
-        <div class="role-desc">Sınıfın dikkat durumunu gerçek zamanlı görün. AI önerileriyle derse müdahale edin. Sonraki dersinizi daha iyi planlayın.</div>
+        <div class="role-desc">Sınıfın dikkat durumunu gerçek zamanlı izleyin. AI önerileriyle anında müdahale edin. Detaylı raporlarla sonraki dersi daha iyi planlayın.</div>
         <div class="role-features">
-          <div class="role-feature">Canlı sınıf dikkat panosu</div>
-          <div class="role-feature">Gerçek zamanlı AI pedagoji önerileri</div>
-          <div class="role-feature">Kritik an zaman çizelgesi</div>
-          <div class="role-feature">Ders arşivi & kayıt yönetimi</div>
-          <div class="role-feature">Detaylı ders sonrası rapor</div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Canlı sınıf dikkat panosu
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Gerçek zamanlı AI pedagoji önerileri
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Kritik an zaman çizelgesi
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Ödev, duyuru ve ders programı yönetimi
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            PDF raporlu ders arşivi
+          </div>
         </div>
-        <a class="role-btn" href="/login.html">Öğretmen Paneli →</a>
+        <a class="role-btn" href="/login.html">Öğretmen Paneline Git →</a>
       </div>
       <div class="role-card student">
-        <div class="role-icon">🎓</div>
+        <div class="role-icon-wrap">🎓</div>
         <div class="role-title">Öğrenciler İçin</div>
-        <div class="role-desc">Canlı derse kolayca katıl. Ders tekrarlarını izle. Kendi dikkat istatistiklerini takip et. Gizliliğin her zaman korunur.</div>
+        <div class="role-desc">Canlı derse kolayca katıl. Geçmiş dersleri tekrar izle. Kendi dikkat istatistiklerini gör. Gizliliğin her zaman korunur.</div>
         <div class="role-features">
-          <div class="role-feature">Kod ile anında ders katılımı</div>
-          <div class="role-feature">Anlık odak skoru görüntüleme</div>
-          <div class="role-feature">Ders tekrarı & kayıt izleme</div>
-          <div class="role-feature">Duygu & dikkat geçmişi</div>
-          <div class="role-feature">100% cihaz tabanlı gizlilik</div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Kod ile saniyeler içinde ders katılımı
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Anlık odak ve motivasyon skoru
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Ders tekrarı ve dikkat geçmişi
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            XP puanı, rozet ve başarı sistemi
+          </div>
+          <div class="role-feature">
+            <div class="role-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            %100 cihaz tabanlı gizlilik güvencesi
+          </div>
         </div>
-        <a class="role-btn" href="/login.html">Öğrenci Paneli →</a>
+        <a class="role-btn" href="/login.html">Öğrenci Paneline Git →</a>
       </div>
     </div>
 
-    <!-- Privacy card -->
-    <div class="privacy-card" style="margin-top:1.5rem;">
-      <div class="privacy-icon">🛡️</div>
+    <div class="privacy-card">
+      <div class="privacy-shield">🛡️</div>
       <div>
-        <div class="privacy-title">Gizliliğiniz güvende</div>
+        <div class="privacy-title">Gizliliğiniz güvende — KVKK uyumlu mimari</div>
         <div class="privacy-desc">
-          EduSense Pro'nun AI analiz sistemi tamamen tarayıcı tabanlıdır. Kamera görüntünüz veya yüz verileriniz hiçbir zaman sunucuya gönderilmez.
-          Tüm işlem cihazınızda gerçekleşir, yalnızca dikkat skoru ve duygu durumu (emoji) paylaşılır. Görüntünüz kaydedilmez.
+          EduSense Pro'nun yapay zeka motoru tamamen tarayıcı tabanlıdır. Kamera görüntünüz, yüz veriniz veya biyometrik bilgileriniz hiçbir zaman sunucuya iletilmez.
+          Tüm analiz cihazınızda gerçekleşir; yalnızca dikkat skoru ve duygu durumu (anonim) paylaşılır.
+        </div>
+        <div class="privacy-pills">
+          <span class="privacy-pill">🔒 Tarayıcı Tabanlı AI</span>
+          <span class="privacy-pill">📵 Yüz Verisi Gönderilmez</span>
+          <span class="privacy-pill">✅ KVKK Uyumlu</span>
+          <span class="privacy-pill">🔐 Şifreli Bağlantı</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ══ CTA ════════════════════════════════════════════ -->
 <section class="cta-section">
-  <h2 class="cta-title">Hemen deneyin, ücretsiz</h2>
-  <p class="cta-sub">Prototip demo sürümüne erişin. Öğretmen ve öğrenci deneyimini keşfedin.</p>
-  <div class="cta-btns">
-    <a class="btn-cta-white" href="/login.html">Giriş Yap →</a>
-    <a class="btn-cta-ghost" href="/teacher-demo.html">Demo Paneli Gör</a>
+  <div class="cta-inner">
+    <h2 class="cta-title">Hemen deneyin, ücretsiz</h2>
+    <p class="cta-sub">Demo hesaplarıyla öğretmen ve öğrenci deneyimini keşfedin. Ek kurulum gerekmez.</p>
+    <div class="cta-btns">
+      <a class="btn-cta-white" href="/login.html">
+        <svg style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        Platforma Giriş Yap
+      </a>
+      <a class="btn-cta-ghost" href="/login.html">Demo Hesaplarıyla Dene</a>
+    </div>
+    <div class="cta-demo-info">
+      <span class="cta-demo-item">👨‍🏫 Öğretmen: <strong>ercan.akpinar</strong> / <strong>123456</strong></span>
+      <span class="cta-demo-sep">|</span>
+      <span class="cta-demo-item">🎓 Öğrenci 1: <strong>ertan.kadim</strong> / <strong>123456</strong></span>
+      <span class="cta-demo-sep">|</span>
+      <span class="cta-demo-item">🎓 Öğrenci 2: <strong>umid.yuldashbayev</strong> / <strong>123456</strong></span>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">EduSense <span>Pro</span></div>
-  <p>Yapay zeka destekli, duygu odaklı öğrenme yönetim sistemi &nbsp;·&nbsp; © 2026 EduSense Pro</p>
-  <p style="margin-top:.5rem;font-size:.75rem;">Demo: <strong style="color:#fff;">admin / 123</strong> (Öğretmen) &nbsp;·&nbsp; <strong style="color:#fff;">ogrenci1 / 123</strong> (Öğrenci)</p>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">EduSense <span>Pro</span></div>
+        <p class="footer-brand-desc">Yapay zeka destekli, duygu odaklı öğrenme yönetim sistemi. Gerçek zamanlı dikkat analizi ile eğitimi güçlendirin.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="#features">Özellikler</a>
+        <a href="#how">Nasıl Çalışır</a>
+        <a href="#roles">Kim İçin</a>
+        <a href="/login.html">Giriş Yap</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Paneller</div>
+        <a href="/login.html">Öğretmen Paneli</a>
+        <a href="/login.html">Öğrenci Paneli</a>
+        <a href="/login.html">Ders Arşivi</a>
+        <a href="/login.html">Canlı Ders</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Güvenlik</div>
+        <a href="#roles">Gizlilik Politikası</a>
+        <a href="#roles">KVKK Uyumu</a>
+        <a href="#roles">Veri Güvenliği</a>
+        <a href="#roles">Tarayıcı Tabanlı AI</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 EduSense Pro · Yapay Zeka Destekli Eğitim Platformu</span>
+      <span class="tech-badge">✅ KVKK Uyumlu</span>
+    </div>
+  </div>
 </footer>
 
+<script>
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+// Start scrolled if page is already scrolled
+if (window.scrollY > 40) nav.classList.add('scrolled');
+</script>
 </body>
 </html>
